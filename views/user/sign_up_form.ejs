@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('../include/title.ejs') %>
+    <link href="/css/user/sign_up_form.css" rel="stylesheet" type="text/css">
+    <script src="/js/user/sign_up_form.js"></script>
+</head>
+<body>
+
+    <%- include('../include/header.ejs') %>
+    <%- include('../include/nav.ejs') %>
+    
+    <article>
+        <div class="article_wrap">
+            <div class="title">
+                <h4>USER SIGNUP FORM</h4>
+            </div>
+            <div class="content">
+                <form action="/user/signup_confirm" name="sign_up_form" method="post" enctype="multipart/form-data">
+                    <input type="text" name="u_id" placeholder="INPUT ID"><br>
+                    <input type="password" name="u_pw" placeholder="INPUT PW"><br>
+                    <input type="text" name="u_mail" placeholder="INPUT MAIL"><br>
+                    <input type="text" name="u_phone" placeholder="INPUT PHONE"><br>
+                    <input type="file" name="profile_thum" placeholder="SELECT PROFILE IMAGE"><br>
+                    <input type="button" value="SUBMIT" onclick="signupForm();">
+                    <input type="reset" value="RESET">
+                </form>
+            </div>
+        </div>
+    </article>
+
+    <%- include('../include/footer.ejs') %>
+</body>
+</html>

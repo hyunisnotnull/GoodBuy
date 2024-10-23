@@ -1,0 +1,26 @@
+<link href="/css/include/nav.css" rel="stylesheet" type="text/css">
+<script src="/js/include/nav.js"></script>
+
+<nav>
+    <div class="nav_wrap">
+        
+        <a href="/">HOME</a> &nbsp;
+
+        <%
+            if(loginedUser === undefined) {
+        %>
+                <a href="/user/signup_form">SIGNUP</a> &nbsp;
+                <a href="/user/signin_form">SIGNIN</a> &nbsp;
+        <%
+            } else {
+        %>
+                <a href="/user/modify_form">MODIFY</a> &nbsp;
+                <a href="/user/signout_confirm">SIGNOUT</a> &nbsp;
+                | &nbsp;
+                <a href="/product/list">상품</a> &nbsp;
+        <%
+            }
+        %>
+
+    </div>
+</nav>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('../include/title.ejs') %>
+    <link href="/css/user/sign_up_form.css" rel="stylesheet" type="text/css">
+    <script src="/js/user/sign_up_form.js"></script>
+</head>
+<body>
+
+    <%- include('../include/header.ejs') %>
+    <%- include('../include/nav.ejs') %>
+    
+    <article>
+        <div class="article_wrap">
+            <div class="title">
+                <h4>user SIGNIN FORM</h4>
+            </div>
+            <div class="content">
+                <form action="/user/signin_confirm" name="sign_in_form" method="post">
+                    <input type="text" name="u_id" placeholder="INPUT ID"><br>
+                    <input type="password" name="u_pw" placeholder="INPUT PW"><br>
+                    <%
+                        if (errMsg !== undefined) {
+                    %>
+                            <%= errMsg %><br>
+                    <%
+                        }
+                    %>
+                    <input type="button" value="SUBMIT" onclick="signinForm();">
+                    <input type="reset" value="RESET">
+                </form>
+                <br>
+                <a href="/auth/google">login with google</a>
+            </div>
+        </div>
+    </article>
+
+    <%- include('../include/footer.ejs') %>
+</body>
+</html>

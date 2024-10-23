@@ -1,0 +1,9 @@
+header {
+    border-bottom: 1px solid #ccc;
+}
+
+header div.header_wrap {
+    text-align: center;
+    height: 50px; 
+    line-height: 50px;
+}
