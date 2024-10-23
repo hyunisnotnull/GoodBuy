@@ -3,20 +3,20 @@ const router = express.Router();
 const userService = require('../lib/service/userService');
 const uploads = require('../lib/upload/uploads');
 
-router.get('/signup_form', (req, res) => {
-    console.log('/user/signup_form');
+router.get('/sign_up_form', (req, res) => {
+    console.log('/user/sign_up_form');
     userService.signupForm(req, res);
 
 });
 
-router.post('/signup_confirm', uploads.UPLOAD_PROFILE_MIDDLEWARE(), (req, res) => {
-    console.log('/user/signup_form');
+router.post('/sign_up_confirm', uploads.UPLOAD_PROFILE_MIDDLEWARE(), (req, res) => {
+    console.log('/user/sign_up_form');
     userService.signupConfirm(req, res);
 
 });
 
-router.get('/signin_form', (req, res) => {
-    console.log('/user/signin_form');
+router.get('/sign_in_form', (req, res) => {
+    console.log('/user/sign_in_form');
     userService.signinForm(req, res);
 
 });
@@ -33,8 +33,8 @@ router.post('/modify_confirm', uploads.UPLOAD_PROFILE_MIDDLEWARE(), (req, res) =
 
 });
 
-router.get('/signout_confirm', (req, res) => {
-    console.log('/user/signout_confirm');
+router.get('/sign_out_confirm', (req, res) => {
+    console.log('/user/sign_out_confirm');
     userService.signoutConfirm(req, res);
 
 });

@@ -10,8 +10,8 @@ CREATE TABLE TBL_USER(
 	U_PROFILE_THUM			VARCHAR(50),
 	U_NICK					VARCHAR(20) UNIQUE,
 	U_PHONE					VARCHAR(20) NOT NULL,
-	U_SEX					VARCHAR(2) NOT NULL,				-- M(남) F(여)
-	U_AGE					TINYINT NOT NULL,					-- 연령대
+	U_SEX					VARCHAR(2) NOT NULL,				-- M(남) W(여)
+	U_AGE					VARCHAR(10) NOT NULL,					-- 연령대
 	U_POST_ADDRESS			VARCHAR(100) NOT NULL,				-- 우편번호 주소
 	U_DETAIL_ADDRESS		VARCHAR(50),						-- 상세 주소
 	U_SNS_ID				VARCHAR(30),						-- 구글, 네이버 ID

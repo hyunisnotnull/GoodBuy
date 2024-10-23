@@ -1,79 +1,77 @@
+body {
+    font-family: 'Arial', sans-serif; /* 모던한 폰트 */
+    background-color: #f5f7fa; /* 부드러운 배경색 */
+}
+
 article div.article_wrap {
-    width: 1000px;
-    margin: 50px auto;
+    width: 1000px; /* 너비 조정 */
+    margin: 50px auto; /* 중앙 정렬 */
+    padding: 20px; /* 패딩 추가 */
+    border-radius: 10px; /* 둥근 모서리 */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+    background: #ffffff; /* 흰색 배경 */
 }
 
 article div.title {
-    text-align: center;
+    text-align: center; /* 제목 중앙 정렬 */
+    font-size: 1.6em; /* 제목 크기 조정 */
+    color: #333; /* 제목 색상 */
+    margin-bottom: 20px; /* 제목 아래 여백 */
 }
 
 article div.content {
     margin-top: 10px;
-    text-align: center;
+    text-align: center; /* 콘텐츠 중앙 정렬 */
 }
 
-article div.content input {
-    width: 300px;
-    padding: 10px;
-    margin: 3px;
+article div.content input,
+article div.content select {
+    width: 300px; /* 입력창 너비 조정 */
+    padding: 10px; /* 패딩 증가 */
+    margin: 3px; /* 여백 증가 */
+    border: 1px solid #ddd; /* 연한 테두리 */
+    border-radius: 5px; /* 둥근 모서리 */
+    font-size: 1em; /* 폰트 크기 조정 */
+    transition: border 0.3s, box-shadow 0.3s; /* 전환 효과 */
+}
+
+article div.content input:focus,
+article div.content select:focus {
+    border-color: #6c63ff; /* 포커스 시 테두리 색상 */
+    box-shadow: 0 0 5px rgba(108, 99, 255, 0.5); /* 포커스 시 그림자 효과 */
 }
 
 article div.content input[type="button"],
 article div.content input[type="reset"] {
-    width: 156px;
+    width: 156px; /* 버튼 너비 조정 */
+    background-color: #6c63ff; /* 버튼 배경색 */
+    color: #ffffff; /* 버튼 글자색 */
+    border: none; /* 테두리 제거 */
+    border-radius: 5px; /* 둥근 모서리 */
+    padding: 12px; /* 패딩 */
+    margin: 8px 1%; /* 여백 조정 */
+    cursor: pointer; /* 포인터 커서 */
+    transition: background-color 0.3s, transform 0.2s; /* 전환 효과 */
+}
+
+article div.content input[type="button"]:hover,
+article div.content input[type="reset"]:hover {
+    background-color: #5a54d1; /* 호버 시 배경색 변화 */
+    transform: translateY(-2px); /* 호버 시 약간 올라오는 효과 */
 }
 
 article div.content div.profile_thum_wrap {
-    width: 200px; height: 200px;
-    margin: 0 auto;
-    overflow: hidden;
-    border-radius: 100px;
+    width: 200px; /* 프로필 이미지 영역 너비 */
+    height: 200px; /* 프로필 이미지 영역 높이 */
+    margin: 0 auto; /* 중앙 정렬 */
+    overflow: hidden; /* 내용 넘침 방지 */
+    border-radius: 100px; /* 원형으로 만들기 */
 }
 
 article div.content input[name="cover_profile_thum_delete"] {
-    width: 20px;
+    width: 20px; /* 체크박스 너비 */
 }
 
 article div.content input[name="profile_thum"] {
-    display: none;
+    display: none; /* 프로필 이미지 선택 입력 숨기기 */
 }
-
-/* PROFILE_MODAL_WRAP START */
-#profile_modal_wrap {
-	position: fixed;
-	top: 0; left: 0;
-	width: 100%; height: 100%;
-	background-color: rgba(0, 0, 0, .7);
-    display: none;
-}
-
-#profile_modal_wrap div.profile_thum_close {
-    width: 1100px;
-    margin: 50px auto 5px;
-    text-align: right;
-}
-
-#profile_modal_wrap div.profile_thum_close a {
-    font-weight: bold;
-    color: #fff;
-}
-
-#profile_modal_wrap div.profile_thum {
-    display: flex;
-    width: 1100px;
-    margin: 0 auto;
-    padding: 15px 0;
-    background-color: rgba(255, 255, 255, 1);
-}
-
-#profile_modal_wrap div.profile_thum div.pre_btn,
-#profile_modal_wrap div.profile_thum div.next_btn {
-    width: 100px;
-    text-align: center;
-}
-
-#profile_modal_wrap div.profile_thum div.thum {
-    width: 900px;
-    text-align: center;
-}
-/* PROFILE_MODAL_WRAP END */

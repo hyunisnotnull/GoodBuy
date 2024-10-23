@@ -25,13 +25,35 @@
 
                     <input type="text" value="<%= user.U_ID %>" readonly disabled><br>
                     <input type="password" name="u_pw" placeholder="INPUT user PW"><br>
-                    <input type="text" name="u_mail" value="<%= user.U_MAIL %>"><br>
+                    <input type="text" name="u_nick" value="<%= user.U_NICK %>"><br>
                     <input type="text" name="u_phone" value="<%= user.U_PHONE %>"><br>
+                    <select name="u_sex" required>
+                        <option value="">성별 선택</option>
+                        <option value="M" <%= user.U_SEX === 'M' ? 'selected' : '' %>>남성</option>
+                        <option value="W" <%= user.U_SEX === 'W' ? 'selected' : '' %>>여성</option>
+                    </select><br>
+                    
+                    <select name="u_age" required>
+                        <option value="">연령대 선택</option>
+                        <option value="10" <%= user.U_AGE === '10' ? 'selected' : '' %>>10대</option>
+                        <option value="20" <%= user.U_AGE === '20' ? 'selected' : '' %>>20대</option>
+                        <option value="30" <%= user.U_AGE === '30' ? 'selected' : '' %>>30대</option>
+                        <option value="40" <%= user.U_AGE === '40' ? 'selected' : '' %>>40대</option>
+                        <option value="50" <%= user.U_AGE === '50' ? 'selected' : '' %>>50대</option>
+                        <option value="60" <%= user.U_AGE === '60' ? 'selected' : '' %>>60대 이상</option>
+                    </select><br>
+                    <input type="hidden" id="user_post_address" name="u_post_address" value="<%= user.U_POST_ADDRESS %>">
+                    <input type="text" id="user_postcode" placeholder="우편번호" readonly value="<%= user.U_POST_ADDRESS.split(' ')[0] %>" required>
+                    <input type="button" onclick="userAddress()" value="우편번호 찾기"><br>
+                    <input type="text" id="user_address" placeholder="주소" value="<%= user.U_POST_ADDRESS.split(' ').slice(1).join(' ') %>" required><br>
+                    <input type="text" name="u_detail_address" id="user_detailAddress" placeholder="상세주소" value="<%= user.U_DETAIL_ADDRESS %>" required><br>
+
+
                     <input type="file" name="profile_thum" placeholder="SELECT PROFILE IMAGE"><br>
                     <div class="profile_thum_wrap">
                         <a href="#none">
                             <%
-                                if (user.U_PROFILE_THUM !== '') {
+                                if (user.U_PROFILE_THUM && user.U_PROFILE_THUM !== '') {
                             %>
                                     <img src="/<%=user.U_ID%>/<%=user.U_PROFILE_THUM%>">
                             <%

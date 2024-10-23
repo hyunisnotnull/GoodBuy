@@ -3,28 +3,36 @@ const signupForm = () => {
 
     let form = document.sign_up_form;
     if (form.u_id.value === '') {
-        alert('INPUT ID!!');
+        alert('ID를 입력해주세요.');
         form.u_id.focus();
 
     } else if (form.u_pw.value === '') {
-        alert('INPUT PW!!');
+        alert('비밀번호를 입력해주세요.');
         form.u_pw.focus();
 
-    } else if (form.u_mail.value === '') {
-        alert('INPUT MAIL!!');
-        form.u_mail.focus();
+    } else if (form.u_nick.value === '') {
+        alert('닉네임을 입력해주세요.');
+        form.u_nick.focus();
 
     } else if (form.u_phone.value === '') {
-        alert('INPUT PHONE!!');
+        alert('연락처를 입력해주세요.');
         form.u_phone.focus();
 
+    } else if (form.u_sex.value === '') {
+        alert('성별을 선택해주세요.');
+        form.u_sex.focus();
+
     } else if (form.u_age.value === '') {
-        alert('INPUT PHONE!!');
+        alert('연령을 선택해주세요.');
         form.u_age.focus();
 
-    } else if (form.u_gender.value === '') {
-        alert('INPUT PHONE!!');
-        form.u_gender.focus();
+    } else if (form.u_post_address.value === '') {
+        alert('우편 주소를 입력해주세요.');
+        form.u_post_address.focus();
+
+    } else if (form.u_detail_address.value === '') {
+        alert('상세 주소를 입력해주세요.');
+        form.u_detail_address.focus();
 
     } else {
         form.submit();

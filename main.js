@@ -27,9 +27,9 @@ app.use(session(sessionObj));
 
 // passport START
 let passport = pp.passport(app);
-app.post('/user/signin_confirm', passport.authenticate('local', {
+app.post('/user/sign_in_confirm', passport.authenticate('local', {
     successRedirect: '/',
-    failureRedirect: '/user/signin_form?errMsg=INCORRECT USER ID OR PW',
+    failureRedirect: '/user/sign_in_form?errMsg=INCORRECT USER ID OR PW',
 }));
 
 // view template engine
