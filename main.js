@@ -7,6 +7,14 @@ const Memorystore = require('memorystore')(session);
 const path = require('path');
 const pp = require('./lib/passport/passport');
 
+// Socket.IO 설정
+const http = require('http');
+const server = http.createServer(app);
+const initSocket = require('./lib/socket/socket');
+
+// Socket.io 초기화
+initSocket(server);
+
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(compression());
 app.use(express.static(path.join(__dirname, 'public')));
@@ -43,7 +51,6 @@ app.get('/', (req, res) => {
 
 });
 
-
 // router
 const homeRouter = require('./routes/homeRouter');
 app.use('/home', homeRouter);
@@ -51,7 +58,11 @@ app.use('/home', homeRouter);
 const userRouter = require('./routes/userRouter');
 app.use('/user', userRouter);
 
+const chatRouter = require('./routes/chatRouter');
+app.use('/chat', chatRouter);
+
 // const productRouter = require('./routes/productRouter');
 // app.use('/product', productRouter);
+
 
 app.listen(3001);
