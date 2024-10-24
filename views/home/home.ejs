@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%- include('../include/title.ejs') %>
     <link href="/css/home/home.css" rel="stylesheet" type="text/css">
+    <script src="/js/home/slide.js" defer></script>
 </head>
 <body>
 
@@ -13,12 +14,57 @@
     
     <article>
         <div class="article_wrap">
-            <div class="title">
-                <h4>GOOD BUY HOME</h4>
+            <div class="banner">
+                <h4>이벤트 및 광고</h4>
+                <div class="banner-slider">
+                    <button class="prev">◀</button>
+                    <div class="banner-list">
+                        <% events.forEach((event, index) => { %>
+                            <div class="banner-item <%= index === 0 ? 'active' : '' %>">
+                                <a href="<%= event.E_URL.startsWith('http') ? event.E_URL : 'http://' + event.E_URL %>">
+                                    <img src="/<%= event.E_NO %>/<%= event.E_IMAGE %>" alt="<%= event.E_TITLE %>" />
+                                </a>
+                            </div>
+                        <% }) %>
+                    </div>
+                    <button class="next">▶</button>
+                </div>
+            </div>
+            <div class="auction">
+                <h4>HOT 경매</h4>
+                <div class="auction-slider">
+                    <button class="prev">◀</button>
+                    <div class="auction-list">
+                        <% auctions.forEach((auction, index) => { %>
+                            <div class="auction-item <%= index === 0 ? 'active' : '' %>">
+                                <img src="<%= auction.image %>" alt="<%= auction.name %>" />
+                                <h5><%= auction.name %></h5>
+                                <p>현재가: <%= auction.currentPrice %> 원</p>
+                            </div>
+                        <% }) %>
+                    </div>
+                    <button class="next">▶</button>
+                </div>
+            </div>
+            <div class="products">
+                <h4>최신 등록 상품</h4>
+                <div class="product-slider">
+                    <button class="prev">◀</button>
+                    <div class="product-list">
+                        <% products.forEach((product, index) => { %>
+                            <div class="product-item <%= index === 0 ? 'active' : '' %>">
+                                <img src="<%= product.image %>" alt="<%= product.name %>" />
+                                <h5><%= product.name %></h5>
+                                <p>가격: <%= product.price %> 원</p>
+                            </div>
+                        <% }) %>
+                    </div>
+                    <button class="next">▶</button>
+                </div>
             </div>
         </div>
     </article>
-
+    
     <%- include('../include/footer.ejs') %>
 </body>
 </html>

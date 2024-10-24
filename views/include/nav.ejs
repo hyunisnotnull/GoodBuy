@@ -3,21 +3,19 @@
 
 <nav>
     <div class="nav_wrap">
-        
-        <a href="/">HOME</a> &nbsp;
 
         <%
             if(loginedUser === undefined) {
         %>
-                <a href="/user/sign_up_form">SIGNUP</a> &nbsp;
-                <a href="/user/sign_in_form">SIGNIN</a> &nbsp;
+            <a href="/product/list_product_form">상품</a> &nbsp;
         <%
             } else {
         %>
-                <a href="/user/modify_form">MODIFY</a> &nbsp;
-                <a href="/user/sign_out_confirm">SIGNOUT</a> &nbsp;
-                | &nbsp;
-                <a href="/product/list">상품</a> &nbsp;
+                <a href="/chat/list">바이톡</a> &nbsp;
+                <a href="/user/mylist">마이페이지</a> &nbsp;
+                <a href="/auction/list">경매</a> &nbsp;
+                <a href="/product/rate">시세조회</a> &nbsp;        
+                <a href="/product/add_product_form">상품등록</a> &nbsp;
         <%
             }
         %>

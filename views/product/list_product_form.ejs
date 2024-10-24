@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('../include/title.ejs') %>
+    <link href="/css/product/list_product_form.css" rel="stylesheet" type="text/css">
+    <script src="/js/product/list_product_form.js"></script>
+</head>
+<body>
+
+    <%- include('../include/header.ejs') %>
+    <%- include('../include/nav.ejs') %>
+    
+    <article>
+        <div class="article_wrap">
+            <div class="title">
+                <h4>ADD PRODUCT FORM</h4>
+            </div>
+            <div class="content">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>NO</th>
+                            <th>NAME</th>
+                            <th>PRICE</th>
+                            <th>THUM</th>
+                            <th>CATEGORY</th>
+                            <th>STATE</th>
+                            <th>MOD_DATE</th>
+                        </tr>
+                    </thead>
+                        <% for (let i = 0; i < products.length; i++) {%>
+                            <tr>
+                                <td><%= products[i].P_NO %></td>
+                                <td><%= products[i].P_NAME %></td>
+                                <td><%= products[i].P_PRICE.toLocaleString() %></td>                             
+                                <td><img src="\<%= products[i].P_OWNER_ID %>\<%= products[i].P_IMAGE %>"></td>
+                                <td>
+                                    <select >
+                                <% for (let j = 0; j < category.length; j++) {%>
+                                        <option value="<%= category[j].C_NO %>"><%= category[j].C_NAME %></option>
+                                <% } %>
+                                    </select>
+                                </td>
+
+                                <td><%= products[i].P_STATE %></td>
+                                <td><%= products[i].P_MOD_DATE.toISOString().substring(0,10) %></td>
+                            </tr>
+                        <% }%>
+                </table>
+            </div>
+        </div>
+    </article>
+
+    <%- include('../include/footer.ejs') %>
+</body>
+</html>

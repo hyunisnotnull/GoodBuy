@@ -19,6 +19,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(compression());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static('c:\\goodbuy\\upload\\profile_thums\\'));
+app.use(express.static('c:\\goodbuyforadmin\\upload\\event_images\\'));
 
 // session
 const maxAge = 1000 * 60 * 30;
@@ -61,8 +62,11 @@ app.use('/user', userRouter);
 const chatRouter = require('./routes/chatRouter');
 app.use('/chat', chatRouter);
 
-// const productRouter = require('./routes/productRouter');
-// app.use('/product', productRouter);
+const chatRouter = require('./routes/chatRouter');
+app.use('/chat', chatRouter);
+
+const productRouter = require('./routes/productRouter');
+app.use('/product', productRouter);
 
 
 app.listen(3001);

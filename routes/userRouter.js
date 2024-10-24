@@ -45,4 +45,10 @@ router.get('/delete_confirm', (req, res) => {
 
 });
 
+router.get('/mylist', (req, res) => {
+    console.log('/user/mylist');
+    userService.myList(req, res);
+
+});
+
 module.exports = router;

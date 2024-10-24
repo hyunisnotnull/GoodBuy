@@ -1,0 +1,47 @@
+body {
+    font-family: 'Arial', sans-serif; /* 모던한 폰트 */
+    background-color: #f5f7fa; /* 부드러운 배경색 */
+}
+
+article div.article_wrap {
+    max-width: 90%; /* 너비 조정 */
+    margin: 50px auto; /* 중앙 정렬 */
+    padding: 20px; /* 패딩 추가 */
+    border-radius: 10px; /* 둥근 모서리 */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+    background: #ffffff; /* 흰색 배경 */
+}
+
+article div.title {
+    text-align: center;
+    font-size: 1.6em; /* 제목 크기 조정 */
+    color: #333; /* 제목 색상 */
+    margin-bottom: 20px; /* 제목 아래 여백 */
+}
+
+article div.content {
+    margin-top: 10px;
+    text-align: center;
+}
+
+article div.content table {
+    width: 100%;
+    border-collapse: collapse; 
+}
+
+article div.content thead th{
+    background-color: #6c63ff;
+    padding: 10px 5px;
+    color: #fff;
+    text-align: center;
+}
+
+article div.content tbody td {
+    padding: 10px 5px;
+    border-bottom: 1px solid #c8c8c8;
+}
+
+article div.content tbody img {
+    max-width: 50px;
+    max-height: 50px;
+}
