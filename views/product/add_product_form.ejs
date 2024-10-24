@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('../include/title.ejs') %>
+    <link href="/css/product/add_product_form.css" rel="stylesheet" type="text/css">
+    <script src="/js/product/add_product_form.js"></script>
+</head>
+<body>
+
+    <%- include('../include/header.ejs') %>
+    <%- include('../include/nav.ejs') %>
+    
+    <article>
+        <div class="article_wrap">
+            <div class="title">
+                <h4>ADD PRODUCT FORM</h4>
+            </div>
+            <div class="content">
+                <form action="/product/add_product_confirm" name="add_product_form" method="post" enctype="multipart/form-data">
+                    <input type="hidden" name="u_id" value="<%= loginedUser.U_ID %>">
+                    <input type="hidden" name="u_nick" value="<%= loginedUser.U_NICK %>">
+                    <input type="text" name="p_name" placeholder="상품 이름을 입력해주세요."><br>
+                    <input type="number" name="p_price" placeholder="상품 가격을 입력해주세요."><br>
+                    <select name="p_category">
+                        <option value="">SELECT CATEGORY</option>
+                        <% for (let i = 0; i < category.length; i++) {%>
+                            <option value= "<%= category[i].C_NO %>"><%= category[i].C_NAME%></option>
+                        <% }%>
+
+                    </select><br>
+                    <div class="radio">
+                    <input type="radio" name="p_state" value="3" checked >판매 
+                    <input type="radio" name="p_state" value="4">경매
+                    </div>
+                    <textarea name="p_desc" placeholder="상품 설명을 입력해주세요."></textarea><br>
+                    
+                    <input type="file" name="profile_thum" placeholder="SELECT PROFILE IMAGE"><br>
+                    <input type="button" value="SUBMIT" onclick="addProductForm();">
+                    <input type="reset" value="RESET">
+                </form>
+            </div>
+        </div>
+    </article>
+
+    <%- include('../include/footer.ejs') %>
+</body>
+</html>

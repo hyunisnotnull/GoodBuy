@@ -51,7 +51,7 @@ app.use('/home', homeRouter);
 const userRouter = require('./routes/userRouter');
 app.use('/user', userRouter);
 
-// const productRouter = require('./routes/productRouter');
-// app.use('/product', productRouter);
+const productRouter = require('./routes/productRouter');
+app.use('/product', productRouter);
 
 app.listen(3001);
