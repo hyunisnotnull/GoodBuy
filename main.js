@@ -62,9 +62,6 @@ app.use('/user', userRouter);
 const chatRouter = require('./routes/chatRouter');
 app.use('/chat', chatRouter);
 
-const chatRouter = require('./routes/chatRouter');
-app.use('/chat', chatRouter);
-
 const productRouter = require('./routes/productRouter');
 app.use('/product', productRouter);
 
