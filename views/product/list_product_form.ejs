@@ -15,7 +15,7 @@
     <article>
         <div class="article_wrap">
             <div class="title">
-                <h4>ADD PRODUCT FORM</h4>
+                <h4>LIST PRODUCT FORM</h4>
             </div>
             <div class="content">
                 <table>
@@ -28,24 +28,39 @@
                             <th>CATEGORY</th>
                             <th>STATE</th>
                             <th>MOD_DATE</th>
+                            <th></th>
                         </tr>
                     </thead>
                         <% for (let i = 0; i < products.length; i++) {%>
                             <tr>
                                 <td><%= products[i].P_NO %></td>
-                                <td><%= products[i].P_NAME %></td>
+                                <td><a href="/product/modify_product_form?p_no=<%= products[i].P_NO %>"><%= products[i].P_NAME %></a></td>
                                 <td><%= products[i].P_PRICE.toLocaleString() %></td>                             
                                 <td><img src="\<%= products[i].P_OWNER_ID %>\<%= products[i].P_IMAGE %>"></td>
                                 <td>
-                                    <select >
-                                <% for (let j = 0; j < category.length; j++) {%>
-                                        <option value="<%= category[j].C_NO %>"><%= category[j].C_NAME %></option>
-                                <% } %>
+                                    <input type="hidden" id="category" value="<%= products[i].P_CATEGORY %>">
+                                    <select name="p_category" onchange="changeCategory(event);" >
+                                        <% for (let j = 0; j < category.length; j++) {%>
+                                            <option value="<%= category[j].C_NO %>"
+                                                <% if (category[j].C_NO === parseInt(products[i].P_CATEGORY) ) { %>
+                                                    SELECTED
+                                                <% } %>><%= category[j].C_NAME %></option>
+                                        <% } %>
                                     </select>
                                 </td>
-
-                                <td><%= products[i].P_STATE %></td>
+                                <td>
+                                    <input type="hidden" id="state" value="<%= products[i].P_STATE %>">
+                                    <select name="p_state" onchange="changeSate(event);">
+                                        <% for (let j = 0; j < result.length; j++) { %>
+                                            <option value="<%= result[j].ST_NO %>" 
+                                                <% if (result[j].ST_NO === parseInt(products[i].P_STATE) ) { %>
+                                                    SELECTED
+                                                <% } %>><%= result[j].ST_NAME %></option>
+                                        <% } %>
+                                    </select>
+                                </td>
                                 <td><%= products[i].P_MOD_DATE.toISOString().substring(0,10) %></td>
+                                <td><a href="#none" onclick="deleteProduct(event);">&#128465;</a></td>
                             </tr>
                         <% }%>
                 </table>

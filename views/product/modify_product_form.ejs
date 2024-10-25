@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('../include/title.ejs') %>
+    <link href="/css/product/modify_product_form.css" rel="stylesheet" type="text/css">
+    <script src="/js/product/modify_product_form.js"></script>
+</head>
+<body>
+
+    <%- include('../include/header.ejs') %>
+    <%- include('../include/nav.ejs') %>
+    
+    <article>
+        <div class="article_wrap">
+            <div class="title">
+                <h4>MODIFY PRODUCT FORM</h4>
+            </div>
+            <div class="content">
+                <form action="/product/modify_product_confirm" name="modify_product_form" method="post" enctype="multipart/form-data">
+                    <input type="hidden" name="p_no" value="<%= product.P_NO %>">
+                    <input type="hidden" name="u_id" value="<%= product.P_OWNER_ID %>">
+                    <input type="hidden" name="u_nick" value="<%= product.P_OWNER_NICK %>">
+                    <input type="text" name="p_name" value="<%= product.P_NAME %>"><br>
+                    <input type="number" name="p_price" value="<%= product.P_PRICE %>"><br>
+                    <select name="p_category">
+                        <% for (let i = 0; i < category.length; i++) {%>
+                            <option value="<%= category[i].C_NO %>"
+                                <% if (category[i].C_NO === parseInt(product.P_CATEGORY)) { %>    
+                                    selected
+                                <% } %>
+                            ><%= category[i].C_NAME%></option>
+                        <% }%>
+                    </select><br>
+                    <input type="hidden" name="ori_img" value="\<%= product.P_OWNER_ID %>\<%= product.P_IMAGE %>">
+                    <img id="img" src="\<%= product.P_OWNER_ID %>\<%= product.P_IMAGE %>">
+                    <a href="#none" name="change_image" onclick="changeImage();">CHANGE IMAGE</a>
+                    <div class="radio">
+                    <input type="radio" name="p_state" value="3" 
+                    <% if (parseInt(product.P_STATE) === 3) { %>    
+                            checked
+                    <% } %>>판매
+
+                    <input type="radio" name="p_state" value="4"
+                    <% if (parseInt(product.P_STATE) === 4) { %>    
+                            checked
+                    <% } %>>경매
+                    </div>
+                    <textarea name="p_desc"><%= product.P_DESC %></textarea><br>
+                    <input type="file" name="profile_thum" onchange="showImage(event);"><br>
+                    <input type="button" value="SUBMIT" onclick="modifyProductConfirm();">
+                    <input type="button" value="RESET" onclick="resetBtn();">
+                </form>
+            </div>
+        </div>
+    </article>
+
+    <%- include('../include/footer.ejs') %>
+</body>
+</html>
