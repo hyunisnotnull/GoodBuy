@@ -2,6 +2,23 @@
 
 <header>
     <div class="header_wrap">
-        <h4>GOOD BUY Service</h4>
+        <img src="/img/logo.png" alt="Logo" class="logo">
+        
+        <div class="menu">
+            <a href="/">HOME</a>|
+            <%
+                if(loginedUser === undefined) {
+            %>
+                    <a href="/user/sign_up_form">회원가입</a>|
+                    <a href="/user/sign_in_form">로그인</a>
+            <%
+                } else {
+            %>
+                    <a href="/user/modify_form">계정수정</a>|
+                    <a href="/user/sign_out_confirm">로그아웃</a>
+            <%
+                }
+            %>
+        </div>
     </div>
 </header>

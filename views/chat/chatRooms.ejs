@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Rooms</title>
+    <!-- <link rel="stylesheet" href="/css/style.css"> -->
+</head>
+<body>
+    <h1>My Chat Rooms</h1>
+    <ul>
+        <% if (rooms.length > 0) { %>
+            <% rooms.forEach(function(room) { %>
+                <li>
+                    <a href="/chat/room/<%= room.CH_NO %>">
+                        채팅방: <%= room.CH_OWNER_NICK %>와 <%= room.CH_OTHER_NICK %>
+                    </a>
+                </li>
+            <% }); %>
+        <% } else { %>
+            <li>참여 중인 채팅방이 없습니다.</li>
+        <% } %>
+    </ul>
+</body>
+</html>
