@@ -1,6 +1,7 @@
 article div.article_wrap {
     width: 1000px;
     margin: 50px auto;
+
 }
 
 article div.article_wrap div.title {
@@ -10,3 +11,24 @@ article div.article_wrap div.title {
 article div.article_wrap div.content {
     text-align: center;
 }
+
+article div.sale_box  {
+    width: 80%;
+    height: 200px;
+    background: #c8c8c8;
+    text-align: center;
+    display: flex;
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+}
+
+
+article div.sale_box .box {
+    width: 200px;
+    height: 200px;
+    margin: 0 20px;
+    background-color: aqua;
+
+}
+

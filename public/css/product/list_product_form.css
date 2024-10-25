@@ -32,14 +32,34 @@ article div.content table {
 article div.content thead th{
     background-color: #6c63ff;
     padding: 10px 5px;
+    margin-bottom: 5px;
     color: #fff;
-    text-align: center;
 }
 
-article div.content tbody td {
+article div.content thead th:first-child{
+    border-top-left-radius: 5px ;
+}
+
+article div.content thead th:last-child{
+    border-top-right-radius: 5px ;
+}
+
+
+article div.content tbody tr {
     padding: 10px 5px;
     border-bottom: 1px solid #c8c8c8;
 }
+
+article div.content tbody tr td{
+    padding-top: 5px;
+}
+
+article div.content tbody tr:last-child {
+    padding: 10px 5px;
+    border-bottom: none;
+}
+
+
 
 article div.content tbody img {
     max-width: 50px;
