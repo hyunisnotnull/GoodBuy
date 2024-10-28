@@ -16,8 +16,8 @@ CREATE TABLE TBL_USER(
 	U_POST_ADDRESS       	VARCHAR(100) NOT NULL,            	-- 우편번호 주소
 	U_DETAIL_ADDRESS    	VARCHAR(50),                  		-- 상세 주소
 	U_SNS_ID            	VARCHAR(30),                  		-- 구글, 네이버 ID
-	U_ACTIVE            	TINYINT DEFAULT 2,               	-- 0(삭제된 계정), 1(활동중인 계정), 2(정지된 계정)
-	U_CLASS              	TINYINT DEFAULT 2,               	-- 0(UNRANK), 1(IRON), 2(BRONZE), 3(SILVER), 4(GOLD), 5(PLATINUM), 6(DIAMOND)
+	U_ACTIVE            	TINYINT DEFAULT 1,               	-- 0(삭제된 계정), 1(활동중인 계정), 2(정지된 계정)
+	U_CLASS              	TINYINT DEFAULT 1,               	-- 0(UNRANK), 1(IRON), 2(BRONZE), 3(SILVER), 4(GOLD), 5(PLATINUM), 6(DIAMOND)
 	U_POINT              	SMALLINT DEFAULT 100,            	-- 100점 획득시 등급 상승
 	U_PENALTY            	TINYINT DEFAULT 0,               	-- 잔여 페널티(3패널티에 1일 정지)
 	U_BAN_START_DATE    	DATETIME,                      		-- 정지 시작 날짜

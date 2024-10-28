@@ -18,6 +18,22 @@
                 <h4>SALE PRODUCT LIST</h4>
             </div>
             <div class="content">
+
+                <div class="total_count">
+                    <% if (keyword) { %>
+                        총 <span id="product_count"><%= products.length %></span> 건에 대한 "<%= keyword %>" 검색 결과
+                    <% } else { %>
+                        총 <span id="product_count"><%= products.length %></span> 건
+                    <% } %>
+                </div>
+                <div class="sort_menu">
+                    정렬:
+                    <a href="/product/list_sale_product_form">전체</a> |
+                    <a href="/product/list_sale_product_form?keyword=<%= keyword %>&sort=latest">최신순</a> |
+                    <a href="/product/list_sale_product_form?keyword=<%= keyword %>&sort=price_low">저가순</a> |
+                    <a href="/product/list_sale_product_form?keyword=<%= keyword %>&sort=price_high">고가순</a>
+                </div>
+
                 <table>
                     <thead>
                         <tr>
