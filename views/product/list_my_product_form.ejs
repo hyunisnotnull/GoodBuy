@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('../include/title.ejs') %>
+    <link href="/css/product/list_product_form.css" rel="stylesheet" type="text/css">
+    <script src="/js/product/list_product_form.js"></script>
+</head>
+<body>
+
+    <%- include('../include/header.ejs') %>
+    <%- include('../include/nav.ejs') %>
+    
+    <article>
+        <div class="article_wrap">
+            <div class="title">
+                <h4>MY PRODUCT LIST</h4>
+            </div>
+            <div class="content">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>NO</th>
+                            <th>NAME</th>
+                            <th>PRICE</th>
+                            <th>THUM</th>
+                            <th>CATEGORY</th>
+                            <th>STATE</th>
+                            <th>MOD_DATE</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                        <% for (let i = 0; i < products.length; i++) {%>
+                            <tr>
+                                <td><%= products[i].P_NO %></td>
+                                <td><a href="/product/modify_product_form?p_no=<%= products[i].P_NO %>"><%= products[i].P_NAME %></a></td>
+                                <td><%= products[i].P_PRICE.toLocaleString() %>원</td>                             
+                                <td><img src="\<%= products[i].P_OWNER_ID %>\<%= products[i].P_IMAGE %>"></td>
+                                <td>
+                                    <input type="hidden" id="category" value="<%= products[i].P_CATEGORY %>">
+                                    <select name="p_category" onchange="changeCategory(event);" >
+                                        <% for (let j = 0; j < category.length; j++) {%>
+                                            <option value="<%= category[j].C_NO %>"
+                                                <% if (category[j].C_NO === parseInt(products[i].P_CATEGORY) ) { %>
+                                                    SELECTED
+                                                <% } %>><%= category[j].C_NAME %></option>
+                                        <% } %>
+                                    </select>
+                                </td>
+                                <td>
+                                    <input type="hidden" id="state" value="<%= products[i].P_STATE %>">
+                                    <select name="p_state" onchange="changeSate(event);">
+                                        <% for (let j = 0; j < result.length; j++) { %>
+                                            <option value="<%= result[j].ST_NO %>" 
+                                                <% if (result[j].ST_NO === parseInt(products[i].P_STATE) ) { %>
+                                                    SELECTED
+                                                <% } %>><%= result[j].ST_NAME %></option>
+                                        <% } %>
+                                    </select>
+                                </td>
+                                <td><%= products[i].P_MOD_DATE.toISOString().substring(0,10) %></td>
+                                <td><a href="#none" onclick="deleteProduct(event);">&#128465;</a></td>
+                            </tr>
+                        <% }%>
+                </table>
+            </div>
+        </div>
+    </article>
+    <div class="category_menu">
+        <ul>
+        <% for (let i = 0; i < category.length; i++) {%>
+            <li value="<%= category[i].C_NO %>" onclick="clickCategoryMenu(event)"><%= category[i].C_NAME %></li>
+        <% } %>
+        </ul>
+    </div>
+    <div class="state_menu">
+        <ul>
+            <li value="0"  onclick="clickStateMenu(event)">전체보기</li>
+        <% for (let i = 1; i < result.length; i++) {%>
+            <li value="<%= result[i].ST_NO %>" onclick="clickStateMenu(event)"><%= result[i].ST_NAME %></li>
+        <% } %>
+        </ul>
+    </div>
+    <%- include('../include/footer.ejs') %>
+</body>
+</html>

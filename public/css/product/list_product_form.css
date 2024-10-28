@@ -65,3 +65,48 @@ article div.content tbody img {
     max-width: 50px;
     max-height: 50px;
 }
+
+
+div.category_menu {
+    display: none;
+    background-color: #ffffff;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+    background: #ffffff; /* 흰색 배경 */
+}
+
+div.category_menu ul{
+    list-style: none;
+}
+
+div.category_menu ul li {
+    padding: 3px 10px;
+}
+
+div.category_menu ul li:hover {
+    background-color: rgba(200, 200, 200, .3);
+    border-radius: 5px;
+}
+
+div.state_menu {
+    display: none;
+    background-color: #ffffff;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+    background: #ffffff; /* 흰색 배경 */
+}
+
+div.state_menu ul{
+    list-style: none;
+}
+
+div.state_menu ul li {
+    padding: 3px 10px;
+}
+
+div.state_menu ul li:hover {
+    background-color: rgba(200, 200, 200, .3);
+    border-radius: 5px;
+}
