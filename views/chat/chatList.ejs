@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('../include/title.ejs') %>
+    <!-- <link rel="stylesheet" href="/css/style.css"> -->
+</head>
+<body>
+
+    <%- include('../include/header.ejs') %>
+    <%- include('../include/nav.ejs') %>
+    <article>
+        <div class="article_wrap">
+            <div class="title">
+                <h4>My Chat Rooms</h4>
+            </div>
+            <div class="content">
+                <ul>
+                    <% if (chattingRooms.length > 0) { %>
+                        <% chattingRooms.forEach(function(room) { %>
+                            <li>
+                                <a href="/chat/chat/<%= room.CH_NO %>">
+                                    채팅방: <%= room.CH_SENDER_NICK %>와 <%= room.CH_RECEIVER_NICK %>
+                                </a>
+                            </li>
+                        <% }); %>
+                    <% } else { %>
+                        <li>참여 중인 채팅방이 없습니다.</li>
+                    <% } %>
+                </ul>
+            </div>
+        </div>
+    </article>
+</body>
+</html>

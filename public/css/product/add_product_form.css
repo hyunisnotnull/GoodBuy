@@ -90,3 +90,12 @@ article div.content textarea {
     font-size: 1em; /* 폰트 크기 조정 */
     transition: border 0.3s, box-shadow 0.3s; /* 전환 효과 */
 }
+
+input[name="au_trade_date"] {
+    display: none;
+}
+
+input[type="radio"]:checked:focus {
+    border: 0px;
+    box-shadow: 0 0 0 1px #fff;
+}

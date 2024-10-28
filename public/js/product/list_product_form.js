@@ -65,9 +65,10 @@ const deleteProduct = (e) => {
 
 }
 
+
 const changeSate = (e) => {
     console.log('changeSate()');
-
+    
     let p_no = $(e.target).closest('tr').find('td:first-child').text();
     let p_state = $('#state').val();
     let sel_index = e.target.selectedIndex;
@@ -118,6 +119,8 @@ const changeCategory = (e) => {
     let sel_index = e.target.selectedIndex;
     let sel_text = e.target.options[sel_index].innerText
     let sel_value = e.target.options[sel_index].value
+
+
 
     if(confirm(`상품 분류를 ${sel_text}로 변경하시겠습니까?`)) {
 
@@ -229,6 +232,14 @@ const clickStateMenu = (e) => {
 
     });
 
+
+}
+
+function startChat() {
+    console.log('startChat()');
+
+    let form = document.test;
+    form.submit();
 
 }
 

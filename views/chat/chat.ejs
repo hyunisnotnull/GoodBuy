@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('../include/title.ejs') %>
+    <link href="/css/chat/room.css" rel="stylesheet" type="text/css">
+    <script src="/socket.io/socket.io.js"></script>
+    
+</head>
+<body>
+
+    <%- include('../include/header.ejs') %>
+    <%- include('../include/nav.ejs') %>
+
+    <article>
+        <div class="article_wrap">
+            <div class="title">
+                <h4>채팅방</h4>
+            </div>
+            <div class="content">
+                <div class="chat-header">
+                    <button onclick="goBack()" class="back-button">←</button>
+                    <% if (otherProfileImg !== undefined) { %>
+                        <img src="<%= otherNick %>/<%= otherProfileImg %>" alt="Profile Image" class="profile-img">
+                    <% } else { %>
+                        <img src="img/default_profile_thum.png" alt="Default Profile Image" class="profile-img">
+                    <% } %>
+                    <h3 class="username"><%=otherNick%></h3>
+                </div>
+
+                
+                <ul id="chatWindow" class="chat-window">
+                    
+                </ul>
+
+                
+                <div class="chat-input">
+                    <input type="text" id="messageInput" placeholder="메시지를 입력하세요..." class="message-input">
+                    <button onclick="sendMessage()" class="send-button">전송</button>
+                </div>
+            </div>
+        </div>
+    </article>
+
+    <script>
+        const roomId = '<%= roomId %>';
+        const senderId = '<%= loginedUser.U_ID %>';
+        const senderNick = '<%= loginedUser.U_NICK %>';
+
+    </script>
+
+    <script src="/js/chat/chatClient.js"></script>
+
+    <%- include('../include/footer.ejs') %>
+
+</body>
+</html>

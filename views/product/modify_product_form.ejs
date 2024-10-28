@@ -40,13 +40,14 @@
                     <input type="radio" name="p_state" value="3" 
                     <% if (parseInt(product.P_STATE) === 3) { %>    
                             checked
-                    <% } %>>판매
+                    <% } %> onclick="hideAutionDate();">판매
 
                     <input type="radio" name="p_state" value="4"
                     <% if (parseInt(product.P_STATE) === 4) { %>    
                             checked
-                    <% } %>>경매
+                    <% } %> onclick="showAutionDate();">경매
                     </div>
+                    <input type="datetime-local" name="au_trade_date"><br>
                     <textarea name="p_desc"><%= product.P_DESC %></textarea><br>
                     <input type="file" name="profile_thum" onchange="showImage(event);"><br>
                     <input type="button" value="SUBMIT" onclick="modifyProductConfirm();">

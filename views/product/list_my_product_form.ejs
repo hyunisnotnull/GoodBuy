@@ -27,6 +27,8 @@
                             <th>THUM</th>
                             <th>CATEGORY</th>
                             <th>STATE</th>
+                            <th>MAX_PRICE</th>
+                            <th>END_TIME</th>
                             <th>MOD_DATE</th>
                             <th></th>
                         </tr>
@@ -59,6 +61,8 @@
                                         <% } %>
                                     </select>
                                 </td>
+                                <td><%= products[i].P_STATE === 4  ? products[i].P_PRICE.toLocaleString().concat('원')  : "" %></td>
+                                <td><%= products[i].P_STATE === 4  ? products[i].P_TRADE_DATE : "" %></td>
                                 <td><%= products[i].P_MOD_DATE.toISOString().substring(0,10) %></td>
                                 <td>
                                     <% if (loginedUser.U_ACTIVE === 1) { %>
