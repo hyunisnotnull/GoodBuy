@@ -29,3 +29,16 @@ const addProductForm = () => {
 
 }
 
+const showAutionDate = () => {
+    console.log('showAutionDate()');
+    $('input[name="au_trade_date"]').css('display', 'block');
+
+}
+
+const hideAutionDate = () => {
+    console.log('hideAutionDate()');
+    $('input[name="au_trade_date"]').val('');
+    $('input[name="au_trade_date"]').css('display', 'none');
+
+
+}
