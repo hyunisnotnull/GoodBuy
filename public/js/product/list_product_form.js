@@ -232,6 +232,14 @@ const clickStateMenu = (e) => {
 
 }
 
+function startChat() {
+    console.log('startChat()');
+
+    let form = document.test;
+    form.submit();
+
+}
+
 $(window).click(function(e){
     console.log('click document')
 

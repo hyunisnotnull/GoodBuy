@@ -10,9 +10,9 @@ router.post('/chat', (req, res) => {
 });
 
 // 채팅방 목록
-router.get('/chatRooms', (req, res) => {
-    console.log('/chat/chatRooms/');
-    chatService.chatRooms(req, res);
+router.get('/chatList', (req, res) => {
+    console.log('/chat/chatList/');
+    chatService.chatList(req, res);
 
 });
 

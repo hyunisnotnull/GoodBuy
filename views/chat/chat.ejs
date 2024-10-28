@@ -21,18 +21,18 @@
             <div class="content">
                 <div class="chat-header">
                     <button onclick="goBack()" class="back-button">←</button>
-                    <% if (otherProfileImg && otherNick !== undefined) { %>
-                        <img src="/<%= otherNick %>/<%= otherProfileImg %>" alt="Profile Image" class="profile-img">
+                    <% if (otherProfileImg !== undefined) { %>
+                        <img src="<%= otherNick %>/<%= otherProfileImg %>" alt="Profile Image" class="profile-img">
                     <% } else { %>
-                        <img src="/img/default_profile_thum.png" alt="Default Profile Image" class="profile-img">
+                        <img src="img/default_profile_thum.png" alt="Default Profile Image" class="profile-img">
                     <% } %>
                     <h3 class="username"><%=otherNick%></h3>
                 </div>
 
                 
-                <div id="chatWindow" class="chat-window">
+                <ul id="chatWindow" class="chat-window">
                     
-                </div>
+                </ul>
 
                 
                 <div class="chat-input">
@@ -45,8 +45,9 @@
 
     <script>
         const roomId = '<%= roomId %>';
-        const userId = '<%= loginedUser.U_ID %>';
-        const userNick = '<%= loginedUser.U_NICK %>';
+        const senderId = '<%= loginedUser.U_ID %>';
+        const senderNick = '<%= loginedUser.U_NICK %>';
+
     </script>
 
     <script src="/js/chat/chatClient.js"></script>

@@ -21,7 +21,7 @@
                         <% chattingRooms.forEach(function(room) { %>
                             <li>
                                 <a href="/chat/chat/<%= room.CH_NO %>">
-                                    채팅방: <%= room.CH_OWNER_NICK %>와 <%= room.CH_OTHER_NICK %>
+                                    채팅방: <%= room.CH_SENDER_NICK %>와 <%= room.CH_RECEIVER_NICK %>
                                 </a>
                             </li>
                         <% }); %>
