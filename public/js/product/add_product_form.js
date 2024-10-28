@@ -50,6 +50,7 @@ const addProductForm = () => {
         alert(error.message);
     });
 }
+
 const showAutionDate = () => {
     console.log('showAutionDate()');
     $('input[name="au_trade_date"]').css('display', 'block');
