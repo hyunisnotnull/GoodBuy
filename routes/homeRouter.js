@@ -14,4 +14,10 @@ router.get('/get_sale_product',(req, res) => {
 
 });
 
+router.get('/get_auction_product',(req, res) => {
+    console.log('/home/get_auction_product');
+    homeService.getAuctionProduct(req, res);
+
+});
+
 module.exports = router;

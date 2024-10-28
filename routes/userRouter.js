@@ -17,6 +17,7 @@ router.post('/sign_up_confirm', uploads.UPLOAD_PROFILE_MIDDLEWARE(), (req, res) 
 
 router.get('/sign_in_form', (req, res) => {
     console.log('/user/sign_in_form');
+    console.log(req.query)
     userService.signinForm(req, res);
 
 });
