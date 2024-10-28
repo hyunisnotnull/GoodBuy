@@ -78,6 +78,13 @@
         </div>
     </article>
 
+    <%- include('../include/pagination.ejs', {
+        currentPage: pagination.currentPage,
+        totalPages: pagination.totalPages,
+        pageRange: pagination.pageRange,
+        baseUrl: pagination.baseUrl
+    }) %>
+
     <div class="category_menu">
         <ul>
         <% for (let i = 0; i < category.length; i++) {%>
