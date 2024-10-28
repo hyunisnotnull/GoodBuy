@@ -157,7 +157,7 @@ const changeCategory = (e) => {
 
 }
 
-
+/*
 const clickCategoryMenu = (e) => {
     console.log('clickCategoryMenu()');
 
@@ -233,6 +233,21 @@ const clickStateMenu = (e) => {
     });
 
 
+} 
+*/
+
+function filterByCategory(event) {
+    const selectedCategory = event.target.value;
+    const selectedState = document.querySelector('select[name="state"]').value;
+    const url = `/product/list_my_product_form?category=${selectedCategory || ''}&state=${selectedState}&page=1`;
+    window.location.href = url;
+}
+
+function filterByState(event) {
+    const selectedState = event.target.value;
+    const selectedCategory = document.querySelector('select[name="category"]').value;
+    const url = `/product/list_my_product_form?category=${selectedCategory}&state=${selectedState || ''}&page=1`;
+    window.location.href = url;
 }
 
 function startChat() {
