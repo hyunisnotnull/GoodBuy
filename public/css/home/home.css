@@ -1,6 +1,7 @@
 article div.article_wrap {
     width: 1000px;
     margin: 50px auto;
+
 }
 
 article div.article_wrap div.title {
@@ -9,6 +10,54 @@ article div.article_wrap div.title {
 
 article div.article_wrap div.content {
     text-align: center;
+}
+
+article div.auction_box,
+article div.sale_box  {
+    width: 80%;
+    height: 250px;
+    border: 1px solid red;
+    text-align: center;
+    display: flex;
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+}
+
+article div.auction_box .box,
+article div.sale_box .box {
+    width: 150px;
+    height: 230px;
+    margin: 0 20px;
+    background-color: rgba(245, 243, 243, 0.959);
+    border-radius: 10px;
+}
+
+article div.auction_box .box img,
+article div.sale_box .box img{
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+article div.auction_box .box .price,
+article div.sale_box .box .price{
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+article div.auction_box .box .address,
+article div.sale_box .box .address{
+    font-size: .8em;
+}
+
+article div.auction_box .box .name,
+article div.sale_box .box .name{
+    padding: 3px 5px;
+    inline-size: 135px;
+    overflow: hidden;
 }
 
 .banner-slider, .auction-slider, .product-slider {

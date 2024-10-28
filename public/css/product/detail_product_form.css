@@ -1,0 +1,124 @@
+body {
+    font-family: 'Arial', sans-serif; /* 모던한 폰트 */
+    background-color: #f5f7fa; /* 부드러운 배경색 */
+}
+
+article div.article_wrap {
+    max-width: 400px; /* 너비 조정 */
+    margin: 50px auto; /* 중앙 정렬 */
+    padding: 20px; /* 패딩 추가 */
+    border-radius: 10px; /* 둥근 모서리 */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+    background: #ffffff; /* 흰색 배경 */
+}
+
+article div.title {
+    text-align: center;
+    font-size: 1.6em; /* 제목 크기 조정 */
+    color: #333; /* 제목 색상 */
+    margin-bottom: 20px; /* 제목 아래 여백 */
+}
+
+article div.content {
+    margin-top: 10px;
+    text-align: center;
+}
+
+article div.content input,
+article div.content select {
+    width: calc(100% - 24px); /* 너비 조정 (padding 및 border를 고려) */
+    padding: 10px; /* 패딩 증가 */
+    margin: 8px 0; /* 여백 증가 */
+    border: 1px solid #ddd; /* 연한 테두리 */
+    border-radius: 5px; /* 둥근 모서리 */
+    font-size: 1em; /* 폰트 크기 조정 */
+    transition: border 0.3s, box-shadow 0.3s; /* 전환 효과 */
+}
+
+article div.content input:focus,
+article div.content select:focus {
+    border-color: #6c63ff; /* 포커스 시 테두리 색상 */
+    box-shadow: 0 0 5px rgba(108, 99, 255, 0.5); /* 포커스 시 그림자 효과 */
+}
+
+article div.content input[type="button"],
+article div.content input[type="reset"] {
+    width: 48%; /* 버튼 너비 조정 */
+    background-color: #6c63ff; /* 버튼 배경색 */
+    color: #ffffff; /* 버튼 글자색 */
+    border: none; /* 테두리 제거 */
+    border-radius: 5px; /* 둥근 모서리 */
+    padding: 12px; /* 패딩 */
+    margin: 8px 1%; /* 여백 조정 */
+    cursor: pointer; /* 포인터 커서 */
+    transition: background-color 0.3s, transform 0.2s; /* 전환 효과 */
+}
+
+article div.content input[type="button"]:hover,
+article div.content input[type="reset"]:hover {
+    background-color: #5a54d1; /* 호버 시 배경색 변화 */
+    transform: translateY(-2px); /* 호버 시 약간 올라오는 효과 */
+}
+
+/* 옵션 select 박스 스타일 */
+article div.content select {
+    width: calc(100%); /* 옵션 선택 칸의 너비 조정 */
+    padding: 10px; /* 패딩 */
+    margin: 8px 0; /* 여백 */
+    border: 1px solid #ddd; /* 연한 테두리 */
+    border-radius: 5px; /* 둥근 모서리 */
+}
+
+article div.content div.radio {
+    padding: 0;
+    margin: 0;
+    text-align: center;
+}
+
+article div.content div.radio input[type="radio"] {
+    width: 10%;
+}
+
+
+article div.content textarea {
+    width: calc(100% - 24px); /* 너비 조정 (padding 및 border를 고려) */
+    height: 100px;
+    padding: 10px; /* 패딩 증가 */
+    margin: 8px 0; /* 여백 증가 */
+    border: 1px solid #ddd; /* 연한 테두리 */
+    border-radius: 5px; /* 둥근 모서리 */
+    font-size: 1em; /* 폰트 크기 조정 */
+    transition: border 0.3s, box-shadow 0.3s; /* 전환 효과 */
+    resize: vertical;
+}
+
+article div.content img {
+    max-width: 100%;
+    max-height: 100%;
+    margin: 8px 0; /* 여백 증가 */
+}
+
+
+
+div.img_modal_wrap {
+	display: none;
+	position: fixed;
+	top: 0; left: 0;
+	width: 100%; height: 100%;
+	background-color: rgba(0, 0, 0, .7);
+}
+
+div.img_modal_content {
+	width: 80%;
+	margin: 50px auto;
+	text-align: center;
+	padding: 10px;
+	background-color: #fff;
+	border: 1px solid #ccc;
+	border-radius: 10px;
+	padding: 50px 0;
+}
+
+img.img_modal {
+   max-width: calc(100% - 100px);
+}

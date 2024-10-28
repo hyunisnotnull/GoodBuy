@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('../include/title.ejs') %>
+    <link href="/css/product/detail_product_form.css" rel="stylesheet" type="text/css">
+    <script src="/js/product/detail_product_form.js"></script>
+</head>
+<body>
+
+    <%- include('../include/header.ejs') %>
+    <%- include('../include/nav.ejs') %>
+    
+    <article>
+        <div class="article_wrap">
+            <div class="title">
+                <h4>DETAIL PRODUCT 
+                    <% if (parseInt(product.P_STATE) === 3) { %>    
+                        (판매)
+                    <% }  else { %>
+                        (경매)
+                    <% } %>
+                </h4>
+            </div>
+            <div class="content">
+                <form action="/product/modify_product_confirm" name="modify_product_form" method="post" enctype="multipart/form-data">
+                    <input type="hidden" name="p_no" value="<%= product.P_NO %>">
+                    <input type="hidden" name="u_id" value="<%= product.P_OWNER_ID %>">
+                    <input type="hidden" name="u_nick" value="<%= product.P_OWNER_NICK %>">
+                    <input type="text" name="p_name" value="<%= product.P_NAME %>" readonly><br>
+                    <input type="text" name="p_price" value="<%= product.P_PRICE.toLocaleString() %>원" readonly><br>
+                    <input type="text" name="p_category" value="<%= category[parseInt(product.P_CATEGORY)].C_NAME %>"  readonly><br>
+                    <img id="img" src="\<%= product.P_OWNER_ID %>\<%= product.P_IMAGE %>" onclick="showImage();">
+                    <textarea name="p_desc" readonly><%= product.P_DESC %></textarea><br>
+                    <input type="button" value="SUBMIT" onclick="modifyProductConfirm();">
+                    <input type="button" value="RESET" onclick="resetBtn();">
+                </form>
+            </div>
+        </div>
+    </article>
+    <div class="img_modal_wrap">
+        <div class="img_modal_content">
+            <img class="img_modal" src="\<%= product.P_OWNER_ID %>\<%= product.P_IMAGE %>" onclick="hideImage();">
+        </div>
+    </div>
+
+    <%- include('../include/footer.ejs') %>
+</body>
+</html>
