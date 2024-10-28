@@ -7,13 +7,13 @@ const Memorystore = require('memorystore')(session);
 const path = require('path');
 const pp = require('./lib/passport/passport');
 
-// // Socket.IO 설정
-// const http = require('http');
-// const server = http.createServer(app);
-// const initSocket = require('./lib/socket/socket');
+// Socket.IO 설정
+const http = require('http');
+const server = http.createServer(app);
+const initSocket = require('./lib/socket/socket');
 
-// // Socket.io 초기화
-// initSocket(server);
+// Socket.io 초기화
+initSocket(server);
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(compression());
@@ -66,4 +66,4 @@ const productRouter = require('./routes/productRouter');
 app.use('/product', productRouter);
 
 
-app.listen(3001);
+server.listen(3001);
