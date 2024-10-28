@@ -41,8 +41,8 @@
                                 <td><img src="\<%= products[i].P_OWNER_ID %>\<%= products[i].P_IMAGE %>"></td>
                                 <td>
                                     <input type="hidden" id="category" value="<%= products[i].P_CATEGORY %>">
-                                    <select name="p_category" onchange="changeCategory(event);" >
-                                        <% for (let j = 1; j < category.length; j++) {%>
+                                    <select name="p_category" onchange="changeCategory(event);" <% if (loginedUser.U_ACTIVE !== 1) { %> disabled <% } %>>
+                                        <% for (let j = 0; j < category.length; j++) {%>
                                             <option value="<%= category[j].C_NO %>"
                                                 <% if (category[j].C_NO === parseInt(products[i].P_CATEGORY) ) { %>
                                                     SELECTED
@@ -52,8 +52,8 @@
                                 </td>
                                 <td>
                                     <input type="hidden" id="state" value="<%= products[i].P_STATE %>">
-                                    <select name="p_state" onchange="changeSate(event);">
-                                        <% for (let j = 1; j < result.length; j++) { %>
+                                    <select name="p_state" onchange="changeSate(event);" <% if (loginedUser.U_ACTIVE !== 1) { %> disabled <% } %>>
+                                        <% for (let j = 0; j < result.length; j++) { %>
                                             <option value="<%= result[j].ST_NO %>" 
                                                 <% if (result[j].ST_NO === parseInt(products[i].P_STATE) ) { %>
                                                     SELECTED
@@ -64,13 +64,20 @@
                                 <td><%= products[i].P_STATE === 4  ? products[i].P_PRICE.toLocaleString().concat('원')  : "" %></td>
                                 <td><%= products[i].P_STATE === 4  ? products[i].P_TRADE_DATE : "" %></td>
                                 <td><%= products[i].P_MOD_DATE.toISOString().substring(0,10) %></td>
-                                <td><a href="#none" onclick="deleteProduct(event);">&#128465;</a></td>
+                                <td>
+                                    <% if (loginedUser.U_ACTIVE === 1) { %>
+                                        <a href="#none" onclick="deleteProduct(event);">&#128465;</a>
+                                    <% } else { %>
+                                        <span style="color: gray; cursor: not-allowed;">&#128465;</span>
+                                    <% } %>
+                                </td>
                             </tr>
                         <% }%>
                 </table>
             </div>
         </div>
     </article>
+
     <div class="category_menu">
         <ul>
         <% for (let i = 0; i < category.length; i++) {%>
