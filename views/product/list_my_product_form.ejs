@@ -25,8 +25,25 @@
                             <th>NAME</th>
                             <th>PRICE</th>
                             <th>THUM</th>
-                            <th>CATEGORY</th>
-                            <th>STATE</th>
+                            <th>
+                                CATEGORY
+                                <select name="category" onchange="filterByCategory(event);">
+                                    <% category.forEach(cat => { %>
+                                        <option value="<%= cat.C_NO %>" <%= cat.C_NO == currentCategory ? 'selected' : '' %>><%= cat.C_NAME %></option>
+                                    <% }); %>
+                                </select>
+                            </th>
+                            <th>
+                                STATE
+                                <select name="state" onchange="filterByState(event);">
+                                    <option value="">전체</option>
+                                    <% result.forEach(st => { %>
+                                        <% if (st.ST_NO !== 0) { %> <!-- 삭제 상태 제외 -->
+                                            <option value="<%= st.ST_NO %>" <%= st.ST_NO == currentState ? 'selected' : '' %>><%= st.ST_NAME %></option>
+                                        <% } %>
+                                    <% }); %>
+                                </select>
+                            </th>
                             <th>MAX_PRICE</th>
                             <th>END_TIME</th>
                             <th>MOD_DATE</th>
@@ -77,6 +94,13 @@
             </div>
         </div>
     </article>
+
+    <%- include('../include/pagination_my_product.ejs', {
+        currentPage: pagination.currentPage,
+        totalPages: pagination.totalPages,
+        pageRange: pagination.pageRange,
+        baseUrl: pagination.baseUrl
+    }) %>
 
     <div class="category_menu">
         <ul>
