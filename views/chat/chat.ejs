@@ -16,19 +16,23 @@
     <article>
         <div class="article_wrap">
             <div class="title">
-                <h4>채팅방</h4>
+                <button onclick="goBack()" class="back-button">←</button>
             </div>
             <div class="content">
                 <div class="chat-header">
-                    <button onclick="goBack()" class="back-button">←</button>
-                    
-                    <h3 class="username"></h3>
+                    <% if (otherthum !== '') { %>
+                        <img src="/<%= otherId %>/<%= otherthum %>" class="profile-image">
+                    <% } else { %>
+                        <img src="/img/default_profile_thum.png" class="profile-image">
+                    <% } %>
+                    <div class="user-info">
+                        <h3 class="username"><%= otherNick %></h3>
+                        <span class="member-count">2</span>
+                    </div>
                 </div>
 
                 
-                <ul id="chatWindow" class="chat-window">
-                    
-                </ul>
+                <div id="chatWindow" class="chat-window"></div>
 
                 
                 <div class="chat-input">
