@@ -6,7 +6,7 @@ const chatWindow = document.getElementById('chatWindow');
 const messageInput = document.getElementById('messageInput');
 
 // 서버에 채팅방 입장을 알림
-socket.emit('joinRoom', { roomId, userId, userNick });
+socket.emit('joinRoom', { roomId, senderId, senderNick, otherId, otherNick, otherthum });
 
 // 메시지 전송 함수
 function sendMessage() {
@@ -14,9 +14,9 @@ function sendMessage() {
 
     if (message) {
         // 서버로 메시지 전송
-        socket.emit('chatMessage', { roomId, userId, userNick, message });
+        socket.emit('chatMessage', 
+                    { roomId, senderId, senderNick, otherId, otherNick, message });
 
-        // 전송 후 입력 필드 초기화
         messageInput.value = '';
         messageInput.focus();
     }
@@ -38,15 +38,17 @@ socket.on('message', (data) => {
 function displayMessage(data) {
     const messageElement = document.createElement('li');
     messageElement.classList.add('message');
+    console.log("senderId:", senderId);
+    console.log("data.senderId:", data.senderId);
 
-    if (data.userId === userId) {
+    if (data.senderId === senderId) {
         messageElement.classList.add('my-message');
     } else {
         messageElement.classList.add('other-message');
     }
 
     messageElement.innerHTML = `
-        <span class="message-user">${data.userNick}</span>
+        <span class="message-user">${data.senderNick}</span>
         <span class="message-text">${data.message}</span>
         <span class="message-time">${new Date(data.time).toLocaleTimeString()}</span>
     `;
