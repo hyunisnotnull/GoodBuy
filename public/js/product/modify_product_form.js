@@ -75,3 +75,17 @@ $( document ).ready(function() {
     $('input[type="file"]').css('display', 'none');
 
 });
+
+const showAutionDate = () => {
+    console.log('showAutionDate()');
+    $('input[name="p_trade_date"]').css('display', 'block');
+
+}
+
+const hideAutionDate = () => {
+    console.log('hideAutionDate()');
+    $('input[name="p_trade_date"]').val('');
+    $('input[name="p_trade_date"]').css('display', 'none');
+
+
+}
