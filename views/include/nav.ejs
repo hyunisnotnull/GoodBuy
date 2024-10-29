@@ -4,6 +4,11 @@
 <nav>
     <div class="nav_wrap">
         
+        <form id="searchForm" action="/product/list_sale_product_form" method="get">
+            <input type="text" name="keyword" id="searchKeyword" placeholder="검색어 입력">
+            <button type="submit">검색</button>
+        </form>
+
         <a href="/product/list_sale_product_form">상품</a> &nbsp;
         <a href="/product/list_auction_product_form">경매</a> &nbsp;
         <a href="/product/rate">시세조회</a> &nbsp;        

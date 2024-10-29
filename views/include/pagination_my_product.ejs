@@ -1,0 +1,17 @@
+<link href="/css/include/pagination.css" rel="stylesheet" type="text/css">
+
+<div class="pagination">
+    <% if (currentPage > 1) { %>
+        <a href="<%= baseUrl %>?category=<%= currentCategory %>&state=<%= currentState %>&page=1">처음</a>
+        <a href="<%= baseUrl %>?category=<%= currentCategory %>&state=<%= currentState %>&page=<%= currentPage - 1 %>">&laquo; 이전</a>
+    <% } %>
+    
+    <% pageRange.forEach(i => { %>
+        <a href="<%= baseUrl %>?category=<%= currentCategory %>&state=<%= currentState %>&page=<%= i %>" class="<%= currentPage === i ? 'active' : '' %>"><%= i %></a>
+    <% }) %>
+    
+    <% if (currentPage < totalPages) { %>
+        <a href="<%= baseUrl %>?category=<%= currentCategory %>&state=<%= currentState %>&page=<%= currentPage + 1 %>">다음 &raquo;</a>
+        <a href="<%= baseUrl %>?category=<%= currentCategory %>&state=<%= currentState %>&page=<%= totalPages %>">끝</a>
+    <% } %>
+</div>
