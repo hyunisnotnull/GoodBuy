@@ -160,3 +160,18 @@ a[href="/product/add_product_form"]:hover {
     background-color: #193be6; 
 }
 */
+div.auction_input {
+    position:absolute;
+    width: 200px;
+    height: 70px;
+    display: none;
+    background-color: #ffffff;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+    background: #ffffff; /* 흰색 배경 */
+}
+
+.end_date_input {
+    display: none;
+}

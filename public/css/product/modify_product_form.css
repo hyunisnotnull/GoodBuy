@@ -98,3 +98,12 @@ article div.content img {
     margin: 8px 0; /* 여백 증가 */
 }
 
+input[name="p_trade_date"] {
+    display: none;
+}
+
+input[type="radio"]:checked:focus {
+    border: 0px;
+    box-shadow: 0 0 0 1px #fff;
+}
+

@@ -21,12 +21,8 @@
             <div class="content">
                 <div class="chat-header">
                     <button onclick="goBack()" class="back-button">←</button>
-                    <% if (otherProfileImg !== undefined) { %>
-                        <img src="<%= otherNick %>/<%= otherProfileImg %>" alt="Profile Image" class="profile-img">
-                    <% } else { %>
-                        <img src="img/default_profile_thum.png" alt="Default Profile Image" class="profile-img">
-                    <% } %>
-                    <h3 class="username"><%=otherNick%></h3>
+                    
+                    <h3 class="username"></h3>
                 </div>
 
                 
@@ -47,7 +43,9 @@
         const roomId = '<%= roomId %>';
         const senderId = '<%= loginedUser.U_ID %>';
         const senderNick = '<%= loginedUser.U_NICK %>';
-
+        const otherId = '<%= otherId %>';
+        const otherNick = '<%= otherNick %>';
+        const otherthum = '<%= otherthum %>';
     </script>
 
     <script src="/js/chat/chatClient.js"></script>
