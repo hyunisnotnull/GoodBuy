@@ -1,4 +1,10 @@
 
+let auction_left = 0;
+let auction_top = 0;
+let auction_obj = '';
+let auction_no = -1;
+let auction_p_satet = -1;
+
 const addProductForm = () => {
     console.log('addProductForm()');
 
@@ -36,6 +42,7 @@ const deleteProduct = (e) => {
     if (confirm('정말 삭제하시겠습니까?')) {
         let p_no = $(e.target).closest('tr').find('td:first-child').text();
 
+
         let msgDto = {
             'p_no': p_no,
         }
@@ -70,57 +77,104 @@ const changeSate = (e) => {
     console.log('changeSate()');
     
     let p_no = $(e.target).closest('tr').find('td:first-child').text();
-    let p_state = $('#state').val();
+    let p_state = $(e.target).closest('tr').find('input[name="state"]').val();
     let sel_index = e.target.selectedIndex;
     let sel_text = e.target.options[sel_index].innerText
     let sel_value = e.target.options[sel_index].value
-
+    
     if(confirm(`상태를 ${sel_text}로 변경하시겠습니까?`)) {
 
-        let msgDto = {
-            'p_no': p_no,
-            'p_state': sel_value,
-        }
-     
-        $.ajax({
-            url: '/product/change_state_product_confirm',
-            method: 'POST',
-            data:  msgDto,
-            dataType: 'json',
-            success: function(data) {
-                console.log('changeStateProduct() COMMUNICATION SUCCESS!!');
+        if (sel_value === '4' && $('input[name="end_date"]').val() === '') {
+            alert("경매일을 지정하세요");
+            $(e.target).closest('tr').find('input[name="end_date"]').css('display', 'block');
+            $(e.target).closest('tr').find('input[name="end_date"]').focus();
+        } else{
 
-                location.href = "/product/list_my_product_form"
-            },
-            error: function() {
-                console.log('changeStateProduct() COMMUNICATION ERROR!!');
-                
-            },
-            complete: function() {
-                console.log('changeStateProduct() COMMUNICATION COMPLETE!!');
-        
-    
+            let msgDto = {
+                'p_no': p_no,
+                'p_state': sel_value,
             }
+         
+            $.ajax({
+                url: '/product/change_state_product_confirm',
+                method: 'POST',
+                data:  msgDto,
+                dataType: 'json',
+                success: function(data) {
+                    console.log('changeStateProduct() COMMUNICATION SUCCESS!!');
     
-        });
+                    location.href = "/product/list_my_product_form"
+                },
+                error: function() {
+                    console.log('changeStateProduct() COMMUNICATION ERROR!!');
+                    
+                },
+                complete: function() {
+                    console.log('changeStateProduct() COMMUNICATION COMPLETE!!');
+            
+        
+                }
+        
+            });
+    
+
+        }
+        
 
 
     } else {
-        e.target.selectedIndex = parseInt(p_state) - 1;        
+        e.target.selectedIndex = parseInt(p_state) -1;        
     }
 
 }
+
+const changeAuction = (e) => {
+    console.log('changeAuction()');
+
+    let p_no = $(e.target).closest('tr').find('td:first-child').text();
+    let p_state = $(e.target).closest('tr').find('select[name="p_state"]').val();
+    let p_trade_date = $(e.target).val();
+
+    let msgDto = {
+        'p_no': p_no,
+        'p_state': p_state,
+        'p_trade_date': p_trade_date
+    }
+ 
+    $.ajax({
+        url: '/product/change_state_product_confirm',
+        method: 'POST',
+        data:  msgDto,
+        dataType: 'json',
+        success: function(data) {
+            console.log('changeAuction() COMMUNICATION SUCCESS!!');
+
+           location.href = "/product/list_my_product_form"
+        },
+        error: function() {
+            console.log('changeAuction() COMMUNICATION ERROR!!');
+            
+        },
+        complete: function() {
+            console.log('changeAuction() COMMUNICATION COMPLETE!!');
+    
+
+        }
+
+    });
+
+
+}
+
 
 const changeCategory = (e) => {
     console.log('changeCategory()');
 
     let p_no = $(e.target).closest('tr').find('td:first-child').text();
-    let p_category = $('#category').val();
+    let p_category = $(e.target).closest('tr').find('input[name="category"]').val();
     let sel_index = e.target.selectedIndex;
     let sel_text = e.target.options[sel_index].innerText
     let sel_value = e.target.options[sel_index].value
-
-
 
     if(confirm(`상품 분류를 ${sel_text}로 변경하시겠습니까?`)) {
 
@@ -157,85 +211,6 @@ const changeCategory = (e) => {
 
 }
 
-/*
-const clickCategoryMenu = (e) => {
-    console.log('clickCategoryMenu()');
-
-    $('.category_menu').css('display', 'none')
-    let select_category =  e.target.value;
-    
-    let msgDto = {
-        p_category: select_category,
-    };
-
-    $.ajax({
-        url: '/product/filter_category_product_confirm',
-        method: 'POST',
-        data:  msgDto,
-        dataType: 'text',
-        success: function(data) {
-            console.log('clickCategoryMenu() COMMUNICATION SUCCESS!!');
-            console.log(data)
-            document.body.innerHTML = data
-        },
-        error: function(req, status, error) {
-            console.log('clickCategoryMenu() COMMUNICATION ERROR!!');
-            console.log(`code: ${req.status}
-                        message: ${req.responseText}
-                        error: ${error}` );
-            
-        },
-        complete: function() {
-            console.log('clickCategoryMenu() COMMUNICATION COMPLETE!!');
-    
-
-        }
-
-    });
-
-
-}
-
-
-const clickStateMenu = (e) => {
-    console.log('clickStateMenu()');
-
-    $('.state_menu').css('display', 'none')
-    let select_state =  e.target.value;
-    
-    let msgDto = {
-        p_state: select_state,
-    };
-
-    $.ajax({
-        url: '/product/filter_state_product_confirm',
-        method: 'POST',
-        data:  msgDto,
-        dataType: 'text',
-        success: function(data) {
-            console.log('clickStateMenu() COMMUNICATION SUCCESS!!');
-            console.log(data)
-            document.body.innerHTML = data
-        },
-        error: function(req, status, error) {
-            console.log('clickStateMenu() COMMUNICATION ERROR!!');
-            console.log(`code: ${req.status}
-                        message: ${req.responseText}
-                        error: ${error}` );
-            
-        },
-        complete: function() {
-            console.log('clickStateMenu() COMMUNICATION COMPLETE!!');
-    
-
-        }
-
-    });
-
-
-} 
-*/
-
 function filterByCategory(event) {
     const selectedCategory = event.target.value;
     const selectedState = document.querySelector('select[name="state"]').value;
@@ -257,48 +232,3 @@ function startChat() {
     form.submit();
 
 }
-
-$(window).click(function(e){
-    console.log('click document')
-
-    if (e.target.innerText ==='CATEGORY') {
-        $('.category_menu').css('display', 'block')
-        $('.category_menu').css('position', 'fixed')
-        $('.category_menu').css('left', `${Math.floor(e.target.getBoundingClientRect().left)}px`)
-        $('.category_menu').css('top', `${Math.floor(e.target.getBoundingClientRect().bottom)}px`)
-    } else {
-        $('.category_menu').css('display', 'none')
-    }
-
-    if (e.target.innerText ==='STATE') {
-        $('.state_menu').css('display', 'block')
-        $('.state_menu').css('position', 'fixed')
-        $('.state_menu').css('left', `${Math.floor(e.target.getBoundingClientRect().left)}px`)
-        $('.state_menu').css('top', `${Math.floor(e.target.getBoundingClientRect().bottom)}px`)
-    } else {
-        $('.state_menu').css('display', 'none')
-    }
-
-});
-
-
-$(window).on("scroll", function (e) {
-    
-    if ($('.category_menu').css('display') === 'block') {
-        let left = Math.floor($('thead th:nth-child(5)')[0].getBoundingClientRect().left);
-        let bottom = Math.floor($('thead th:nth-child(5)')[0].getBoundingClientRect().bottom);
-    
-        $('.category_menu').css('left', `${left}px`)
-        $('.category_menu').css('top', `${bottom}px`)
-    }
-
-    if ($('.state_menu').css('display') === 'block') {
-        let left = Math.floor($('thead th:nth-child(6)')[0].getBoundingClientRect().left);
-        let bottom = Math.floor($('thead th:nth-child(6)')[0].getBoundingClientRect().bottom);
-    
-        $('.state_menu').css('left', `${left}px`)
-        $('.state_menu').css('top', `${bottom}px`)
-    }
-  });
-
- 
