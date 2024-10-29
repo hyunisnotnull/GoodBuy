@@ -91,16 +91,16 @@
                             </tr>
                         <% }%>
                 </table>
+                <a href="/product/add_product_form">상품 등록</a>
+                <%- include('../include/pagination.ejs', {
+                    currentPage: pagination.currentPage,
+                    totalPages: pagination.totalPages,
+                    pageRange: pagination.pageRange,
+                    baseUrl: pagination.baseUrl
+                }) %>
             </div>
         </div>
     </article>
-
-    <%- include('../include/pagination_my_product.ejs', {
-        currentPage: pagination.currentPage,
-        totalPages: pagination.totalPages,
-        pageRange: pagination.pageRange,
-        baseUrl: pagination.baseUrl
-    }) %>
 
     <div class="category_menu">
         <ul>

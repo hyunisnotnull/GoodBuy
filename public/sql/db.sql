@@ -309,3 +309,4 @@ DELIMITER ;
 
 INSERT INTO TBL_ACTIVE(AC_NAME) VALUES('비활성');
 
+show triggers;

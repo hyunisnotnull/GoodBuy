@@ -1,24 +1,48 @@
+header {
+    border-bottom: 1px solid #ccc;
+    padding: 10px 20px; /* 패딩을 약간 늘려서 여유 공간을 확보 */
+    background-color: #f9f9f9; /* 배경색 추가 */
+}
+
 .header_wrap {
     display: flex;
     align-items: center; 
     justify-content: space-between;
-}
-
-.header_wrap .menu {
-    margin-left: auto;
-}
-
-header {
-    border-bottom: 1px solid #ccc;
-    padding: 0 20px;
-}
-
-.header_wrap a {
-    margin-right: 10px;
+    max-width: 1200px; /* 최대 너비 설정 */
+    margin: 0 auto; /* 중앙 정렬 */
 }
 
 .logo {
     margin-right: 10px; 
     height: 50px;
     width: auto;
+}
+
+.menu {
+    display: flex; /* 메뉴 항목들을 가로로 나열 */
+    align-items: center; /* 수직 중앙 정렬 */
+    margin-left: auto;
+}
+
+.menu a {
+    margin-right: 15px; /* 메뉴 항목 간격 조정 */
+    text-decoration: none; /* 밑줄 제거 */
+    color: #333; /* 글자 색상 */
+    transition: color 0.3s; /* 색상 변경 시 부드럽게 전환 */
+}
+
+.menu a:hover {
+    color: #007BFF; /* 마우스 오버 시 색상 변경 */
+}
+
+@media (max-width: 768px) {
+    .header_wrap {
+        flex-direction: column; /* 작은 화면에서 세로 정렬 */
+        align-items: flex-start; /* 왼쪽 정렬 */
+    }
+
+    .menu {
+        margin-left: 0; /* 메뉴 왼쪽 여백 제거 */
+        margin-top: 10px; /* 메뉴와 로고 사이 간격 추가 */
+    }
 }
