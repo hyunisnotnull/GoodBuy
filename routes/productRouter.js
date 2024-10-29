@@ -94,4 +94,11 @@ router.post('/filter_state_product_confirm', (req, res) => {
 
 });
 
+// 시세 조회 START
+router.get('/list_rate_product_form', async (req, res) => {
+    console.log('/product/list_rate_product_form');
+    productService.searchRateList(req, res);
+
+});
+
 module.exports = router;

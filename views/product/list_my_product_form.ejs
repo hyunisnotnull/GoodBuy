@@ -54,12 +54,12 @@
                             <tr>
                                 <td><%= products[i].P_NO %></td>
                                 <td><a href="/product/modify_product_form?p_no=<%= products[i].P_NO %>"><%= products[i].P_NAME %></a></td>
-                                <td><%= products[i].P_PRICE.toLocaleString() %>원</td>                             
+                                <td ><%= products[i].P_PRICE.toLocaleString() %>원</td>                             
                                 <td><img src="\<%= products[i].P_OWNER_ID %>\<%= products[i].P_IMAGE %>"></td>
                                 <td>
-                                    <input type="hidden" id="category" value="<%= products[i].P_CATEGORY %>">
+                                    <input type="hidden" name="category" value="<%= products[i].P_CATEGORY %>">
                                     <select name="p_category" onchange="changeCategory(event);" <% if (loginedUser.U_ACTIVE !== 1) { %> disabled <% } %>>
-                                        <% for (let j = 0; j < category.length; j++) {%>
+                                        <% for (let j = 1; j < category.length; j++) {%>
                                             <option value="<%= category[j].C_NO %>"
                                                 <% if (category[j].C_NO === parseInt(products[i].P_CATEGORY) ) { %>
                                                     SELECTED
@@ -68,9 +68,9 @@
                                     </select>
                                 </td>
                                 <td>
-                                    <input type="hidden" id="state" value="<%= products[i].P_STATE %>">
+                                    <input type="hidden" name="state" value="<%= products[i].P_STATE %>">
                                     <select name="p_state" onchange="changeSate(event);" <% if (loginedUser.U_ACTIVE !== 1) { %> disabled <% } %>>
-                                        <% for (let j = 0; j < result.length; j++) { %>
+                                        <% for (let j = 1; j < result.length; j++) { %>
                                             <option value="<%= result[j].ST_NO %>" 
                                                 <% if (result[j].ST_NO === parseInt(products[i].P_STATE) ) { %>
                                                     SELECTED
@@ -78,9 +78,14 @@
                                         <% } %>
                                     </select>
                                 </td>
-                                <td><%= products[i].P_STATE === 4  ? products[i].P_PRICE.toLocaleString().concat('원')  : "" %></td>
-                                <td><%= products[i].P_STATE === 4  ? products[i].P_TRADE_DATE : "" %></td>
-                                <td><%= products[i].P_MOD_DATE.toISOString().substring(0,10) %></td>
+                                <td>
+                                    <%= products[i].P_STATE === 4  ? products[i].P_PRICE.toLocaleString().concat('원')  : "" %>
+                                </td>
+                                <td>
+                                    <input class="end_date_input" type="datetime-local" name="end_date" onchange="changeAuction(event);">
+                                    <p class="end_date_value"><%= products[i].P_STATE === 4  ? products[i].P_TRADE_DATE?.toLocaleDateString() : "" %></p>
+                                </td>
+                                <td><%= products[i].P_MOD_DATE.toLocaleDateString() %></td>
                                 <td>
                                     <% if (loginedUser.U_ACTIVE === 1) { %>
                                         <a href="#none" onclick="deleteProduct(event);">&#128465;</a>
@@ -91,16 +96,16 @@
                             </tr>
                         <% }%>
                 </table>
+                <a href="/product/add_product_form">상품 등록</a>
+                <%- include('../include/pagination.ejs', {
+                    currentPage: pagination.currentPage,
+                    totalPages: pagination.totalPages,
+                    pageRange: pagination.pageRange,
+                    baseUrl: pagination.baseUrl
+                }) %>
             </div>
         </div>
     </article>
-
-    <%- include('../include/pagination_my_product.ejs', {
-        currentPage: pagination.currentPage,
-        totalPages: pagination.totalPages,
-        pageRange: pagination.pageRange,
-        baseUrl: pagination.baseUrl
-    }) %>
 
     <div class="category_menu">
         <ul>
