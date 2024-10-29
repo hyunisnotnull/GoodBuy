@@ -136,6 +136,30 @@ div.state_menu ul li:hover {
     text-decoration: underline; /* 호버 시 밑줄 */
 }
 
+
+td img {
+    border-radius: 8px; /* 이미지를 둥글게 */
+    max-width: 50px; /* 이미지 최대 너비 제한 */
+    height: auto; /* 비율 유지 */
+    display: block; /* 블록 요소로 설정하여 정렬 */
+    margin: 0 auto; /* 중앙 정렬 */
+}
+
+/* 추가 버튼 스타일 
+a[href="/product/add_product_form"] {
+    display: inline-block;
+    margin-top: 20px;
+    background-color: #2289ff; 
+    padding: 10px 15px;
+    color: white;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+a[href="/product/add_product_form"]:hover {
+    background-color: #193be6; 
+}
+*/
 div.auction_input {
     position:absolute;
     width: 200px;

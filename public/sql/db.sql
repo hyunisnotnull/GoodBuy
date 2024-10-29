@@ -321,4 +321,5 @@ END IF;
 END $$
 DELIMITER ;
 
+show triggers;
 INSERT INTO TBL_ACTIVE(AC_NAME) VALUES('비활성');
