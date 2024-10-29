@@ -38,8 +38,10 @@ socket.on('message', (data) => {
 function displayMessage(data) {
     const messageElement = document.createElement('li');
     messageElement.classList.add('message');
+    console.log("senderId:", senderId);
+    console.log("data.senderId:", data.senderId);
 
-    if (data.userId === userId) {
+    if (data.senderId === senderId) {
         messageElement.classList.add('my-message');
     } else {
         messageElement.classList.add('other-message');
