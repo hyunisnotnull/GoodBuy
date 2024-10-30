@@ -24,8 +24,26 @@ const addProductForm = () => {
         return;
     }
 
+    // 경매 여부 체크
+    const isAuction = form.p_state.value === '4'; 
+    if (isAuction) {
+        if (form.p_trade_date.value === '') {
+            alert('경매 날짜를 입력해주세요.');
+            form.p_trade_date.focus();
+            return;
+        }
+    } else {
+        // 경매가 아닐 경우, p_trade_date를 null로 설정
+        form.p_trade_date.value = null; 
+    }
+
     // 모든 검사를 통과한 경우 fetch 요청
     const formData = new FormData(form);
+
+    // p_trade_date가 빈 문자열이면 null로 설정
+    if (!form.p_trade_date.value) {
+        formData.delete('p_trade_date');
+    }
 
     fetch('/product/add_product_confirm', {
         method: 'POST',

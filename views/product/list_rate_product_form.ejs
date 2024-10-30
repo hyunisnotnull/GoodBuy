@@ -7,8 +7,8 @@
     <link href="/css/product/list_rate_product_form.css" rel="stylesheet" type="text/css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-        const registeredPrices = JSON.parse('<%- JSON.stringify(registeredPrices) %>');
-        const salePrices = JSON.parse('<%- JSON.stringify(salePrices) %>');
+        const registeredPrices = JSON.parse('<%- JSON.stringify(registeredPrices || []) %>');
+        const salePrices = JSON.parse('<%- JSON.stringify(salePrices || []) %>');
     </script>
     
     <script src="/js/product/list_rate_product.js" defer></script>
@@ -25,10 +25,14 @@
                 <h5>원하시는 상품이 얼마에 거래되고 있는지 알아보세요</h5>
             </div>
             <div class="search">
-                <form action="/product/list_rate_product_form" method="GET">
-                    <input type="text" name="keyword" id="keyword" placeholder="상품명 입력" value="<%= keyword %>">
-                    <button type="submit">검색</button>
-                </form>
+                <div class="select-container">
+                    <select name="searchType" id="searchType">
+                        <option value="price">시세 검색</option>
+                        <option value="shopping">Naver 쇼핑 검색</option>
+                    </select>
+                </div>
+                <input type="text" name="keyword" id="keyword" placeholder="상품명 입력" value="<%= keyword %>">
+                <button type="submit">검색</button>
             </div>
             
             <div class="content">
@@ -37,25 +41,42 @@
                     <p>상품명을 입력한 후 '검색' 버튼을 클릭하면 해당 상품의 시세를 확인할 수 있습니다.</p>
                     <p>예: '아이폰', '삼성 TV' 등과 같이 입력하세요.</p>
                 <% } else { %>
-                    <div class="chart-container">
-                        <canvas id="priceChart"></canvas>
-                    </div>
-                    <% if (registeredPrices.length > 0) { %>
-                        <h5>등록가 시세</h5>
-                        <p><%= Math.floor(averageRegisteredPrice) %> 원</p>
-                        <!-- <p>최고가: <%= registeredPrices[registeredPrices.length - 1].maxPrice %></p>
-                        <p>최저가: <%= registeredPrices[registeredPrices.length - 1].minPrice %></p> -->
-                    <% } else { %>
-                        <p>최근 등록가 시세가 없습니다.</p>
-                    <% } %>
+                    <% if (searchType === 'price') { %>
+                        <div class="chart-container">
+                            <canvas id="priceChart"></canvas>
+                        </div>
+                        <% if (registeredPrices.length > 0) { %>
+                            <h5>등록가 시세</h5>
+                            <p><%= Math.floor(averageRegisteredPrice) %> 원</p>
+                        <% } else { %>
+                            <p>최근 등록가 시세가 없습니다.</p>
+                        <% } %>
 
-                    <% if (salePrices.length > 0) { %>
-                        <h5>판매가 시세</h5>
-                        <p><%= Math.floor(averageSalePrice) %> 원</p>
-                        <!-- <p>최고가: <%= salePrices[salePrices.length - 1].maxPrice %></p>
-                        <p>최저가: <%= salePrices[salePrices.length - 1].minPrice %></p> -->
-                    <% } else { %>
-                        <p>최근 판매가 시세가 없습니다.</p>
+                        <% if (salePrices.length > 0) { %>
+                            <h5>판매가 시세</h5>
+                            <p><%= Math.floor(averageSalePrice) %> 원</p>
+                        <% } else { %>
+                            <p>최근 판매가 시세가 없습니다.</p>
+                        <% } %>
+                    <% } else if (searchType === 'shopping') { %>
+                        <% if (shoppingResults && shoppingResults.length > 0) { %>
+                            <h5>Naver 쇼핑 결과</h5>
+                            <ul class="shopping-results">
+                                <% shoppingResults.forEach(item => { %>
+                                    <li>
+                                        <a href="<%= item.link %>" target="_blank">
+                                            <img src="<%= item.image %>" alt="<%= item.title %>">
+                                            <div class="item-info">
+                                                <p class="item-title"><%= item.title %></p>
+                                                <p class="item-price"><%= item.lprice %> 원</p>
+                                            </div>
+                                        </a>
+                                    </li>
+                                <% }) %>
+                            </ul>
+                        <% } else { %>
+                            <p>검색 결과가 없습니다.</p>
+                        <% } %>
                     <% } %>
                 <% } %>
             </div>

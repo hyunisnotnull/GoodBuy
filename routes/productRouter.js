@@ -95,9 +95,20 @@ router.post('/filter_state_product_confirm', (req, res) => {
 });
 
 // 시세 조회 START
-router.get('/list_rate_product_form', async (req, res) => {
+router.get('/list_rate_product_form', (req, res) => {
     console.log('/product/list_rate_product_form');
-    productService.searchRateList(req, res);
+    const searchType = req.query.searchType;
+    if (searchType === 'shopping') {
+        productService.searchShopping(req, res); // Naver 쇼핑 검색 호출
+    } else {
+        productService.searchRateList(req, res); // 시세 조회 호출
+    }
+});
+
+// NAVER SHOP API START
+router.get('/search_shopping', (req, res) => {
+    console.log('/product/search_shopping');
+    productService.searchShopping(req, res);
 
 });
 
