@@ -20,7 +20,6 @@ nav div.nav_wrap {
     overflow: hidden;             
     background-color: white;      
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    max-width: 500px;            /* 최대 너비 설정 */
     margin: 0 auto;              /* 가운데 정렬 */
 }
 
@@ -28,8 +27,9 @@ nav div.nav_wrap {
     border: none;                 
     padding: 10px;               
     font-size: 16px;             
-    flex-grow: 1;                /* 입력 필드가 가능한 공간을 차지하도록 설정 */
+    flex-grow: 1;                
     outline: none;               
+    width: 150px;                /* 너비를 적절히 설정 */
 }
 
 #searchKeyword::placeholder {
@@ -38,15 +38,18 @@ nav div.nav_wrap {
 
 #searchForm button {
     padding: 10px 15px;         
-    background-color: #007BFF;  
+    background-color: white;  
     color: white;                
     border: none;                
     cursor: pointer;             
     transition: background-color 0.3s; 
+    margin-left: 10px;          
+    font-size: 16px;            /* 아이콘 크기 조정 */
 }
 
-#searchForm button:hover {
-    background-color: #0056b3;  
+#searchForm button span {
+    display: inline-block;       /* 이모지가 버튼 중앙에 오도록 */
+    vertical-align: middle;      /* 수직 정렬 */
 }
 
 nav a {
