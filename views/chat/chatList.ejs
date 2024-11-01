@@ -4,12 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%- include('../include/title.ejs') %>
-    <!-- <link rel="stylesheet" href="/css/style.css"> -->
+
+    <link href="/css/chat/chatList.css" rel="stylesheet" type="text/css">
+    
 </head>
 <body>
 
     <%- include('../include/header.ejs') %>
     <%- include('../include/nav.ejs') %>
+
     <article>
         <div class="article_wrap">
             <div class="title">
@@ -21,7 +24,15 @@
                         <% chattingRooms.forEach(function(room) { %>
                             <li>
                                 <a href="/chat/chat/<%= room.CH_NO %>">
-                                    채팅방: <%= room.CH_SENDER_NICK %>와 <%= room.CH_RECEIVER_NICK %>
+                                    <img src="/<%= room.otherId %>/<%= room.otherthum %>" alt="프로필" class="profile-image">
+                                    <div class="chat-info">
+                                        <div class="chat-name"><%= room.otherNick %></div>
+                                        <div class="chat-last-message"><%= room.CH_TITLE %></div>
+                                    </div>
+                                    <div class="chat-time"><%= room.lastMessageTime %></div>
+                                    <% if (room.CH_UNREAD_COUNT > 0) { %>
+                                        <span class="unread-badge"><%= room.CH_UNREAD_COUNT %></span>
+                                    <% } %>
                                 </a>
                             </li>
                         <% }); %>
@@ -32,5 +43,8 @@
             </div>
         </div>
     </article>
+    
+    <%- include('../include/footer.ejs') %>
+
 </body>
 </html>
