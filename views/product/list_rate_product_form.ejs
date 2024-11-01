@@ -24,16 +24,16 @@
                 <h4>시세 조회</h4>
                 <h5>원하시는 상품이 얼마에 거래되고 있는지 알아보세요</h5>
             </div>
-            <div class="search">
-                <div class="select-container">
-                    <select name="searchType" id="searchType">
-                        <option value="price">시세 검색</option>
-                        <option value="shopping">Naver 쇼핑 검색</option>
-                    </select>
+            <form id="searchRateForm" action="/product/list_rate_product_form" method="get">
+                <select name="searchType" id="searchType">
+                    <option value="price">시세 검색</option>
+                    <option value="shopping">Naver 쇼핑 검색</option>
+                </select>
+                <div class="input-container">
+                    <input type="text" name="keyword" id="keyword" placeholder="상품명 입력" value="<%= keyword %>">
+                    <button type="submit"><span role="img" aria-label="검색">🔍</span></button>
                 </div>
-                <input type="text" name="keyword" id="keyword" placeholder="상품명 입력" value="<%= keyword %>">
-                <button type="submit">검색</button>
-            </div>
+            </form>
             
             <div class="content">
                 <% if (!keyword) { %>
@@ -62,7 +62,7 @@
                         <% if (shoppingResults && shoppingResults.length > 0) { %>
                             <h5>Naver 쇼핑 결과</h5>
                             <ul class="shopping-results">
-                                <% shoppingResults.forEach(item => { %>
+                                <% shoppingResults.slice(0, 9).forEach(item => { %>
                                     <li>
                                         <a href="<%= item.link %>" target="_blank">
                                             <img src="<%= item.image %>" alt="<%= item.title %>">
