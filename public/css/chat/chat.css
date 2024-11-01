@@ -78,39 +78,40 @@ article {
 /* 메시지 컨테이너 */
 .message-container {
     display: flex;
-    flex-direction: column;
-    margin-bottom: 15px;
-    position: relative;
-}
-
-/* 상대방의 메시지 그룹 */
-.other-message-group {
-    display: flex;
     flex-direction: row;
-    justify-content: flex-start;
+    align-items: flex-start;
+    margin-bottom: 15px;
 }
 
-/* 내 메시지 그룹 */
-.my-message-group {
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: flex-end;
-}
-
-/* 프로필 이미지와 사용자 이름 */
+/* 프로필 이미지 */
 .chat-profile-image {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    margin-right: 8px;
-    vertical-align: middle;
+    margin-right: 10px;
+}
+
+/* 메시지 내용 컨테이너 */
+.message-content {
+    display: flex;
+    flex-direction: column;
+    max-width: 70%;
+}
+
+/* 상대방의 메시지 스타일 */
+.other-message-group .message-content {
+    align-items: flex-start;
+}
+
+.my-message-group .message-content {
+    align-items: flex-end;
 }
 
 .message-user {
     font-weight: bold;
     font-size: 14px;
     color: #333;
-    margin-bottom: 5px;
+    margin-bottom: 2px;
 }
 
 /* 메시지 말풍선 스타일 */
@@ -118,12 +119,9 @@ article {
 .my-message {
     padding: 8px 12px;
     border-radius: 10px;
-    max-width: 30%;
     font-size: 14px;
-    line-height: 1.4;
     word-wrap: break-word;
-    position: relative;
-    margin-top: 2px;
+    margin-top: 5px;
 }
 
 /* 다른 사람의 말풍선 */
@@ -131,7 +129,6 @@ article {
     background-color: #ffffff;
     color: #000;
     border-radius: 10px 10px 10px 0;
-
 }
 
 /* 내 말풍선 */
@@ -139,31 +136,16 @@ article {
     background-color: #fef28a;
     color: #000;
     border-radius: 10px 10px 0 10px;
-    margin-right: 5px;
-
-}
-
-/* 시간 표시 */
-.message-time {
-    font-size: 10px;
-    color: #888;
-    margin-top: 2px;
-    display: block;
-    text-align: right;
 }
 
 /* 상대방 메시지의 시간 위치 */
 .other-message-group .message-time {
-    margin-left: auto;
-    text-align: left;
-    padding-left: 5px;
+    position: relative;
 }
 
 /* 내 메시지의 시간 위치 */
 .my-message-group .message-time {
-    margin-right: auto;
-    text-align: right;
-    padding-right: 5px;
+    position: relative;
 }
 
 /* 입력창 스타일 */
