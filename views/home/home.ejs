@@ -31,38 +31,45 @@
                     <button class="next">▶</button>
                 </div>
             </div>
+
             <div class="auction">
                 <h4>HOT 경매</h4>
                 <div class="auction-slider">
                     <button class="prev">◀</button>
                     <div class="auction-list">
                         <% auctions.forEach((auction, index) => { %>
-                            <div class="auction-item <%= index === 0 ? 'active' : '' %>">
-                                <img src="<%= auction.image %>" alt="<%= auction.name %>" />
-                                <h5><%= auction.name %></h5>
-                                <p>현재가: <%= auction.currentPrice %> 원</p>
+                            <div class="auction-item">
+                                <a href="/product/detail_product_form?p_no=<%= auction.P_NO %>">
+                                    <img src="/<%= auction.P_OWNER_ID %>/<%= auction.P_IMAGE %>" alt="<%= auction.P_NAME %>" />
+                                </a>
+                                <h5><%= auction.P_NAME %></h5>
+                                <p>현재가: <%= auction.P_PRICE %> 원</p>
                             </div>
                         <% }) %>
                     </div>
                     <button class="next">▶</button>
                 </div>
             </div>
-            <div class="products">
+
+            <div class="product">
                 <h4>최신 등록 상품</h4>
                 <div class="product-slider">
                     <button class="prev">◀</button>
                     <div class="product-list">
                         <% products.forEach((product, index) => { %>
-                            <div class="product-item <%= index === 0 ? 'active' : '' %>">
-                                <img src="<%= product.image %>" alt="<%= product.name %>" />
-                                <h5><%= product.name %></h5>
-                                <p>가격: <%= product.price %> 원</p>
+                            <div class="product-item">
+                                <a href="/product/detail_product_form?p_no=<%= product.P_NO %>">
+                                    <img src="/<%= product.P_OWNER_ID %>/<%= product.P_IMAGE %>" alt="<%= product.P_NAME %>" />
+                                </a>
+                                <h5><%= product.P_NAME %></h5>
+                                <p>가격: <%= product.P_PRICE %> 원</p>
                             </div>
                         <% }) %>
                     </div>
                     <button class="next">▶</button>
                 </div>
             </div>
+            
         </div>
         <div class="sale_box"></div><br>
         <div class="auction_box"></div>

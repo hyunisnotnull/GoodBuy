@@ -1,187 +1,192 @@
 -- DB_GOODBUY
+<<<<<<< HEAD
 DROP DATABASE IF EXISTS DB_GOODBUY;
+=======
+DROP DATABASE DB_GOODBUY;
+>>>>>>> 2e15d8ef7b006af88487cb69aab8a67f9e7f21d1
 CREATE DATABASE DB_GOODBUY;
 USE DB_GOODBUY;
 
 DROP TABLE IF EXISTS TBL_USER;
 CREATE TABLE TBL_USER(
-	U_NO               		INT AUTO_INCREMENT,
-	U_ID               		VARCHAR(20) UNIQUE,
-	U_PW               		VARCHAR(100) NOT NULL,
-	U_PROFILE_THUM       	VARCHAR(50),
-	U_NICK               	VARCHAR(20) UNIQUE,
-	U_PHONE              	VARCHAR(20) NOT NULL,
-	U_SEX               	VARCHAR(2) NOT NULL,            	-- M(남) W(여)
-	U_AGE               	VARCHAR(10) NOT NULL,            	-- 연령대
-	U_POST_ADDRESS       	VARCHAR(100) NOT NULL,            	-- 우편번호 주소
-	U_DETAIL_ADDRESS    	VARCHAR(50),                  		-- 상세 주소
-	U_SNS_ID            	VARCHAR(30),                  		-- 구글, 네이버 ID
-	U_ACTIVE            	TINYINT DEFAULT 1,               	-- 0(삭제된 계정), 1(활동중인 계정), 2(정지된 계정)
-	U_CLASS              	TINYINT DEFAULT 1,               	-- 0(UNRANK), 1(IRON), 2(BRONZE), 3(SILVER), 4(GOLD), 5(PLATINUM), 6(DIAMOND)
-	U_POINT              	SMALLINT DEFAULT 100,            	-- 100점 획득시 등급 상승
-	U_PENALTY            	TINYINT DEFAULT 0,               	-- 잔여 페널티(3패널티에 1일 정지)
-	U_BAN_START_DATE    	DATETIME,                      		-- 정지 시작 날짜
-    U_BAN_END_DATE          DATETIME,                     		-- 정지 종료 날짜
-	U_REG_DATE            	DATETIME DEFAULT NOW(),
-	U_MOD_DATE            	DATETIME DEFAULT NOW(),
-	PRIMARY KEY(U_NO)
+   U_NO                     INT AUTO_INCREMENT,
+   U_ID                     VARCHAR(20) UNIQUE,
+   U_PW                     VARCHAR(100) NOT NULL,
+   U_PROFILE_THUM          VARCHAR(50),
+   U_NICK                  VARCHAR(20) UNIQUE,
+   U_PHONE                 VARCHAR(20) NOT NULL,
+   U_SEX                  VARCHAR(2) NOT NULL,               -- M(남) W(여)
+   U_AGE                  VARCHAR(10) NOT NULL,               -- 연령대
+   U_POST_ADDRESS          VARCHAR(100) NOT NULL,               -- 우편번호 주소
+   U_DETAIL_ADDRESS       VARCHAR(50),                        -- 상세 주소
+   U_SNS_ID               VARCHAR(30),                        -- 구글, 네이버 ID
+   U_ACTIVE               TINYINT DEFAULT 1,                  -- 0(삭제된 계정), 1(활동중인 계정), 2(정지된 계정)
+   U_CLASS                 TINYINT DEFAULT 1,                  -- 0(UNRANK), 1(IRON), 2(BRONZE), 3(SILVER), 4(GOLD), 5(PLATINUM), 6(DIAMOND)
+   U_POINT                 SMALLINT DEFAULT 100,               -- 100점 획득시 등급 상승
+   U_PENALTY               TINYINT DEFAULT 0,                  -- 잔여 페널티(3패널티에 1일 정지)
+   U_BAN_START_DATE       DATETIME,                            -- 정지 시작 날짜
+    U_BAN_END_DATE          DATETIME,                           -- 정지 종료 날짜
+   U_REG_DATE               DATETIME DEFAULT NOW(),
+   U_MOD_DATE               DATETIME DEFAULT NOW(),
+   PRIMARY KEY(U_NO)
 );
 SELECT * FROM TBL_USER;
 
 DROP TABLE IF EXISTS TBL_ADMIN;
 CREATE TABLE TBL_ADMIN(
-	A_NO               		INT AUTO_INCREMENT,
-	A_ID               		VARCHAR(20) UNIQUE,
-	A_PW               		VARCHAR(100) NOT NULL,
-	A_MAIL               	VARCHAR(20) NOT NULL,
-	A_PHONE              	VARCHAR(20) NOT NULL,
-	A_PROFILE_THUM         	VARCHAR(50),
-	A_ROLE               	VARCHAR(20) DEFAULT 'PRE_ADMIN',      -- 1(PRE_ADMIN), 2(ADMIN), 3(SUPER_ADMIN)
-	A_REG_DATE             	DATETIME DEFAULT NOW(),
-	A_MOD_DATE             	DATETIME DEFAULT NOW(),
-	PRIMARY KEY(A_NO)
+   A_NO                     INT AUTO_INCREMENT,
+   A_ID                     VARCHAR(20) UNIQUE,
+   A_PW                     VARCHAR(100) NOT NULL,
+   A_MAIL                  VARCHAR(20) NOT NULL,
+   A_PHONE                 VARCHAR(20) NOT NULL,
+   A_PROFILE_THUM            VARCHAR(50),
+   A_ROLE                  VARCHAR(20) DEFAULT 'PRE_ADMIN',      -- 1(PRE_ADMIN), 2(ADMIN), 3(SUPER_ADMIN)
+   A_REG_DATE                DATETIME DEFAULT NOW(),
+   A_MOD_DATE                DATETIME DEFAULT NOW(),
+   PRIMARY KEY(A_NO)
 );
 SELECT * FROM TBL_ADMIN;
 
 DROP TABLE IF EXISTS TBL_PRODUCT;
 CREATE TABLE TBL_PRODUCT(
-	P_NO					INT AUTO_INCREMENT,
-	P_OWNER_ID				VARCHAR(20) NOT NULL,
-	P_OWNER_NICK			VARCHAR(20) NOT NULL,
-    P_CATEGORY				VARCHAR(20) NOT NULL,
-    P_IMAGE					VARCHAR(50) NOT NULL,
-	P_NAME					VARCHAR(100) NOT NULL,
-	P_DESC					TEXT NOT NULL,
-	P_PRICE					INT NOT NULL,
-	P_STATE					TINYINT DEFAULT 3,						-- 0(삭제) 1(취소) 2(판매완료), 3(판매중), 4(경매중)
-    P_TRADE_DATE			DATETIME,
-	P_REG_DATE				DATETIME DEFAULT NOW(),
-	P_MOD_DATE				DATETIME DEFAULT NOW(),
+   P_NO               INT AUTO_INCREMENT,
+   P_OWNER_ID            VARCHAR(20) NOT NULL,
+   P_OWNER_NICK         VARCHAR(20) NOT NULL,
+    P_CATEGORY            VARCHAR(20) NOT NULL,
+    P_IMAGE               VARCHAR(50) NOT NULL,
+   P_NAME               VARCHAR(100) NOT NULL,
+   P_DESC               TEXT NOT NULL,
+   P_PRICE               INT NOT NULL,
+   P_STATE               TINYINT DEFAULT 3,                  -- 0(삭제) 1(취소) 2(판매완료), 3(판매중), 4(경매중)
+    P_TRADE_DATE         DATETIME,
+   P_REG_DATE            DATETIME DEFAULT NOW(),
+   P_MOD_DATE            DATETIME DEFAULT NOW(),
 
-	PRIMARY KEY(P_NO)
+   PRIMARY KEY(P_NO)
 );
 SELECT * FROM TBL_PRODUCT;
 
 DROP TABLE IF EXISTS TBL_SALE;
 CREATE TABLE TBL_SALE(
-	S_NO					INT AUTO_INCREMENT,
-	S_PRODUCT_NO			INT NOT NULL,
-	S_SELLER_ID				VARCHAR(20) NOT NULL,
-	S_SELLER_NICK			VARCHAR(20) NOT NULL,
-	S_BUYER_ID				VARCHAR(20),
-	S_BUYER_NICK			VARCHAR(20),
-	S_TRADE_DATE			DATETIME,
-	S_STATE					TINYINT,							-- 0(삭제), 1(취소), 2(완료), 3(판매 중)
-	S_REG_DATE				DATETIME DEFAULT NOW(),
-	S_MOD_DATE				DATETIME DEFAULT NOW(),
+   S_NO               INT AUTO_INCREMENT,
+   S_PRODUCT_NO         INT NOT NULL,
+   S_SELLER_ID            VARCHAR(20) NOT NULL,
+   S_SELLER_NICK         VARCHAR(20) NOT NULL,
+   S_BUYER_ID            VARCHAR(20),
+   S_BUYER_NICK         VARCHAR(20),
+   S_TRADE_DATE         DATETIME,
+   S_STATE               TINYINT,                     -- 0(삭제), 1(취소), 2(완료), 3(판매 중)
+   S_REG_DATE            DATETIME DEFAULT NOW(),
+   S_MOD_DATE            DATETIME DEFAULT NOW(),
 
-	PRIMARY KEY(S_NO)
+   PRIMARY KEY(S_NO)
 );
 SELECT * FROM TBL_SALE;
 
 DROP TABLE IF EXISTS TBL_AUCTION;
 CREATE TABLE TBL_AUCTION(
 
-	AU_NO					INT AUTO_INCREMENT,
-	AU_PRODUCT_NO			INT NOT NULL,
-	AU_SELLER_ID			VARCHAR(20) NOT NULL,
-	AU_SELLER_NICK			VARCHAR(20) NOT NULL,
-	AU_BUYER_ID				VARCHAR(20),
-	AU_BUYER_NICK			VARCHAR(20),
-	AU_PRICE				INT,
-	AU_TRADE_DATE			DATETIME,
-	AU_STATE				TINYINT,							-- 0(삭제), 1(취소), 2(완료), 4(경매중)
-	AU_REG_DATE				DATETIME DEFAULT NOW(),
-	AU_MOD_DATE				DATETIME DEFAULT NOW(),
+   AU_NO               INT AUTO_INCREMENT,
+   AU_PRODUCT_NO         INT NOT NULL,
+   AU_SELLER_ID         VARCHAR(20) NOT NULL,
+   AU_SELLER_NICK         VARCHAR(20) NOT NULL,
+   AU_BUYER_ID            VARCHAR(20),
+   AU_BUYER_NICK         VARCHAR(20),
+   AU_PRICE            INT,
+   AU_TRADE_DATE         DATETIME,
+   AU_STATE            TINYINT,                     -- 0(삭제), 1(취소), 2(완료), 4(경매중)
+   AU_REG_DATE            DATETIME DEFAULT NOW(),
+   AU_MOD_DATE            DATETIME DEFAULT NOW(),
 
-	PRIMARY KEY(AU_NO)
+   PRIMARY KEY(AU_NO)
 );
 SELECT * FROM TBL_AUCTION;
 
 DROP TABLE IF EXISTS TBL_CHAT;
 CREATE TABLE TBL_CHAT(
-	CH_NO               	INT AUTO_INCREMENT,
+	CH_NO                  INT AUTO_INCREMENT,
 	CH_SENDER_ID            VARCHAR(20) NOT NULL,
-    CH_SENDER_NICK      	VARCHAR(20) NOT NULL,
+    CH_SENDER_NICK         VARCHAR(20) NOT NULL,
 	CH_RECEIVER_ID          VARCHAR(20) NOT NULL,
-    CH_RECEIVER_NICK		VARCHAR(20) NOT NULL,
-    CH_PRODUCT_NO			INT NOT NULL,
-    CH_TITLE            	VARCHAR(50),				-- 마지막 M_CONTENT
-	CH_ACTIVE            	TINYINT DEFAULT 1,               	-- 0(DELETE), 1(ACTIVE)
-	CH_TIME	          		DATETIME DEFAULT NOW(),
-	PRIMARY KEY(CH_NO)
+    CH_RECEIVER_NICK      VARCHAR(20) NOT NULL,
+    CH_PRODUCT_NO         INT NOT NULL,
+    CH_TITLE               VARCHAR(50),            -- 마지막 M_CONTENT
+	CH_UNREAD_COUNT INT DEFAULT 0,
+	CH_ACTIVE               TINYINT DEFAULT 1,                  -- 0(DELETE), 1(ACTIVE)
+	CH_TIME                   DATETIME DEFAULT NOW(),
+   PRIMARY KEY(CH_NO)
 );
 SELECT * FROM TBL_CHAT;
 
 DROP TABLE IF EXISTS TBL_MESSAGE;
 CREATE TABLE TBL_MESSAGE(
-	M_NO               	INT AUTO_INCREMENT,
-    M_CHAT_CH_NO		INT NOT NULL,				-- CH_NO
+	M_NO                  INT AUTO_INCREMENT,
+	M_CHAT_CH_NO      INT NOT NULL,            -- CH_NO
 	M_SENDER_ID         VARCHAR(20) NOT NULL,
 	M_SENDER_NICK       VARCHAR(20) NOT NULL,
 	M_RECEIVER_ID       VARCHAR(20) NOT NULL,
-	M_RECEIVER_NICK		VARCHAR(20) NOT NULL,
+	M_RECEIVER_NICK      VARCHAR(20) NOT NULL,
 	M_CONTENT           TEXT,
-	M_TIME				DATETIME DEFAULT NOW(),
-	PRIMARY KEY(M_NO)
+	M_TIME            DATETIME DEFAULT NOW(),
+   PRIMARY KEY(M_NO)
 );
 SELECT * FROM TBL_MESSAGE;
 
 DROP TABLE IF EXISTS TBL_CHAT_IMAGE;
 CREATE TABLE TBL_CHAT_IMAGE(
-	CI_NO               	INT AUTO_INCREMENT,
-	CI_CH_NO            	INT   NOT NULL,
-	CI_FILE               	VARCHAR(100) NOT NULL,
-	PRIMARY KEY(CI_NO)
+   CI_NO                  INT AUTO_INCREMENT,
+   CI_CH_NO               INT   NOT NULL,
+   CI_FILE                  VARCHAR(100) NOT NULL,
+   PRIMARY KEY(CI_NO)
 );
 SELECT * FROM TBL_CHAT_IMAGE;
 
 DROP TABLE IF EXISTS TBL_PRODUCT_IMAGE;
 CREATE TABLE TBL_PRODUCT_IMAGE(
-	PI_NO               	INT AUTO_INCREMENT,
-	PI_CH_NO            	INT   NOT NULL,
-	PI_FILE               	VARCHAR(100) NOT NULL,
-	PRIMARY KEY(PI_NO)
+   PI_NO                  INT AUTO_INCREMENT,
+   PI_CH_NO               INT   NOT NULL,
+   PI_FILE                  VARCHAR(100) NOT NULL,
+   PRIMARY KEY(PI_NO)
 );
 SELECT * FROM TBL_PRODUCT_IMAGE;
 
 DROP TABLE IF EXISTS TBL_CATEGORY;
 CREATE TABLE TBL_CATEGORY(
-	C_NO               		INT AUTO_INCREMENT,
-	C_NAME               	VARCHAR(20),
-	PRIMARY KEY(C_NO)
+   C_NO                     INT AUTO_INCREMENT,
+   C_NAME                  VARCHAR(20),
+   PRIMARY KEY(C_NO)
 );
 SELECT * FROM TBL_CATEGORY;
 
 DROP TABLE IF EXISTS TBL_ACTIVE;
 CREATE TABLE TBL_ACTIVE(
-	AC_NO               	INT AUTO_INCREMENT,
-	AC_NAME               	VARCHAR(20),                  -- 0(삭제) 1(정지), 2(활동)
-	PRIMARY KEY(AC_NO)
+   AC_NO                  INT AUTO_INCREMENT,
+   AC_NAME                  VARCHAR(20),                  -- 0(삭제) 1(정지), 2(활동)
+   PRIMARY KEY(AC_NO)
 );
 SELECT * FROM TBL_ACTIVE;
 
 DROP TABLE IF EXISTS TBL_CLASS;
 CREATE TABLE TBL_CLASS(
-	CL_NO               	INT AUTO_INCREMENT,
-	CL_NAME               	VARCHAR(20),                  -- 0(UNRANK), 1(IRON), 2(BRONZE), 3(SILVER), 4(GOLD), 5(PLATINUM), 6(DIAMOND)
-	PRIMARY KEY(CL_NO)
+   CL_NO                  INT AUTO_INCREMENT,
+   CL_NAME                  VARCHAR(20),                  -- 0(UNRANK), 1(IRON), 2(BRONZE), 3(SILVER), 4(GOLD), 5(PLATINUM), 6(DIAMOND)
+   PRIMARY KEY(CL_NO)
 );
 SELECT * FROM TBL_CLASS;
 
 DROP TABLE IF EXISTS TBL_STATE;
 CREATE TABLE TBL_STATE(
-	ST_NO               	INT AUTO_INCREMENT,
-	ST_NAME               	VARCHAR(20),                  -- 0(삭제) 1(취소) 2(판매완료), 3(판매중), 4(경매중)
-	PRIMARY KEY(ST_NO)
+   ST_NO                  INT AUTO_INCREMENT,
+   ST_NAME                  VARCHAR(20),                  -- 0(삭제) 1(취소) 2(판매완료), 3(판매중), 4(경매중)
+   PRIMARY KEY(ST_NO)
 );
 SELECT * FROM TBL_STATE;
 
 DROP TABLE IF EXISTS TBL_WISHLIST;
 CREATE TABLE TBL_WISHLIST(
-	W_NO INT AUTO_INCREMENT,
-    W_USER_NO INT NOT NULL,                             	-- 사용자 ID (TBL_USER의 U_NO와 연관)
-    W_PRODUCT_NO INT NOT NULL,                          	-- 상품 ID (TBL_PRODUCT의 P_NO와 연관)
+   W_NO INT AUTO_INCREMENT,
+    W_USER_NO INT NOT NULL,                                -- 사용자 ID (TBL_USER의 U_NO와 연관)
+    W_PRODUCT_NO INT NOT NULL,                             -- 상품 ID (TBL_PRODUCT의 P_NO와 연관)
     W_REG_DATE DATETIME DEFAULT NOW(),
     W_MOD_DATE DATETIME DEFAULT NOW(),
     PRIMARY KEY(W_NO)
@@ -193,9 +198,9 @@ CREATE TABLE TBL_EVENT (
     E_NO INT AUTO_INCREMENT,                                -- 이벤트 ID
     E_TITLE VARCHAR(100) NOT NULL,                          -- 이벤트 제목
     E_IMAGE VARCHAR(255) NOT NULL,                          -- 이벤트 이미지
-    E_URL VARCHAR(255),                                 	-- 이벤트 URL
+    E_URL VARCHAR(255),                                    -- 이벤트 URL
     E_DESC TEXT,                                            -- 이벤트 설명 (선택적)
-    E_ACTIVE TINYINT DEFAULT 1,                           	-- 0(DELETE), 1(ACTIVE), 2(STOP)
+    E_ACTIVE TINYINT DEFAULT 1,                              -- 0(DELETE), 1(ACTIVE), 2(STOP)
     E_START_DATE DATETIME,                                  -- 이벤트 시작 날짜
     E_END_DATE DATETIME,                                    -- 이벤트 종료 날짜
     E_REG_DATE DATETIME DEFAULT NOW(),                      -- 등록 날짜
@@ -412,3 +417,5 @@ VALUES
 ('yuri@gmail.com', 'yuri', '1', '1730386676914RXd_0SIMz.jpg', '롤렉스 컴퓨터판 16233 18k', 7700000,'로렉스 컴퓨터판 콤비입니다\n36mm\n96년식이나 구형처럼 보이지 않고 굉장히 세련됐습니다\n\n세계명품시계 감정원에서 받은 감정서 있습니다.\n\n오보홀, 폴리싱도 다 했어요.\n상태, 무브먼트도 최상입니다 s급\n로렉스 시계는 지금이 제일 저렴하거 아시죠\n계속올라갑니다\n특히 이 롤렉스는 18k라서 더더 오릅니다\n요즘 금값이 엄청 오르는데 전문가들은 더 오를거라고 합니다.\n\n케이스 드리긴 하는데 케이스는 까짐 있고 상태 별로입니다 참고해주세요\n\n직거래 선호합니다\n인천 연수/ 종로도 가능'),
 ('yuri@gmail.com', 'yuri', '8', '17303864921164lO_bGXz8.jpg', '소니 크롭 미러리스 a6000', 380000,'24년 1월에 중고로 구매해서 사용하다가 기기변경으로 판매합니다.\n컷수는 12000대입니다\n\n구성품 : 박스, 카메라 바디, 배터리1개, 충전 케이블, 32G 메모리카드\n\n이전 사용자분께서 삼각대 사용을 많이하셔서 결합 부분에 기스가 좀 있는데, 사용하는데 아무런 문제 없습니다.\n\n직거래는 서울시 중랑구 동대문구 선호합니다.\n그외 지역도 안하는 건 아니니 문의주세요\n\n택배비 무료입니다'),
 ('yuri@gmail.com', 'yuri', '14', '1730386871965gFB_52obY.jpg', '투썸플레이스 5만원권', 45000, '	2장 판매합니다.\n25년 10월 18일까지 사용 가능합니다');
+show triggers;
+INSERT INTO TBL_ACTIVE(AC_NAME) VALUES('비활성');
