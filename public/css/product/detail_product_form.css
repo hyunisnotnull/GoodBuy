@@ -123,3 +123,7 @@ img.img_modal {
    max-width: calc(100% - 100px);
 }
 
+
+#join, #cancel, input[name="auction_price"] {
+    display: none;
+}

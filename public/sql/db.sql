@@ -1,9 +1,4 @@
--- DB_GOODBUY
-<<<<<<< HEAD
 DROP DATABASE IF EXISTS DB_GOODBUY;
-=======
-DROP DATABASE DB_GOODBUY;
->>>>>>> 2e15d8ef7b006af88487cb69aab8a67f9e7f21d1
 CREATE DATABASE DB_GOODBUY;
 USE DB_GOODBUY;
 
@@ -185,11 +180,11 @@ SELECT * FROM TBL_STATE;
 DROP TABLE IF EXISTS TBL_WISHLIST;
 CREATE TABLE TBL_WISHLIST(
    W_NO INT AUTO_INCREMENT,
-    W_USER_NO INT NOT NULL,                                -- 사용자 ID (TBL_USER의 U_NO와 연관)
-    W_PRODUCT_NO INT NOT NULL,                             -- 상품 ID (TBL_PRODUCT의 P_NO와 연관)
-    W_REG_DATE DATETIME DEFAULT NOW(),
-    W_MOD_DATE DATETIME DEFAULT NOW(),
-    PRIMARY KEY(W_NO)
+   W_USER_NO INT NOT NULL,                                -- 사용자 ID (TBL_USER의 U_NO와 연관)
+   W_PRODUCT_NO INT NOT NULL,                             -- 상품 ID (TBL_PRODUCT의 P_NO와 연관)
+   W_REG_DATE DATETIME DEFAULT NOW(),
+   W_MOD_DATE DATETIME DEFAULT NOW(),
+   PRIMARY KEY(W_NO)
 );
 SELECT * FROM TBL_WISHLIST;
 
@@ -209,6 +204,16 @@ CREATE TABLE TBL_EVENT (
 );
 SELECT * FROM TBL_EVENT;
 
+DROP TABLE IF EXISTS TBL_REPORT;
+CREATE TABLE TBL_REPORT(
+	R_NO INT AUTO_INCREMENT,
+	R_P_NO INT NOT NULL,
+	R_U_NO INT NOT NULL,
+    R_REG_DATE DATETIME DEFAULT NOW(),
+    R_MOD_DATE DATETIME DEFAULT NOW(),
+	PRIMARY KEY(R_NO)
+);
+SELECT * FROM TBL_REPORT;
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 
@@ -355,6 +360,14 @@ UPDATE TBL_USER SET U_POINT = U_POINT - 1 WHERE U_NO = OLD.W_USER_NO;
 END $$
 DELIMITER ;
 
+DELIMITER $$
+CREATE TRIGGER AUCTION_PRICE_UPDATE AFTER DELETE ON TBL_AUCTION
+FOR EACH ROW
+BEGIN
+UPDATE TBL_PRODUCT SET P_PRICE = NEW.AU_PRICE WHERE P_NO = NEW.AU_PRODUCT_NO;
+END $$
+DELIMITER ;
+
 SELECT * FROM TBL_USER;
 INSERT INTO TBL_USER (U_ID, U_PW, U_NICK, U_PHONE, U_SEX, U_AGE, U_POST_ADDRESS)
 VALUES
@@ -417,5 +430,11 @@ VALUES
 ('yuri@gmail.com', 'yuri', '1', '1730386676914RXd_0SIMz.jpg', '롤렉스 컴퓨터판 16233 18k', 7700000,'로렉스 컴퓨터판 콤비입니다\n36mm\n96년식이나 구형처럼 보이지 않고 굉장히 세련됐습니다\n\n세계명품시계 감정원에서 받은 감정서 있습니다.\n\n오보홀, 폴리싱도 다 했어요.\n상태, 무브먼트도 최상입니다 s급\n로렉스 시계는 지금이 제일 저렴하거 아시죠\n계속올라갑니다\n특히 이 롤렉스는 18k라서 더더 오릅니다\n요즘 금값이 엄청 오르는데 전문가들은 더 오를거라고 합니다.\n\n케이스 드리긴 하는데 케이스는 까짐 있고 상태 별로입니다 참고해주세요\n\n직거래 선호합니다\n인천 연수/ 종로도 가능'),
 ('yuri@gmail.com', 'yuri', '8', '17303864921164lO_bGXz8.jpg', '소니 크롭 미러리스 a6000', 380000,'24년 1월에 중고로 구매해서 사용하다가 기기변경으로 판매합니다.\n컷수는 12000대입니다\n\n구성품 : 박스, 카메라 바디, 배터리1개, 충전 케이블, 32G 메모리카드\n\n이전 사용자분께서 삼각대 사용을 많이하셔서 결합 부분에 기스가 좀 있는데, 사용하는데 아무런 문제 없습니다.\n\n직거래는 서울시 중랑구 동대문구 선호합니다.\n그외 지역도 안하는 건 아니니 문의주세요\n\n택배비 무료입니다'),
 ('yuri@gmail.com', 'yuri', '14', '1730386871965gFB_52obY.jpg', '투썸플레이스 5만원권', 45000, '	2장 판매합니다.\n25년 10월 18일까지 사용 가능합니다');
-show triggers;
-INSERT INTO TBL_ACTIVE(AC_NAME) VALUES('비활성');
+
+select * from tbl_report;
+
+show tables;
+select * from tbl_chat;
+select * from tbl_user;
+select * from tbl_product where p_no=10;
+select * from tbl_auction;
