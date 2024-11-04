@@ -25,12 +25,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const registeredData = labels.map(date => {
         const price = registeredPrices.find(p => p.date === date);
-        return price ? parseFloat(price.averagePrice) : null;
+        return price ? parseInt(price.averagePrice) : null;
     });
 
     const saleData = labels.map(date => {
         const price = salePrices.find(p => p.date === date);
-        return price ? parseFloat(price.averagePrice) : null;
+        return price ? parseInt(price.averagePrice) : null;
     });
 
     const chartData = {
