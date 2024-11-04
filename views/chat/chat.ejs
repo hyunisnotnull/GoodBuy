@@ -16,7 +16,8 @@
     <article>
         <div class="article_wrap">
             <div class="title">
-                <button onclick="goBack()" class="back-button">←</button>
+                <button onclick="goBack();" class="back-button">←</button>&nbsp;&nbsp;
+                <button onclick="deleteChat();" class="back-button">X</button>
             </div>
             <div class="content">
                 <div class="chat-header">
@@ -50,6 +51,7 @@
         const otherId = '<%= otherId %>';
         const otherNick = '<%= otherNick %>';
         const otherthum = '<%= otherthum %>';
+        const lastExitTime = '<%= lastExitTime %>';
     </script>
 
     <script src="/js/chat/chatClient.js"></script>

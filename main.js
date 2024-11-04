@@ -20,6 +20,7 @@ app.use(compression());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static('c:\\goodbuy\\upload\\profile_thums\\'));
 app.use(express.static('c:\\goodbuyforadmin\\upload\\event_images\\'));
+app.use(express.json());
 
 // session
 const maxAge = 1000 * 60 * 30;

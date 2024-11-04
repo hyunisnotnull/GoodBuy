@@ -64,7 +64,6 @@ article {
     cursor: pointer;
 }
 
-
 /* 채팅창 메시지 목록 */
 .chat-window {
     display: flex;
@@ -75,12 +74,31 @@ article {
     background-color: #e5efff;
 }
 
-/* 메시지 컨테이너 */
-.message-container {
+/* 메시지 그룹 스타일 */
+.other-message-group, .my-message-group {
     display: flex;
-    flex-direction: row;
-    align-items: flex-start;
+    flex-direction: column; /* 수직 정렬 */
+    max-width: 70%; /* 최대 너비 설정 */
     margin-bottom: 15px;
+}
+
+/* 상대방 메시지 그룹: 왼쪽 정렬 */
+.other-message-group {
+    align-items: flex-start;
+    margin-right: auto; /* 왼쪽 정렬 */
+}
+
+/* 내 메시지 그룹: 오른쪽 정렬 */
+.my-message-group {
+    align-items: flex-end;
+    margin-left: auto; /* 오른쪽 정렬 */
+}
+
+/* 프로필과 닉네임 컨테이너 */
+.profile-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px; /* 메시지와 간격 */
 }
 
 /* 프로필 이미지 */
@@ -91,27 +109,11 @@ article {
     margin-right: 10px;
 }
 
-/* 메시지 내용 컨테이너 */
-.message-content {
-    display: flex;
-    flex-direction: column;
-    max-width: 70%;
-}
-
-/* 상대방의 메시지 스타일 */
-.other-message-group .message-content {
-    align-items: flex-start;
-}
-
-.my-message-group .message-content {
-    align-items: flex-end;
-}
-
+/* 닉네임 스타일 */
 .message-user {
     font-weight: bold;
     font-size: 14px;
     color: #333;
-    margin-bottom: 2px;
 }
 
 /* 메시지 말풍선 스타일 */
@@ -122,16 +124,17 @@ article {
     font-size: 14px;
     word-wrap: break-word;
     margin-top: 5px;
+    display: inline-block; /* 말풍선을 inline-block으로 설정 */
 }
 
-/* 다른 사람의 말풍선 */
+/* 상대방의 메시지 말풍선: 왼쪽 */
 .other-message {
     background-color: #ffffff;
     color: #000;
     border-radius: 10px 10px 10px 0;
 }
 
-/* 내 말풍선 */
+/* 내 메시지 말풍선: 오른쪽 */
 .my-message {
     background-color: #fef28a;
     color: #000;
@@ -139,13 +142,12 @@ article {
 }
 
 /* 상대방 메시지의 시간 위치 */
-.other-message-group .message-time {
-    position: relative;
-}
-
-/* 내 메시지의 시간 위치 */
+.other-message-group .message-time,
 .my-message-group .message-time {
-    position: relative;
+    font-size: 12px;
+    color: #888;
+    margin-top: 2px;
+    align-self: flex-end; /* 시간 위치 조정 */
 }
 
 /* 입력창 스타일 */
