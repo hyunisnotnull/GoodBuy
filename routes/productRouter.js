@@ -54,21 +54,13 @@ router.get('/list_my_product_form', async (req, res) => {
 
 router.get('/list_sale_product_form', async (req, res) => {
     console.log('/product/list_sale_product_form');
-    if(!req.isAuthenticated()) {
-        productService.listSaleProductFormAny(req, res)
-    } else {
-        productService.listSaleProductForm(req, res);
-    }
+    productService.listSaleProductForm(req, res);
 
 });
 
 router.get('/list_auction_product_form', async (req, res) => {
     console.log('/product/list_auction_product_form');
-    if(!req.isAuthenticated()) {
-        productService.listAuctionProductFormAny(req, res);
-    } else {
-        productService.listAuctionProductForm(req, res);
-    }
+    productService.listAuctionProductForm(req, res);
 
 });
 
@@ -82,6 +74,7 @@ router.get('/detail_product_form', (req, res) => {
 
 });
 
+/*
 router.post('/filter_category_product_confirm', (req, res) => {
     console.log('/product/filter_category_product_confirm');
     productService.filterCategoryProductConfirm(req, res);
@@ -93,6 +86,7 @@ router.post('/filter_state_product_confirm', (req, res) => {
     productService.filterStateProductConfirm(req, res);
 
 });
+*/
 
 // 시세 조회 START
 router.get('/list_rate_product_form', (req, res) => {
