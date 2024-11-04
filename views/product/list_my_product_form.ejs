@@ -83,7 +83,7 @@
                                 </td>
                                 <td>
                                     <input class="end_date_input" type="datetime-local" name="end_date" onchange="changeAuction(event);">
-                                    <p class="end_date_value"><%= products[i].P_STATE === 4  ? products[i].P_TRADE_DATE?.toLocaleDateString() : "" %></p>
+                                    <p class="end_date_value"><%= products[i].P_STATE === 4  ? products[i].P_TRADE_DATE?.toLocaleDateString() + products[i].P_TRADE_DATE?.toLocaleTimeString() : "" %></p>
                                 </td>
                                 <td><%= products[i].P_MOD_DATE.toLocaleDateString() %></td>
                                 <td>
@@ -107,21 +107,6 @@
         </div>
     </article>
 
-    <div class="category_menu">
-        <ul>
-        <% for (let i = 0; i < category.length; i++) {%>
-            <li value="<%= category[i].C_NO %>" onclick="clickCategoryMenu(event)"><%= category[i].C_NAME %></li>
-        <% } %>
-        </ul>
-    </div>
-    <div class="state_menu">
-        <ul>
-            <li value="0"  onclick="clickStateMenu(event)">전체보기</li>
-        <% for (let i = 1; i < result.length; i++) {%>
-            <li value="<%= result[i].ST_NO %>" onclick="clickStateMenu(event)"><%= result[i].ST_NAME %></li>
-        <% } %>
-        </ul>
-    </div>
     <%- include('../include/footer.ejs') %>
 </body>
 </html>

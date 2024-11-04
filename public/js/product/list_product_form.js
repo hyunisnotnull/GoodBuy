@@ -225,10 +225,10 @@ function filterByState(event) {
     window.location.href = url;
 }
 
-function startChat() {
-    console.log('startChat()');
+// function startChat() {
+//     console.log('startChat()');
 
-    let form = document.test;
-    form.submit();
+//     let form = document.test;
+//     form.submit();
 
-}
+// }

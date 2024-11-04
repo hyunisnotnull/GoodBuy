@@ -78,6 +78,7 @@ $( document ).ready(function() {
 
 const showAutionDate = () => {
     console.log('showAutionDate()');
+    $('input[name="p_trade_date"]').val('');
     $('input[name="p_trade_date"]').css('display', 'block');
 
 }
@@ -89,3 +90,10 @@ const hideAutionDate = () => {
 
 
 }
+
+$(document).ready(function(){
+    console.log()
+    if ($('input[name="p_state"]:checked').val() === '4'){
+        $('input[name="p_trade_date"]').css('display', 'block');
+    }
+});

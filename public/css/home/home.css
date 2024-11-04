@@ -59,7 +59,8 @@ article div.sale_box .box .address {
 article div.auction_box .box .name,
 article div.sale_box .box .name {
     padding: 3px 5px;
-    inline-size: 135px;
+    width: 135px;
+    height: 1em;
     overflow: hidden;
     text-align: center; /* 텍스트 중앙 정렬 */
 }

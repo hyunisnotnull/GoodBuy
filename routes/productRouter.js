@@ -94,6 +94,24 @@ router.post('/filter_state_product_confirm', (req, res) => {
 
 });
 
+router.post('/add_wishlist_confirm', (req, res) => {
+    console.log('/product/add_wishlist_confirm');
+    productService.addWishlistConfirm(req, res);
+
+});
+
+router.post('/add_report_confirm', (req, res) => {
+    console.log('/product/add_report_confirm');
+    productService.addReportConfirm(req, res);
+
+});
+
+router.post('/join_auction_confirm', (req, res) => {
+    console.log('/product/join_auction_confirm');
+    productService.joinAuctionConfirm(req, res);
+
+});
+
 // 시세 조회 START
 router.get('/list_rate_product_form', (req, res) => {
     console.log('/product/list_rate_product_form');
