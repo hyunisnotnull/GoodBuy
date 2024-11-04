@@ -37,12 +37,12 @@
                             <tr>
                                 <td><%= products[i].P_NO %></td>
                                 <td><a href="/product/detail_product_form?p_no=<%= products[i].P_NO %>"><%= products[i].P_NAME %></a></td>
-                                <td><%= products[i].P_PRICE.toLocaleString() %></td>                             
+                                <td><%= products[i].P_PRICE.toLocaleString().concat('원') %></td>                             
                                 <td><img src="\<%= products[i].P_OWNER_ID %>\<%= products[i].P_IMAGE %>"></td>
                                 <td><%= category[parseInt(products[i].P_CATEGORY)].C_NAME %></td>
                                 <td><%- products[i].P_ADDRESS.replace(/.*\(/,'').replace(')','') %></td>
                                 <td><%= products[i].P_OWNER_NICK %></td>
-                                <td><%= products[i].P_MOD_DATE.toISOString().substring(0,10) %></td>
+                                <td><%= products[i].P_MOD_DATE.toLocaleDateString() %></td>
                             </tr>
                         <% }%>
                 </table>

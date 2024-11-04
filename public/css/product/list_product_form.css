@@ -59,6 +59,10 @@ article div.content tbody tr:last-child {
     border-bottom: none;
 }
 
+article div.content tbody td:nth-child(3) {
+    padding-right: 5px;
+    text-align: right;
+}
 
 
 article div.content tbody img {

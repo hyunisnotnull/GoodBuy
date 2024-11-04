@@ -94,4 +94,9 @@ router.post('/filter_state_product_confirm', (req, res) => {
 
 });
 
+router.post('/add_wishlist_confirm', (req, res) => {
+    console.log('/product/add_wishlist_confirm');
+    productService.addWishlistConfirm(req, res);
+
+});
 module.exports = router;
