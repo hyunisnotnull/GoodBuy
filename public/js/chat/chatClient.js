@@ -2,6 +2,7 @@ const socket = io(); // Socket.io 클라이언트 연결
 
 const chatWindow = document.getElementById('chatWindow');
 const messageInput = document.getElementById('messageInput');
+const imageInput = document.getElementById('imageInput');
 
 // 메시지 보낸 시간 저장 변수
 let lastMessageTime = null;
@@ -29,6 +30,39 @@ function sendMessage() {
         messageInput.focus();
     }
 }
+
+// 사진 파일 선택 시 이벤트
+imageInput.addEventListener('change', function () {
+    const file = this.files[0];
+    if (file) {
+        const formData = new FormData();
+        formData.append('chat_image', file);
+        formData.append('roomId', roomId);
+
+        // 서버로 파일 업로드
+        fetch('/chat/chat/uploadImage', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.imageUrl) {
+                // 서버로 메시지 전송 (이미지 URL)
+                socket.emit('chatMessage', { 
+                    roomId, 
+                    senderId, 
+                    senderNick, 
+                    otherId, 
+                    otherNick, 
+                    message: `<img src="${data.imageUrl}" class="chat-image">` 
+                });
+            }
+        })
+        .catch(error => {
+            console.error('사진 업로드 중 오류 발생:', error);
+        });
+    }
+});
 
 // 엔터키로 메시지 전송
 messageInput.addEventListener('keypress', (event) => {
@@ -61,8 +95,6 @@ function displayMessage(data) {
 
         const profileAndMessage = document.createElement('div');
         profileAndMessage.classList.add(data.senderId === senderId ? 'my-message-group' : 'other-message-group');
-
-        
 
         // 상대방 메시지라면 프로필 사진과 닉네임 추가
         if (data.senderId !== senderId) {
@@ -100,7 +132,13 @@ function displayMessage(data) {
     // 메시지 내용 추가
     const messageElement = document.createElement('div');
     messageElement.classList.add(data.senderId === senderId ? 'my-message' : 'other-message');
-    messageElement.innerHTML = `<span class="message-text">${data.message}</span>`;
+
+    // 이미지 메시지 처리
+    if (data.message.includes('<img')) {
+        messageElement.innerHTML = data.message; // 이미지 태그를 그대로 추가
+    } else {
+        messageElement.innerHTML = `<span class="message-text">${data.message}</span>`;
+    }
 
     const messageGroup = currentMessageGroup.querySelector(data.senderId === senderId ? '.my-message-group' : '.other-message-group');
     messageGroup.appendChild(messageElement);
@@ -127,6 +165,7 @@ function goBack() {
     location.href = '/chat/chatList';
 }
 
+// 채팅방 삭제
 function deleteChat() {
     if (confirm("채팅방을 삭제하시겠습니까?")) {
         fetch(`/chat/delete/${roomId}`, {

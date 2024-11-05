@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const chatService = require('../lib/service/chatService');
+const uploads = require('../lib/upload/uploads');
 
 // 채팅방 생성
 router.post('/chat', (req, res) => {
@@ -26,6 +27,12 @@ router.get('/chat/:roomId', (req, res) => {
 router.delete('/delete/:roomId', (req, res) => {
     console.log('/chat/delete/:roomId');
     chatService.deleteChatRoom(req, res);
+});
+
+// 사진 업로드 라우터
+router.post('/chat/uploadImage', uploads.UPLOAD_CHAT_IMAGE_MIDDLEWARE(), (req, res) => {
+    const filePath = `/upload/chat_images/${req.body.roomId}/${req.file.filename}`;
+    res.json({ imageUrl: filePath });
 });
 
 

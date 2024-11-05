@@ -38,6 +38,8 @@
                 
                 <div class="chat-input">
                     <input type="text" id="messageInput" placeholder="메시지를 입력하세요..." class="message-input">
+                    <input type="file" id="imageInput" style="display: none;" accept="image/*">
+                    <button onclick="document.getElementById('imageInput').click();" class="send-button">사진 업로드</button>
                     <button onclick="sendMessage()" class="send-button">전송</button>
                 </div>
             </div>

@@ -19,6 +19,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(compression());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static('c:\\goodbuy\\upload\\profile_thums\\'));
+app.use(express.static('c:\\goodbuy\\upload\\chat_images\\'));
 app.use(express.static('c:\\goodbuyforadmin\\upload\\event_images\\'));
 app.use(express.json());
 
