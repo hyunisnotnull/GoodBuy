@@ -37,24 +37,29 @@ imageInput.addEventListener('change', function () {
     if (file) {
         const formData = new FormData();
         formData.append('chat_image', file);
-        formData.append('roomId', roomId);
+        formData.append('senderId', senderId);
+        formData.append('senderNick', senderNick);
+        formData.append('receiverId', otherId);
+        formData.append('receiverNick', otherNick);
 
         // 서버로 파일 업로드
-        fetch('/chat/chat/uploadImage', {
+        fetch(`/chat/uploadImage/${roomId}`, {
             method: 'POST',
             body: formData
         })
         .then(response => response.json())
         .then(data => {
             if (data.imageUrl) {
-                // 서버로 메시지 전송 (이미지 URL)
+
+                const imagePath = `http://localhost:3001${data.imageUrl}`;
+                
                 socket.emit('chatMessage', { 
                     roomId, 
                     senderId, 
                     senderNick, 
                     otherId, 
                     otherNick, 
-                    message: `<img src="${data.imageUrl}" class="chat-image">` 
+                    message: `<img src="${imagePath}" class="chat-image">` 
                 });
             }
         })

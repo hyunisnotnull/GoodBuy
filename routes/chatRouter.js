@@ -29,10 +29,43 @@ router.delete('/delete/:roomId', (req, res) => {
     chatService.deleteChatRoom(req, res);
 });
 
-// 사진 업로드 라우터
-router.post('/chat/uploadImage', uploads.UPLOAD_CHAT_IMAGE_MIDDLEWARE(), (req, res) => {
-    const filePath = `/upload/chat_images/${req.body.roomId}/${req.file.filename}`;
-    res.json({ imageUrl: filePath });
+// 사진 업로드 라우트
+router.post('/uploadImage/:roomId', uploads.UPLOAD_CHAT_IMAGE_MIDDLEWARE(), (req, res) => {
+    console.log('파일 업로드 라우트 호출됨');
+    console.log('req.params:', req.params);
+    console.log('req.file:', req.file);
+    console.log('req.body:', req.body);
+
+    const roomId = req.params.roomId;
+    const senderId = req.body.senderId;
+    const senderNick = req.body.senderNick;
+    const receiverId = req.body.receiverId;
+    const receiverNick = req.body.receiverNick;
+
+    if (req.file) {
+        const imagePath = `chat_images/${roomId}/${req.file.filename}`;
+        
+        // TBL_MESSAGE에 새로운 메시지 추가
+        chatService.createImageMessage(roomId, senderId, senderNick, receiverId, receiverNick, (err, messageId) => {
+            if (err) {
+                console.error('메시지 저장 오류:', err);
+                return res.status(500).json({ error: '메시지 저장에 실패했습니다.' });
+            }
+            
+            // TBL_CHAT_IMAGE에 이미지 경로 저장
+            chatService.saveChatImage(messageId, imagePath, (err) => {
+                if (err) {
+                    console.error('이미지 경로 저장 오류:', err);
+                    return res.status(500).json({ error: '이미지 경로 저장에 실패했습니다.' });
+                }
+                
+                // 성공적으로 이미지 메시지와 경로 저장
+                res.json({ success: true, imageUrl: imagePath });
+            });
+        });
+    } else {
+        res.status(400).json({ error: '파일 업로드 실패' });
+    }
 });
 
 
