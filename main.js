@@ -67,5 +67,7 @@ app.use('/chat', chatRouter);
 const productRouter = require('./routes/productRouter');
 app.use('/product', productRouter);
 
+const uploadRouter = require('./routes/uploadRouter');
+app.use('/upload', uploadRouter);
 
 server.listen(3001);

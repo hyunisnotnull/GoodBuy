@@ -11,60 +11,6 @@ article div.article_wrap div.content {
     text-align: center;
 }
 
-article div.auction_box,
-article div.sale_box {
-    width: 80%;
-    height: 250px;
-    border: 1px solid red;
-    text-align: center;
-    display: flex;
-    margin: 0 auto;
-    justify-content: center;
-    align-items: center;
-}
-
-article div.auction_box .box,
-article div.sale_box .box {
-    width: 150px;
-    height: 230px;
-    margin: 0 20px;
-    background-color: rgba(245, 243, 243, 0.959);
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column; /* 세로 방향으로 정렬 */
-    align-items: center; /* 중앙 정렬 */
-    justify-content: space-between; /* 아이템 간격 유지 */
-}
-
-article div.auction_box .box img,
-article div.sale_box .box img {
-    width: 100%; /* 박스에 맞춤 */
-    height: 150px; /* 고정 높이 설정 */
-    object-fit: cover; /* 비율 유지하며 잘리도록 설정 */
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-}
-
-article div.auction_box .box .price,
-article div.sale_box .box .price {
-    font-size: 1.2em;
-    font-weight: bold;
-}
-
-article div.auction_box .box .address,
-article div.sale_box .box .address {
-    font-size: .8em;
-}
-
-article div.auction_box .box .name,
-article div.sale_box .box .name {
-    padding: 3px 5px;
-    width: 135px;
-    height: 1em;
-    overflow: hidden;
-    text-align: center; /* 텍스트 중앙 정렬 */
-}
-
 /* 슬라이더 스타일 */
 .banner-slider, .auction-slider, .product-slider {
     position: relative;
