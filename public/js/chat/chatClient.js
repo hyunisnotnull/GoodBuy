@@ -50,17 +50,7 @@ imageInput.addEventListener('change', function () {
         .then(response => response.json())
         .then(data => {
             if (data.imageUrl) {
-
-                const imagePath = `http://localhost:3001${data.imageUrl}`;
-                
-                socket.emit('chatMessage', { 
-                    roomId, 
-                    senderId, 
-                    senderNick, 
-                    otherId, 
-                    otherNick, 
-                    message: `<img src="${imagePath}" class="chat-image">` 
-                });
+                console.log("이미지 업로드 성공:", data.imageUrl);
             }
         })
         .catch(error => {
