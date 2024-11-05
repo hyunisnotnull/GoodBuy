@@ -21,9 +21,9 @@
 
                 <div class="total_count">
                     <% if (keyword) { %>
-                        총 <span id="product_count"><%= products.length %></span> 건에 대한 "<%= keyword %>" 검색 결과
+                        총 <span id="product_count"><%= totalCount %></span> 건에 대한 "<%= keyword %>" 검색 결과
                     <% } else { %>
-                        총 <span id="product_count"><%= products.length %></span> 건
+                        총 <span id="product_count"><%= totalCount %></span> 건
                     <% } %>
                 </div>
                 <div class="sort_menu">
@@ -41,7 +41,14 @@
                             <th>NAME</th>
                             <th>PRICE</th>
                             <th>THUM</th>
-                            <th>CATEGORY</th>
+                            <th>
+                                CATEGORY
+                                <select name="category" onchange="filterByCategoryForSale(event);">
+                                    <% category.forEach(cat => { %>
+                                        <option value="<%= cat.C_NO %>" <%= cat.C_NO == currentCategory ? 'selected' : '' %>><%= cat.C_NAME %></option>
+                                    <% }); %>
+                                </select>
+                            </th>
                             <th>ADDRESS</th>
                             <th>OWNER</th>
                             <th>MOD_DATE</th>
@@ -52,15 +59,21 @@
                             <tr>
                                 <td><%= products[i].P_NO %></td>
                                 <td><a href="/product/detail_product_form?p_no=<%= products[i].P_NO %>"><%= products[i].P_NAME %></a></td>
-                                <td><%= products[i].P_PRICE.toLocaleString() %></td>                             
+                                <td><%= products[i].P_PRICE.toLocaleString().concat('원') %></td>                             
                                 <td><img src="\<%= products[i].P_OWNER_ID %>\<%= products[i].P_IMAGE %>"></td>
                                 <td><%= category[parseInt(products[i].P_CATEGORY)].C_NAME %></td>
                                 <td><%- products[i].P_ADDRESS.replace(/.*\(/,'').replace(')','') %></td>
                                 <td><%= products[i].P_OWNER_NICK %></td>
-                                <td><%= products[i].P_MOD_DATE.toISOString().substring(0,10) %></td>
+                                <td><%= products[i].P_MOD_DATE.toLocaleDateString() %></td>
                             </tr>
                         <% }%>
                 </table>
+                <%- include('../include/pagination_list_product.ejs', {
+                    currentPage: pagination.currentPage,
+                    totalPages: pagination.totalPages,
+                    pageRange: pagination.pageRange,
+                    baseUrl: pagination.baseUrl
+                }) %>
             </div>
         </div>
     </article>

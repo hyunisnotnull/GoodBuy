@@ -24,18 +24,31 @@
                 </h4>
             </div>
             <div class="content">
-                <form action="/product/modify_product_confirm" name="modify_product_form" method="post" enctype="multipart/form-data">
+                <form action="/product/join_auction_confirm" name="join_auction_form" method="post">
+                    <input type="hidden" name="loginedUser" value="<%= loginedUser.U_NO %>">
+                    <input type="hidden" name="loginedUserID" value="<%= loginedUser.U_ID %>">
+                    <input type="hidden" name="loginedUserNICK" value="<%= loginedUser.U_NICK %>">
                     <input type="hidden" name="p_no" value="<%= product.P_NO %>">
                     <input type="hidden" name="u_id" value="<%= product.P_OWNER_ID %>">
                     <input type="hidden" name="u_nick" value="<%= product.P_OWNER_NICK %>">
                     <input type="text" name="p_name" value="<%= product.P_NAME %>" readonly><br>
                     <input type="text" name="p_price" value="<%= product.P_PRICE.toLocaleString() %>원" readonly><br>
+                    <% if (parseInt(product.P_STATE) === 4) { %>    
+                    <input type="text" name="p_trade_date" value="<%= product.P_TRADE_DATE.toLocaleString('ko-KR', {hour12:false, timeStyle:'short', dateStyle:'short'}) %>"  readonly><br>
+                    <% } %>
                     <input type="text" name="p_category" value="<%= category[parseInt(product.P_CATEGORY)].C_NAME %>"  readonly><br>
                     <img id="img" src="\<%= product.P_OWNER_ID %>\<%= product.P_IMAGE %>" onclick="showImage();">
                     <textarea name="p_desc" readonly><%= product.P_DESC %></textarea><br>
-                    <input type="button" value="SUBMIT" onclick="modifyProductConfirm();">
-                    <input type="button" value="RESET" onclick="resetBtn();">
+                    <input type="number" name="auction_price" min="<%= product.P_PRICE %>" step="100" value="<%= product.P_PRICE %>"><br>
+                    <input type="button" id="join" value="입찰" onclick="joinAuction();"><input type="button" id="cancel" value="취소" onclick="hideAuction();">
                 </form>
+                    <% if (parseInt(product.P_STATE) === 4) { %>    
+                        <input type="button" id="try" value="입찰하기" onclick="showAuction();">    
+                    <% } %>
+
+                    <input type="button" value="찜하기" onclick="addWish();">
+                    <input type="button" value="신고하기" onclick="addReport();">
+                
                 <form name="test" action="/chat/chat" method="post">
                     <input type="hidden" name="p_no" value="<%= product.P_NO %>">
                     <input type="hidden" name="u_id" value="<%= product.P_OWNER_ID %>">
@@ -44,7 +57,7 @@
                     <input type="hidden" name="my_id" value="<%= loginedUser.U_ID %>">
                     <input type="hidden" name="my_nick" value="<%= loginedUser.U_NICK %>">
                     <input type="hidden" name="my_thum" value="<%= loginedUser.U_THUM %>">
-                    <button onclick="startChat()">1대1 대화하기</button>
+                    <input type="button" value="1대1 대화하기" onclick="startChat()">
                 </form>
             </div>
         </div>

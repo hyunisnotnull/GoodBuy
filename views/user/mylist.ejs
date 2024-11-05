@@ -35,10 +35,10 @@
                         <% } else { %>
                             <% products.forEach(product => { %>
                                 <tr>
-                                    <td><img src="<%= product.P_IMAGE %>" alt="<%= product.P_NAME %>" style="width: 50px; height: auto;" /></td>
+                                    <td><img src="\<%= product.P_OWNER_ID %>\<%= product.P_IMAGE %>" alt="<%= product.P_NAME %>" style="width: 50px; height: auto;" /></td>
                                     <td><%= product.P_NAME %></td>
-                                    <td><%= product.P_PRICE %> 원</td>
-                                    <td><%= product.W_REG_DATE %></td>
+                                    <td><%= product.P_PRICE.toLocaleString() %> 원</td>
+                                    <td><%= product.W_REG_DATE.toLocaleDateString() %></td>
                                 </tr>
                             <% }) %>
                         <% } %>

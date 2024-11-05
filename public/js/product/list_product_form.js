@@ -225,10 +225,16 @@ function filterByState(event) {
     window.location.href = url;
 }
 
-function startChat() {
-    console.log('startChat()');
-
-    let form = document.test;
-    form.submit();
-
+function filterByCategoryForSale(event) {
+    const selectedCategory = event.target.value;
+    const url = `/product/list_sale_product_form?category=${selectedCategory || ''}&page=1`;
+    window.location.href = url;
 }
+
+// function startChat() {
+//     console.log('startChat()');
+
+//     let form = document.test;
+//     form.submit();
+
+// }
