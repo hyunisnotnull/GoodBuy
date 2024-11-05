@@ -8,6 +8,7 @@ router.get('/', (req, res) => {
 
 });
 
+/*
 router.get('/get_sale_product',(req, res) => {
     console.log('/home/get_sale_product');
     homeService.getSaleProduct(req, res);
@@ -19,5 +20,6 @@ router.get('/get_auction_product',(req, res) => {
     homeService.getAuctionProduct(req, res);
 
 });
+*/
 
 module.exports = router;
