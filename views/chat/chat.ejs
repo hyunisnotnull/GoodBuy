@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%- include('../include/title.ejs') %>
+    
     <link href="/css/chat/chat.css" rel="stylesheet" type="text/css">
     <script src="/socket.io/socket.io.js"></script>
     
@@ -28,7 +29,6 @@
                     <% } %>
                     <div class="user-info">
                         <h3 class="username"><%= otherNick %></h3>
-                        <span class="member-count">2</span>
                     </div>
                 </div>
 

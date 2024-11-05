@@ -8,8 +8,13 @@ let lastMessageTime = null;
 let lastSenderId = null;
 let currentMessageGroup = null;
 
+// lastExitTime의 유효성 검사
+const validExitTime = lastExitTime && !isNaN(new Date(lastExitTime).getTime()) 
+    ? new Date(new Date(lastExitTime).getTime() + 9 * 60 * 60 * 1000).toISOString().slice(0, 19)
+    : null;
+
 // 서버에 채팅방 입장을 알림
-socket.emit('joinRoom', { roomId, senderId, senderNick, otherId, otherNick, otherthum, lastExitTime });
+socket.emit('joinRoom', { roomId, senderId, senderNick, otherId, otherNick, otherthum, validExitTime });
 
 // 메시지 전송 함수
 function sendMessage() {
