@@ -7,12 +7,6 @@
     <link href="/css/user/modify_form.css" rel="stylesheet" type="text/css">
     <script src="/js/user/modify_form.js"></script>
 
-    <script>
-
-        let loginedUId = '<%= user.U_ID %>';
-
-    </script>
-
 </head>
 <body>
 
@@ -50,7 +44,8 @@
                     <br><br>
 
                     <input type="text" value="<%= user.U_ID %>" readonly disabled><br>
-                    <input type="password" name="u_pw" placeholder="비밀번호 변경시에만 입력하세요."><br>
+                    <input type="password" name="u_pw" placeholder="비밀번호 변경시에만 입력하세요." class="hidden" id="password_input"><br>
+                    <input type="button" value="비밀번호 변경" onclick="togglePasswordInput();">
                     <input type="text" name="u_nick" placeholder="닉네임을 입력하세요." value="<%= user.U_NICK %>"><br>
                     <input type="text" name="u_phone" placeholder="연락처를 입력하세요." value="<%= user.U_PHONE %>"><br>
                     <select name="u_sex" required>
