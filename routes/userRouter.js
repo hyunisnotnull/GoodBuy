@@ -52,5 +52,11 @@ router.get('/mylist', (req, res) => {
 
 });
 
+router.post('/cancel_wishlist', (req, res) => {
+    console.log('/user/cancel_wishlist');
+    userService.cancelWishlist(req, res);
+
+});
+
 
 module.exports = router;

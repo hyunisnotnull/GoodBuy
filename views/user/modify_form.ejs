@@ -76,8 +76,9 @@
                     <input type="text" id="user_address" placeholder="상세주소" value="<%= user.U_POST_ADDRESS.split(' ').slice(1).join(' ') %>" required><br>
                     <input type="text" name="u_detail_address" id="user_detailAddress" placeholder="상세주소" value="<%= user.U_DETAIL_ADDRESS %>" required><br>
 
-                    <input type="button" value="계정 수정" onclick="modifyForm();">
+                    <input type="button" value="계정 수정" onclick="modifyComfirm();">
                     <input type="button" value="초기화" onclick="resetForm();">
+                    <input type="button" value="회원 탈퇴" onclick="deleteConfirm();">
                 </form>
             </div>
 

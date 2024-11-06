@@ -6,6 +6,7 @@ const session = require('express-session');
 const Memorystore = require('memorystore')(session);
 const path = require('path');
 const pp = require('./lib/passport/passport');
+const cors = require('cors');
 
 // Socket.IO 설정
 const http = require('http');
@@ -15,6 +16,7 @@ const initSocket = require('./lib/socket/socket');
 // Socket.io 초기화
 initSocket(server);
 
+app.use(cors());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(compression());
 app.use(express.static(path.join(__dirname, 'public')));
