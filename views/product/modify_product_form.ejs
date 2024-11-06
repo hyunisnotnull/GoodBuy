@@ -56,7 +56,13 @@
             </div>
         </div>
     </article>
-
+    <div class="img_modal_wrap">
+        <div class="img_modal_content">
+            <div class="img_btn">
+            </div>
+            <img class="img_modal" src="/<%= product.P_OWNER_ID %>/<%= product.P_IMAGE %>" onclick="hideImage();">
+        </div>
+    </div>
     <%- include('../include/footer.ejs') %>
 </body>
 </html>

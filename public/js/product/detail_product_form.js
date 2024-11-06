@@ -1,20 +1,79 @@
 $(document).ready(function () {
     console.log('ready!');
+    if ($('input[name="p_trade_date"]').val()) {
+        console.log('timer')
     setInterval(()=>{
-        let trade_date = $('input[name="p_trade_date"]').val().replaceAll('. ','-').replace('-','');
-        let auction_time = new Date(trade_date);
-        let d_day = auction_time - new Date().getTime();
 
-        console.log(d_day);
-        
-        
-        
-        }, 5000);
-})
+        let trade_date = $('input[name="p_trade_date"]').val().replace(/\s*\(.*\)/,'').replace('. ','-').replace('. ','-').replace('.','');
+        let auction_time = new Date(trade_date).getTime();
+        let d_day = auction_time - new Date().getTime(); 
+        let date = Math.floor(d_day / (1000 * 60 * 60 *24));
+        let hour = Math.ceil((d_day % (1000 * 60 * 60 *24) )/ (1000 * 60 * 60));
+        let minute = Math.ceil(((d_day % (1000 * 60 * 60 *24) )% (1000 * 60 * 60)) / (1000 * 60));
 
+        let tradeStr = $('input[name="p_trade_date"').val().replace(/\s*\(.*\)/,'');
+        let timeStr = ` (${ date ? date+"일 "+hour+"시간 "+minute+"분 전" : hour ? hour+"시간 "+minute+"분 전" : minute ? minute + "분 전" : ""})`;
+        
+        tradeStr += timeStr;
+        $('input[name="p_trade_date"').val(tradeStr); 
+        
+        }, 1000);
+    }
+});
+
+const changeImage = (e,img) =>{
+    console.log('changeImage()', img)
+    $('.img_btn span').text('○');
+    $(e.target).text('●');
+    $('img.img_modal').attr('src', img);
+};
 
 const showImage = () => {
+    let p_owner_id = $('input[name="u_id"]').val();
+    let p_no = $('input[name="p_no"]').val();
+    let append = "";
+
     $('.img_modal_wrap').css('display', 'block');
+
+
+
+    let msgDto = {
+        pi_p_no: p_no
+    }
+
+    $.ajax({
+        url: '/product/get_product_images',
+        method: 'POST',
+        data:  msgDto,
+        dataType: 'json',
+        success: function(data) {
+            console.log('getProductImage() COMMUNICATION SUCCESS!!');
+            console.log(data)
+            for(let i= 0; i < data.length; i++){
+
+                append += `<span onclick="changeImage(event,'/${p_owner_id}/${data[i].PI_FILE}')">`;
+                if( $('.img_modal').attr('src') === '\\'+ p_owner_id + '\\' + data[i].PI_FILE) {
+                    append += "●</span>";
+                } else {
+                    append += "○</span>";
+                }
+
+            }
+            $('div.img_btn').empty();
+            $('div.img_btn').append(append);
+        },
+        error: function(error) {
+            console.log('getProductImage() COMMUNICATION ERROR!!');
+
+        },
+        complete: function() {
+            console.log('getProductImage() COMMUNICATION COMPLETE!!');
+    
+
+        }
+
+    });
+
 }
 
 const hideImage = () => {
