@@ -148,3 +148,9 @@ article div.content input[name="profile_thum"] {
     text-align: center;
 }
 /* PROFILE_MODAL_WRAP END */
+
+
+/* 비밀번호 찾기 */
+.hidden {
+    display: none;
+}

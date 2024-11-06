@@ -46,6 +46,17 @@ const modifyComfirm = () => {
         return;
     }
 
+    // 비밀번호 입력칸 채워지면 검사 시작
+    if (form.u_pw.value !== '') {
+        // 비밀번호 형식 검사 (특수문자 포함 6자리 이상)
+        const pwRegex = /^(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{6,}$/;
+        if (!pwRegex.test(form.u_pw.value)) {
+            alert('비밀번호는 특수문자를 포함하여 6자리 이상이어야 합니다.');
+            form.u_pw.focus();
+            return;
+        }
+    }
+
     // 폼 제출
     form.submit();
 };
@@ -108,4 +119,15 @@ function initEvents() {
 
     });
 
+}
+
+function togglePasswordInput() {
+    let passwordInput = document.getElementById('password_input');
+    
+    // 'hidden' 클래스를 추가하거나 제거하여 입력칸 보이기/숨기기
+    if (passwordInput.classList.contains('hidden')) {
+        passwordInput.classList.remove('hidden');
+    } else {
+        passwordInput.classList.add('hidden');
+    }
 }
