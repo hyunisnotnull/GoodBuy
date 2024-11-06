@@ -107,9 +107,10 @@ CREATE TABLE TBL_CHAT(
     CH_TITLE               VARCHAR(50),            -- 마지막 M_CONTENT
 	CH_UNREAD_COUNT 		INT DEFAULT 0,
 	CH_ACTIVE               TINYINT DEFAULT 1,                  -- 0(DELETE), 1(BOTH), 2(SENDERID만), 3(RECEIVERID만)
-    CH_LAST_EXIT_TIME 	DATETIME DEFAULT NULL,
+    CH_SENDER_LAST_EXIT_TIME 	DATETIME DEFAULT NULL,
+    CH_RECEIVER_LAST_EXIT_TIME 	DATETIME DEFAULT NULL,
 	CH_TIME                   DATETIME DEFAULT NOW(),
-   PRIMARY KEY(CH_NO)
+	PRIMARY KEY(CH_NO)
 );
 SELECT * FROM TBL_CHAT;
 
@@ -131,9 +132,10 @@ SELECT * FROM TBL_MESSAGE;
 DROP TABLE IF EXISTS TBL_CHAT_IMAGE;
 CREATE TABLE TBL_CHAT_IMAGE(
    CI_NO                  INT AUTO_INCREMENT,
-   CI_CH_NO               INT   NOT NULL,
-   CI_FILE                  VARCHAR(100) NOT NULL,
-   PRIMARY KEY(CI_NO)
+   CI_MESSAGE_M_NO        INT NOT NULL,        	  -- 메시지 번호 (TBL_MESSAGE의 M_NO)
+   CI_FILE                VARCHAR(100) NOT NULL,  -- 이미지 파일 경로
+   PRIMARY KEY(CI_NO),
+   FOREIGN KEY (CI_MESSAGE_M_NO) REFERENCES TBL_MESSAGE(M_NO) ON DELETE CASCADE
 );
 SELECT * FROM TBL_CHAT_IMAGE;
 
@@ -215,13 +217,13 @@ SELECT * FROM TBL_EVENT;
 
 DROP TABLE IF EXISTS TBL_REPORT;
 CREATE TABLE TBL_REPORT(
-	R_NO INT AUTO_INCREMENT,
-	R_P_NO INT NOT NULL,
-	R_U_NO INT NOT NULL,
-    R_CHECK TINYINT DEFAULT 0,
+   R_NO INT AUTO_INCREMENT,
+   R_P_NO INT NOT NULL,
+   R_U_NO INT NOT NULL,
+    R_CHECK TINYINT,
     R_REG_DATE DATETIME DEFAULT NOW(),
     R_MOD_DATE DATETIME DEFAULT NOW(),
-	PRIMARY KEY(R_NO)
+   PRIMARY KEY(R_NO)
 );
 SELECT * FROM TBL_REPORT;
 
@@ -468,13 +470,13 @@ VALUES
 
 
 SELECT * FROM TBL_USER;
-INSERT INTO TBL_USER (U_ID, U_PW, U_NICK, U_PHONE, U_SEX, U_AGE, U_POST_ADDRESS)
+INSERT INTO TBL_USER (U_ID, U_PW, U_NICK, U_PHONE, U_SEX, U_AGE, U_POST_ADDRESS, U_PROFILE_THUM)
 VALUES
-('gildong@gmail.com','$2b$10$ENW7A8w25vDYCtgN42GL7uGReBwUoPnJzg8FvngAG5kMGnItTCZjO','gildong', '010-0000-0000', 'M', '20', '[11683] 경기 의정부시 가능로97번길 35 고려연립 (가능동)'),
-('chanho@naver.com','$2b$10$ENW7A8w25vDYCtgN42GL7uGReBwUoPnJzg8FvngAG5kMGnItTCZjO','chanho', '010-1111-1111', 'M', '30', '[11797] 경기 의정부시 송산로 1089 교정아파트 (고산동)'),
-('seri@nate.com','$2b$10$ENW7A8w25vDYCtgN42GL7uGReBwUoPnJzg8FvngAG5kMGnItTCZjO','seri', '010-2222-2222', 'F', '40', '[11752] 경기 의정부시 부용로95번길 25 현대아이파크아파트 (금오동)'),
-('sunny@daum.net','$2b$10$ENW7A8w25vDYCtgN42GL7uGReBwUoPnJzg8FvngAG5kMGnItTCZjO','sunny', '010-3333-3333', 'F', '20', '[11769] 경기 의정부시 용민로 263 의정부민락금강펜테리움아파트 (낙양동)'),
-('yuri@gmail.com','$2b$10$ENW7A8w25vDYCtgN42GL7uGReBwUoPnJzg8FvngAG5kMGnItTCZjO','yuri', '010-4444-4444', 'F', '20', '[11607] 경기 의정부시 체육로 206 녹양대림아파트 (녹양동)');
+('gildong@gmail.com','$2b$10$ENW7A8w25vDYCtgN42GL7uGReBwUoPnJzg8FvngAG5kMGnItTCZjO','gildong', '010-0000-0000', 'M', '20', '[11683] 경기 의정부시 가능로97번길 35 고려연립 (가능동)', '1664779091864zd3_QZUB3.jpg'),
+('chanho@naver.com','$2b$10$ENW7A8w25vDYCtgN42GL7uGReBwUoPnJzg8FvngAG5kMGnItTCZjO','chanho', '010-1111-1111', 'M', '30', '[11797] 경기 의정부시 송산로 1089 교정아파트 (고산동)', '1730384944116Dt7_Tg480.jpg'),
+('seri@nate.com','$2b$10$ENW7A8w25vDYCtgN42GL7uGReBwUoPnJzg8FvngAG5kMGnItTCZjO','seri', '010-2222-2222', 'F', '40', '[11752] 경기 의정부시 부용로95번길 25 현대아이파크아파트 (금오동)', '1717173907835_000_xRfYy_main.jpg'),
+('sunny@daum.net','$2b$10$ENW7A8w25vDYCtgN42GL7uGReBwUoPnJzg8FvngAG5kMGnItTCZjO','sunny', '010-3333-3333', 'F', '20', '[11769] 경기 의정부시 용민로 263 의정부민락금강펜테리움아파트 (낙양동)', '1730385469936_000_EoJlW_main.JPG'),
+('yuri@gmail.com','$2b$10$ENW7A8w25vDYCtgN42GL7uGReBwUoPnJzg8FvngAG5kMGnItTCZjO','yuri', '010-4444-4444', 'F', '20', '[11607] 경기 의정부시 체육로 206 녹양대림아파트 (녹양동)', '1730385455331sAJ_kroqU.jpg');
 
 
 SELECT * FROM TBL_PRODUCT;

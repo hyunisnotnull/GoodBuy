@@ -11,7 +11,7 @@ const cors = require('cors');
 // Socket.IO 설정
 const http = require('http');
 const server = http.createServer(app);
-const initSocket = require('./lib/socket/socket');
+const { initSocket } = require('./lib/socket/socket');
 
 // Socket.io 초기화
 initSocket(server);
@@ -21,6 +21,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(compression());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static('c:\\goodbuy\\upload\\profile_thums\\'));
+app.use('/uploads/chat_images', express.static('c:\\goodbuy\\upload\\chat_images\\'));
 app.use(express.static('c:\\goodbuyforadmin\\upload\\event_images\\'));
 app.use(express.json());
 

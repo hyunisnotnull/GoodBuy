@@ -2,6 +2,7 @@ const socket = io(); // Socket.io 클라이언트 연결
 
 const chatWindow = document.getElementById('chatWindow');
 const messageInput = document.getElementById('messageInput');
+const imageInput = document.getElementById('imageInput');
 
 // 메시지 보낸 시간 저장 변수
 let lastMessageTime = null;
@@ -29,6 +30,34 @@ function sendMessage() {
         messageInput.focus();
     }
 }
+
+// 사진 파일 선택 시 이벤트
+imageInput.addEventListener('change', function () {
+    const file = this.files[0];
+    if (file) {
+        const formData = new FormData();
+        formData.append('chat_image', file);
+        formData.append('senderId', senderId);
+        formData.append('senderNick', senderNick);
+        formData.append('receiverId', otherId);
+        formData.append('receiverNick', otherNick);
+
+        // 서버로 파일 업로드
+        fetch(`/chat/uploadImage/${roomId}`, {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.imageUrl) {
+                console.log("이미지 업로드 성공:", data.imageUrl);
+            }
+        })
+        .catch(error => {
+            console.error('사진 업로드 중 오류 발생:', error);
+        });
+    }
+});
 
 // 엔터키로 메시지 전송
 messageInput.addEventListener('keypress', (event) => {
@@ -61,8 +90,6 @@ function displayMessage(data) {
 
         const profileAndMessage = document.createElement('div');
         profileAndMessage.classList.add(data.senderId === senderId ? 'my-message-group' : 'other-message-group');
-
-        
 
         // 상대방 메시지라면 프로필 사진과 닉네임 추가
         if (data.senderId !== senderId) {
@@ -100,26 +127,54 @@ function displayMessage(data) {
     // 메시지 내용 추가
     const messageElement = document.createElement('div');
     messageElement.classList.add(data.senderId === senderId ? 'my-message' : 'other-message');
-    messageElement.innerHTML = `<span class="message-text">${data.message}</span>`;
+
+    // 메시지의 시간과 텍스트 순서 조정
+    if (data.senderId === senderId) {
+        messageElement.innerHTML = `
+            <div class="message-time">${formattedTime}</div>
+            <div class="message-text">${data.message}</div>
+        `;
+    } else {
+        messageElement.innerHTML = `
+            <div class="message-text">${data.message}</div>
+            <div class="message-time">${formattedTime}</div>
+        `;
+    }
+
+    // 이미지 메시지 처리
+    if (data.message.includes('<img')) {
+        messageElement.innerHTML = data.senderId === senderId
+            ? `<div class="message-time">${formattedTime}</div>${data.message}`
+            : `${data.message}<div class="message-time">${formattedTime}</div>`;
+
+        const imgElement = messageElement.querySelector("img.chat-image");
+        imgElement.addEventListener("load", () => {
+            chatWindow.scrollTop = chatWindow.scrollHeight;
+        });
+
+    }
+    
 
     const messageGroup = currentMessageGroup.querySelector(data.senderId === senderId ? '.my-message-group' : '.other-message-group');
     messageGroup.appendChild(messageElement);
 
     // 마지막 message에 대해 inline-block 스타일 적용
-    const allMessages = messageGroup.querySelectorAll('.other-message, .my-message');
-    allMessages.forEach((msg) => msg.style.display = 'block');
-    if (allMessages.length > 0) {
-        allMessages[allMessages.length - 1].style.display = 'inline-block';
-    }
+    // const allMessages = messageGroup.querySelectorAll('.other-message, .my-message');
+    // allMessages.forEach((msg) => msg.style.display = 'block');
+    // if (allMessages.length > 0) {
+    //     allMessages[allMessages.length - 1].style.display = 'inline-block';
+    // }
 
     // 마지막 메시지에 시간 표시
-    const timeElement = document.createElement('div');
-    timeElement.classList.add('message-time');
-    timeElement.textContent = formattedTime;
-    messageGroup.appendChild(timeElement);
+    // const timeElement = document.createElement('div');
+    // timeElement.classList.add('message-time');
+    // timeElement.textContent = formattedTime;
+    // messageGroup.appendChild(timeElement);
 
-    // 스크롤을 아래로 고정
-    chatWindow.scrollTop = chatWindow.scrollHeight;
+    // 텍스트 메시지의 경우 바로 스크롤 조정
+    if (!data.message.includes('<img')) {
+        chatWindow.scrollTop = chatWindow.scrollHeight;
+    }
 }
 
 // 채팅방 나가기
@@ -127,6 +182,7 @@ function goBack() {
     location.href = '/chat/chatList';
 }
 
+// 채팅방 삭제
 function deleteChat() {
     if (confirm("채팅방을 삭제하시겠습니까?")) {
         fetch(`/chat/delete/${roomId}`, {
@@ -148,4 +204,30 @@ function deleteChat() {
             alert("오류가 발생했습니다. 다시 시도해주세요.");
         });
     }
+}
+
+$(document).ready(function() {
+    console.log('DOCUMENT READY!!');
+
+    initEvents();
+
+});
+
+function initEvents() {
+    console.log('initEvents()');
+
+    $(document).on('click', 'div.profile_thum_wrap a', function(){
+        console.log('profile_thum_wrap CLICKED!!');
+
+        $('#profile_modal_wrap').css('display', 'block');
+
+    });
+
+    $(document).on('click', '#profile_modal_wrap div.profile_thum_close a', function(){
+        console.log('profile_thum_close CLICKED!!');
+
+        $('#profile_modal_wrap').css('display', 'none');
+
+    });
+
 }
