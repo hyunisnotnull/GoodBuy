@@ -1,14 +1,124 @@
-table {
+/* 기본 설정 */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f5f5f5; /* 부드러운 배경색 */
+    color: #333;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none; /* 링크 밑줄 제거 */
+    color: inherit;
+}
+
+/* 메인 콘텐츠 스타일 */
+article div.article_wrap {
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 30px;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); /* 그라데이션 효과 추가 */
+}
+
+/* 제목 스타일 */
+article div.title {
+    text-align: center;
+    font-size: 1.5rem; /* 제목 크기 */
+    color: #4e4e4e;
+    margin-bottom: 30px;
+    font-weight: 700;
+}
+
+/* 테이블 스타일 */
+article div.content table {
     width: 100%;
     border-collapse: collapse;
+    margin-top: 20px;
 }
 
-th, td {
-    border: 1px solid #ccc;
-    padding: 10px;
-    text-align: left;
+/* 테이블 헤더 */
+article div.content thead th {
+    background-color: #6c63ff; /* 테이블 헤더 색 */
+    color: white;
+    font-size: 0.9rem;
+    padding: 15px;
+    text-align: center;
 }
 
-th {
-    background-color: #f2f2f2;
+/* 테이블 내용 */
+article div.content tbody tr {
+    transition: background-color 0.3s ease;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+article div.content tbody tr:hover {
+    background-color: rgba(0, 0, 0, 0.05); /* 마우스 오버 시 색상 변화 */
+}
+
+article div.content tbody td {
+    padding: 15px 10px;
+    text-align: center;
+    font-size: 1rem;
+}
+
+/* 상품 이미지 */
+article div.content tbody td img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin: 0 auto;
+    display: block;
+}
+
+/* 상품 링크 */
+article div.content tbody td a {
+    color: #333;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+article div.content tbody td a:hover {
+    color: #6c63ff;
+}
+
+/* 가격 */
+article div.content tbody td:nth-child(3) {
+    color: #6c63ff;
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+/* 등록일 */
+article div.content tbody td:nth-child(4) {
+    color: #888;
+    font-size: 0.9rem;
+}
+
+/* "찜한 상품이 없습니다." 텍스트 */
+article div.content tbody td[colspan="4"] {
+    text-align: center;
+    color: #888;
+    padding: 20px;
+    font-size: 1.2rem;
+}
+
+/* 버튼 스타일 */
+a.add-to-cart-btn {
+    display: inline-block;
+    margin-top: 20px;
+    background-color: #6c63ff;
+    padding: 12px 20px;
+    color: white;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    transition: background-color 0.3s ease;
+    text-align: center;
+}
+
+a.add-to-cart-btn:hover {
+    background-color: #193be6;
 }

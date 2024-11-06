@@ -6,6 +6,7 @@ const session = require('express-session');
 const Memorystore = require('memorystore')(session);
 const path = require('path');
 const pp = require('./lib/passport/passport');
+const cors = require('cors');
 
 // Socket.IO 설정
 const http = require('http');
@@ -15,6 +16,7 @@ const { initSocket } = require('./lib/socket/socket');
 // Socket.io 초기화
 initSocket(server);
 
+app.use(cors());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(compression());
 app.use(express.static(path.join(__dirname, 'public')));
@@ -65,9 +67,14 @@ const chatRouter = require('./routes/chatRouter');
 app.use('/chat', chatRouter);
 
 const productRouter = require('./routes/productRouter');
+const { MulterError } = require('multer');
 app.use('/product', productRouter);
 
 const uploadRouter = require('./routes/uploadRouter');
 app.use('/upload', uploadRouter);
 
+app.use((err, req, res, next) => {
+    if (req.files.length === 3);
+    res.status(500).json({ message: '이미지는 최대 3장까지만 가능합니다.' })
+})
 server.listen(3001);
