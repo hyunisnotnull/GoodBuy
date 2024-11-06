@@ -106,8 +106,15 @@ const addWish = () => {
             console.log(data)
             alert(data.message);
         },
-        error: function(error) {
+        error: function(xhr, status, error) {
             console.log('addWishlistConfirm() COMMUNICATION ERROR!!');
+
+            if (xhr.status === 401) {
+                alert(xhr.responseJSON.message);
+                window.location.href = xhr.responseJSON.redirectTo;  // 로그인 페이지로 리디렉션
+            } else {
+                alert('알 수 없는 오류가 발생했습니다. 다시 시도해 주세요.');
+            }
 
         },
         complete: function() {
@@ -140,8 +147,15 @@ const addReport = () => {
             console.log(data)
             alert(data.message);
         },
-        error: function(error) {
+        error: function(xhr, status, error) {
             console.log('addReportConfirm() COMMUNICATION ERROR!!');
+
+            if (xhr.status === 401) {
+                alert(xhr.responseJSON.message);
+                window.location.href = xhr.responseJSON.redirectTo;  // 로그인 페이지로 리디렉션
+            } else {
+                alert('알 수 없는 오류가 발생했습니다. 다시 시도해 주세요.');
+            }
 
         },
         complete: function() {
@@ -197,8 +211,15 @@ const joinAuction = () => {
             alert(data.message);
             location.replace(`/product/detail_product_form?p_no=${p_no}`)
         },
-        error: function(error) {
+        error: function(xhr, status, error) {
             console.log('addReportConfirm() COMMUNICATION ERROR!!');
+
+            if (xhr.status === 401) {
+                alert(xhr.responseJSON.message);
+                window.location.href = xhr.responseJSON.redirectTo;  // 로그인 페이지로 리디렉션
+            } else {
+                alert('알 수 없는 오류가 발생했습니다. 다시 시도해 주세요.');
+            }
 
         },
         complete: function() {

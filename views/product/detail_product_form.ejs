@@ -25,9 +25,9 @@
             </div>
             <div class="content">
                 <form action="/product/join_auction_confirm" name="join_auction_form" method="post">
-                    <input type="hidden" name="loginedUser" value="<%= loginedUser.U_NO %>">
-                    <input type="hidden" name="loginedUserID" value="<%= loginedUser.U_ID %>">
-                    <input type="hidden" name="loginedUserNICK" value="<%= loginedUser.U_NICK %>">
+                    <input type="hidden" name="loginedUser" value="<%= loginedUser ? loginedUser.U_NO : '' %>">
+                    <input type="hidden" name="loginedUserID" value="<%= loginedUser ? loginedUser.U_ID : '' %>">
+                    <input type="hidden" name="loginedUserNICK" value="<%= loginedUser ? loginedUser.U_NICK : '' %>">
                     <input type="hidden" name="p_no" value="<%= product.P_NO %>">
                     <input type="hidden" name="u_id" value="<%= product.P_OWNER_ID %>">
                     <input type="hidden" name="u_nick" value="<%= product.P_OWNER_NICK %>">
@@ -54,9 +54,9 @@
                     <input type="hidden" name="u_id" value="<%= product.P_OWNER_ID %>">
                     <input type="hidden" name="u_nick" value="<%= product.P_OWNER_NICK %>">
                     <input type="hidden" name="u_thum" value="<%= product.U_PROFILE_THUM %>">
-                    <input type="hidden" name="my_id" value="<%= loginedUser.U_ID %>">
-                    <input type="hidden" name="my_nick" value="<%= loginedUser.U_NICK %>">
-                    <input type="hidden" name="my_thum" value="<%= loginedUser.U_THUM %>">
+                    <input type="hidden" name="my_id" value="<%= loginedUser ? loginedUser.U_ID : '' %>">
+                    <input type="hidden" name="my_nick" value="<%= loginedUser ? loginedUser.U_NICK : '' %>">
+                    <input type="hidden" name="my_thum" value="<%= loginedUser ? loginedUser.U_THUM : ''%>">
                     <input type="button" value="1대1 대화하기" onclick="startChat()">
                 </form>
             </div>
