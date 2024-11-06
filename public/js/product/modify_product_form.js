@@ -64,11 +64,67 @@ const showImage = (e) => {
 
 }
 
+
+const changeModalImage = (e, no, img) =>{
+    console.log('changeImage()')
+    $('.img_btn span').text('○');
+    $(e.target).text('●');
+    $('.img_modal').attr('src', img);
+    $('input[name="p_image_no"]').val(no);
+    $('#img').attr('src', img);
+};
+
+
+
 const changeImage = () => {
     console.log('changeImage()');
-    $('input[type="file"]').trigger('click');
+
+    let p_owner_id = $('input[name="u_id"]').val();
+    let p_no = $('input[name="p_no"]').val();
+    let append = "";
+    $('.img_modal_wrap').css('display', 'block');
+
+    let msgDto = {
+        pi_p_no: p_no
+    }
+
+    $.ajax({
+        url: '/product/get_product_images',
+        method: 'POST',
+        data:  msgDto,
+        dataType: 'json',
+        success: function(data) {
+            console.log('getProductImage() COMMUNICATION SUCCESS!!');
+            console.log(data)
+            for(let i= 0; i < data.length; i++){
+
+                append += `<span value="${data[i].PI_NO}" onclick="changeModalImage(event,${data[i].PI_NO},'/${p_owner_id}/${data[i].PI_FILE}')">`;
+                if( $('.img_modal').attr('src') === '/'+ p_owner_id + '/' + data[i].PI_FILE) {
+                    append += "●</span>";
+                } else {
+                    append += "○</span>";
+                }
+            }
+            $('div.img_btn').empty();
+            $('div.img_btn').append(append);
+        },
+        error: function(error) {
+            console.log('getProductImage() COMMUNICATION ERROR!!');
+
+        },
+        complete: function() {
+            console.log('getProductImage() COMMUNICATION COMPLETE!!');
+    
+
+        }
+
+    });
+    // $('input[type="file"]').trigger('click');
 }
 
+const hideImage = () => {
+    $('.img_modal_wrap').css('display', 'none');
+}
 
 $( document ).ready(function() {
     console.log( "ready!" );
