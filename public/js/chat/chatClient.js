@@ -128,31 +128,53 @@ function displayMessage(data) {
     const messageElement = document.createElement('div');
     messageElement.classList.add(data.senderId === senderId ? 'my-message' : 'other-message');
 
+    // 메시지의 시간과 텍스트 순서 조정
+    if (data.senderId === senderId) {
+        messageElement.innerHTML = `
+            <div class="message-time">${formattedTime}</div>
+            <div class="message-text">${data.message}</div>
+        `;
+    } else {
+        messageElement.innerHTML = `
+            <div class="message-text">${data.message}</div>
+            <div class="message-time">${formattedTime}</div>
+        `;
+    }
+
     // 이미지 메시지 처리
     if (data.message.includes('<img')) {
-        messageElement.innerHTML = data.message; // 이미지 태그를 그대로 추가
-    } else {
-        messageElement.innerHTML = `<span class="message-text">${data.message}</span>`;
+        messageElement.innerHTML = data.senderId === senderId
+            ? `<div class="message-time">${formattedTime}</div>${data.message}`
+            : `${data.message}<div class="message-time">${formattedTime}</div>`;
+
+        const imgElement = messageElement.querySelector("img.chat-image");
+        imgElement.addEventListener("load", () => {
+            chatWindow.scrollTop = chatWindow.scrollHeight;
+        });
+
     }
+    
 
     const messageGroup = currentMessageGroup.querySelector(data.senderId === senderId ? '.my-message-group' : '.other-message-group');
     messageGroup.appendChild(messageElement);
 
     // 마지막 message에 대해 inline-block 스타일 적용
-    const allMessages = messageGroup.querySelectorAll('.other-message, .my-message');
-    allMessages.forEach((msg) => msg.style.display = 'block');
-    if (allMessages.length > 0) {
-        allMessages[allMessages.length - 1].style.display = 'inline-block';
-    }
+    // const allMessages = messageGroup.querySelectorAll('.other-message, .my-message');
+    // allMessages.forEach((msg) => msg.style.display = 'block');
+    // if (allMessages.length > 0) {
+    //     allMessages[allMessages.length - 1].style.display = 'inline-block';
+    // }
 
     // 마지막 메시지에 시간 표시
-    const timeElement = document.createElement('div');
-    timeElement.classList.add('message-time');
-    timeElement.textContent = formattedTime;
-    messageGroup.appendChild(timeElement);
+    // const timeElement = document.createElement('div');
+    // timeElement.classList.add('message-time');
+    // timeElement.textContent = formattedTime;
+    // messageGroup.appendChild(timeElement);
 
-    // 스크롤을 아래로 고정
-    chatWindow.scrollTop = chatWindow.scrollHeight;
+    // 텍스트 메시지의 경우 바로 스크롤 조정
+    if (!data.message.includes('<img')) {
+        chatWindow.scrollTop = chatWindow.scrollHeight;
+    }
 }
 
 // 채팅방 나가기
@@ -182,4 +204,30 @@ function deleteChat() {
             alert("오류가 발생했습니다. 다시 시도해주세요.");
         });
     }
+}
+
+$(document).ready(function() {
+    console.log('DOCUMENT READY!!');
+
+    initEvents();
+
+});
+
+function initEvents() {
+    console.log('initEvents()');
+
+    $(document).on('click', 'div.profile_thum_wrap a', function(){
+        console.log('profile_thum_wrap CLICKED!!');
+
+        $('#profile_modal_wrap').css('display', 'block');
+
+    });
+
+    $(document).on('click', '#profile_modal_wrap div.profile_thum_close a', function(){
+        console.log('profile_thum_close CLICKED!!');
+
+        $('#profile_modal_wrap').css('display', 'none');
+
+    });
+
 }
