@@ -91,32 +91,42 @@ router.post('/filter_state_product_confirm', (req, res) => {
 
 router.post('/add_wishlist_confirm', (req, res) => {
     console.log('/product/add_wishlist_confirm');
-    if(!req.isAuthenticated()) {
-        res.redirect('/user/sign_in_form');
-    } else {
-    productService.addWishlistConfirm(req, res);
+
+    if (!req.isAuthenticated()) {
+        return res.status(401).json({
+            message: '로그인 후 찜하기가 가능합니다.',
+            redirectTo: '/user/sign_in_form'  
+        });
     }
+    productService.addWishlistConfirm(req, res);
 
 });
 
 router.post('/add_report_confirm', (req, res) => {
     console.log('/product/add_report_confirm');
-    if(!req.isAuthenticated()) {
-        res.redirect('/user/sign_in_form');
-    } else {
-    productService.addReportConfirm(req, res);
+
+    if (!req.isAuthenticated()) {
+        return res.status(401).json({
+            message: '로그인 후 신고하기가 가능합니다.',
+            redirectTo: '/user/sign_in_form'  
+        });
     }
+    productService.addReportConfirm(req, res);
+
 
 });
 
 router.post('/join_auction_confirm', (req, res) => {
     console.log('/product/join_auction_confirm');
-    if(!req.isAuthenticated()) {
-        res.redirect('/user/sign_in_form');
-    } else {
-    productService.joinAuctionConfirm(req, res);
+
+    if (!req.isAuthenticated()) {
+        return res.status(401).json({
+            message: '로그인 후 입찰이 가능합니다.',
+            redirectTo: '/user/sign_in_form'  
+        });
     }
-    
+    productService.joinAuctionConfirm(req, res);
+
 });
 
 router.post('/get_product_images', (req, res) => {
@@ -135,12 +145,26 @@ router.post('/get_product', (req, res) => {
 router.get('/list_rate_product_form', (req, res) => {
     console.log('/product/list_rate_product_form');
     const searchType = req.query.searchType;
-    if (searchType === 'shopping') {
-        productService.searchShopping(req, res); // Naver 쇼핑 검색 호출
-    } else {
-        productService.searchRateList(req, res); // 시세 조회 호출
-    }
+    const keyword = req.query.keyword || '';
+
+    // 검색어가 있을 때 유사 상품을 가져오기
+    productService.searchRelatedProducts(keyword, (error, relatedProducts) => {
+        if (error) {
+            console.error('유사 상품 조회 중 오류:', error);
+            return res.status(500).json({ message: '유사 상품 조회 중 오류가 발생했습니다.' });
+        }
+
+        // searchType에 따라 시세 조회 또는 쇼핑 검색 처리
+        if (searchType === 'shopping') {
+            // 쇼핑 검색 처리
+            productService.searchShopping(req, res);
+        } else {
+            // 시세 조회 처리
+            productService.searchRateList(req, res, relatedProducts);
+        }
+    });
 });
+
 
 // NAVER SHOP API START
 router.get('/search_shopping', (req, res) => {

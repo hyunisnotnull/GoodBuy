@@ -103,8 +103,10 @@ window.addEventListener('DOMContentLoaded', function () {
     function goToNextPage() {
         if (currentIndex < recentProducts.length - 1) {
             currentIndex++;  // 다음 상품으로 이동
-            displayRecentProducts();  // 상품 업데이트
+        } else {
+            currentIndex = 0;  // 마지막 상품에서 다음을 누르면 첫 번째 상품으로 이동
         }
+            displayRecentProducts();  // 상품 업데이트
     }
 
     // Top 버튼 클릭 시
