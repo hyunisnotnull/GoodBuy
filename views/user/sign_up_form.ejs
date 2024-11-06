@@ -17,7 +17,7 @@
     <article>
         <div class="article_wrap">
             <div class="title">
-                <h4>USER SIGNUP FORM</h4>
+                <h4>회원가입</h4>
             </div>
             <div class="content">
                 <form action="/user/sign_up_confirm" name="sign_up_form" method="post" enctype="multipart/form-data">
@@ -41,15 +41,20 @@
                     </select><br>
 
                     <input type="hidden" id="user_post_address" name="u_post_address">
-                    <input type="text" id="user_postcode" placeholder="우편번호" readonly required>
-                    <input type="button" onclick="userAddress()" value="우편번호 찾기"><br>
+                    <div class="address-group">
+                        <input type="text" id="user_postcode" placeholder="우편번호" readonly required>
+                        <input type="button" class="address-btn" onclick="userAddress()" value="우편번호 찾기">
+                    </div>
                     <input type="text" id="user_address" placeholder="주소" required>
-                    <input type="text" id="user_extraAddress" placeholder="참고항목"><br>
+                    <input type="text" id="user_extraAddress" placeholder="참고주소"><br>
                     <input type="text" id="user_detailAddress" name="u_detail_address" placeholder="상세주소" required><br>
 
+                    <p class="profile-image-label">프로필 이미지 (선택)</p>
                     <input type="file" name="profile_thum" placeholder="SELECT PROFILE IMAGE"><br>
-                    <input type="button" value="SUBMIT" onclick="signupForm();">
-                    <input type="reset" value="RESET">
+                    <div class="button-group">
+                        <input type="button" value="회원가입" onclick="signupForm();">
+                        <input type="reset" value="초기화">
+                    </div>
                 </form>
             </div>
         </div>

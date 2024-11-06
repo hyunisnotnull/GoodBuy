@@ -7,6 +7,12 @@
     <link href="/css/user/modify_form.css" rel="stylesheet" type="text/css">
     <script src="/js/user/modify_form.js"></script>
 
+    <script>
+
+        let loginedUId = '<%= user.U_ID %>';
+
+    </script>
+
 </head>
 <body>
 
@@ -16,38 +22,12 @@
     <article>
         <div class="article_wrap">
             <div class="title">
-                <h4>MODIFY FORM</h4>
+                <h4>계정 수정</h4>
             </div>
             <div class="content">
                 <form action="/user/modify_confirm" name="modify_form" method="post" enctype="multipart/form-data">
                     <input type="hidden" name="u_no" value="<%= user.U_NO %>">
                     <input type="hidden" name="u_id" value="<%= user.U_ID %>">
-
-                    <input type="text" value="<%= user.U_ID %>" readonly disabled><br>
-                    <input type="password" name="u_pw" placeholder="INPUT user PW"><br>
-                    <input type="text" name="u_nick" value="<%= user.U_NICK %>"><br>
-                    <input type="text" name="u_phone" value="<%= user.U_PHONE %>"><br>
-                    <select name="u_sex" required>
-                        <option value="">성별 선택</option>
-                        <option value="M" <%= user.U_SEX === 'M' ? 'selected' : '' %>>남성</option>
-                        <option value="W" <%= user.U_SEX === 'W' ? 'selected' : '' %>>여성</option>
-                    </select><br>
-                    
-                    <select name="u_age" required>
-                        <option value="">연령대 선택</option>
-                        <option value="10" <%= user.U_AGE === '10' ? 'selected' : '' %>>10대</option>
-                        <option value="20" <%= user.U_AGE === '20' ? 'selected' : '' %>>20대</option>
-                        <option value="30" <%= user.U_AGE === '30' ? 'selected' : '' %>>30대</option>
-                        <option value="40" <%= user.U_AGE === '40' ? 'selected' : '' %>>40대</option>
-                        <option value="50" <%= user.U_AGE === '50' ? 'selected' : '' %>>50대</option>
-                        <option value="60" <%= user.U_AGE === '60' ? 'selected' : '' %>>60대 이상</option>
-                    </select><br>
-                    <input type="hidden" id="user_post_address" name="u_post_address" value="<%= user.U_POST_ADDRESS %>">
-                    <input type="text" id="user_postcode" placeholder="우편번호" readonly value="<%= user.U_POST_ADDRESS.split(' ')[0] %>" required>
-                    <input type="button" onclick="userAddress()" value="우편번호 찾기"><br>
-                    <input type="text" id="user_address" placeholder="주소" value="<%= user.U_POST_ADDRESS.split(' ').slice(1).join(' ') %>" required><br>
-                    <input type="text" name="u_detail_address" id="user_detailAddress" placeholder="상세주소" value="<%= user.U_DETAIL_ADDRESS %>" required><br>
-
 
                     <input type="file" name="profile_thum" placeholder="SELECT PROFILE IMAGE"><br>
                     <div class="profile_thum_wrap">
@@ -66,11 +46,62 @@
                         </a>
                     </div>
                     <br>
-                    CHANGE OR DELETE COVER PROFILE <input type="checkbox" name="cover_profile_thum_delete">
+                    프로필 사진 변경 및 삭제 <input type="checkbox" name="cover_profile_thum_delete">
                     <br><br>
-                    <input type="button" value="MODIFY" onclick="modifyForm();">
-                    <input type="button" value="RESET" onclick="resetForm();">
+
+                    <input type="text" value="<%= user.U_ID %>" readonly disabled><br>
+                    <input type="password" name="u_pw" placeholder="비밀번호 변경시에만 입력하세요."><br>
+                    <input type="text" name="u_nick" placeholder="닉네임을 입력하세요." value="<%= user.U_NICK %>"><br>
+                    <input type="text" name="u_phone" placeholder="연락처를 입력하세요." value="<%= user.U_PHONE %>"><br>
+                    <select name="u_sex" required>
+                        <option value="">성별 선택</option>
+                        <option value="M" <%= user.U_SEX === 'M' ? 'selected' : '' %>>남성</option>
+                        <option value="W" <%= user.U_SEX === 'W' ? 'selected' : '' %>>여성</option>
+                    </select><br>
+                    
+                    <select name="u_age" required>
+                        <option value="">연령대 선택</option>
+                        <option value="10" <%= user.U_AGE === '10' ? 'selected' : '' %>>10대</option>
+                        <option value="20" <%= user.U_AGE === '20' ? 'selected' : '' %>>20대</option>
+                        <option value="30" <%= user.U_AGE === '30' ? 'selected' : '' %>>30대</option>
+                        <option value="40" <%= user.U_AGE === '40' ? 'selected' : '' %>>40대</option>
+                        <option value="50" <%= user.U_AGE === '50' ? 'selected' : '' %>>50대</option>
+                        <option value="60" <%= user.U_AGE === '60' ? 'selected' : '' %>>60대 이상</option>
+                    </select><br>
+                    <input type="hidden" id="user_post_address" name="u_post_address" value="<%= user.U_POST_ADDRESS %>">
+                    <div class="address-group">
+                        <input type="text" id="user_postcode" placeholder="우편번호" readonly value="<%= user.U_POST_ADDRESS.split(' ')[0] %>" required>
+                        <input type="button" class="address-btn" onclick="userAddress()" value="우편번호 찾기">
+                    </div>
+                    <input type="text" id="user_address" placeholder="상세주소" value="<%= user.U_POST_ADDRESS.split(' ').slice(1).join(' ') %>" required><br>
+                    <input type="text" name="u_detail_address" id="user_detailAddress" placeholder="상세주소" value="<%= user.U_DETAIL_ADDRESS %>" required><br>
+
+                    <input type="button" value="계정 수정" onclick="modifyForm();">
+                    <input type="button" value="초기화" onclick="resetForm();">
                 </form>
+            </div>
+
+            <div id="profile_modal_wrap">
+                <div class="profile_thum_close">
+                    <a href="#none">CLOSE</a>
+                </div>
+                <div class="profile_thum">
+                    <div class="thum">
+
+                        <%
+                            if (user.U_PROFILE_THUM && user.U_PROFILE_THUM !== '') {
+                        %>
+                                <img src="/<%=user.U_ID%>/<%=user.U_PROFILE_THUM%>">
+                        <%
+                            } else {
+                        %>
+                                <img src="/img/default_profile_thum.png">
+                        <%    
+                            }
+                        %>
+                        
+                    </div>
+                </div>
             </div>
 
         </div>

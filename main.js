@@ -40,7 +40,7 @@ app.use(session(sessionObj));
 let passport = pp.passport(app);
 app.post('/user/sign_in_confirm', passport.authenticate('local', {
     successRedirect: '/',
-    failureRedirect: '/user/sign_in_form?errMsg=INCORRECT USER ID OR PW',
+    failureRedirect: '/user/sign_in_form?errMsg=ID 또는 PW가 일치하지 않습니다.',
 }));
 
 // view template engine
