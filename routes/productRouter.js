@@ -106,6 +106,12 @@ router.post('/join_auction_confirm', (req, res) => {
 
 });
 
+// 브라우저 세션용
+router.post('/get_product', (req, res) => {
+    console.log('/product/get_product');
+    productService.getProduct(req, res);
+});
+
 // 시세 조회 START
 router.get('/list_rate_product_form', (req, res) => {
     console.log('/product/list_rate_product_form');

@@ -6,6 +6,8 @@
     <%- include('../include/title.ejs') %>
     <link href="/css/user/mylist.css" rel="stylesheet" type="text/css">
 
+    <script src="/js/user/wishlist.js"></script>
+
 </head>
 <body>
 
@@ -15,7 +17,7 @@
     <article>
         <div class="article_wrap">
             <div class="title">
-                <h4>MY WISH LIST</h4>
+                <h4>찜한 상품</h4>
             </div>
             <div class="content">
                 <table>
@@ -25,6 +27,7 @@
                             <th>상품 이름</th>
                             <th>가격</th>
                             <th>등록일</th>
+                            <th>취소</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -35,15 +38,22 @@
                         <% } else { %>
                             <% products.forEach(product => { %>
                                 <tr>
-                                    <td><img src="\<%= product.P_OWNER_ID %>\<%= product.P_IMAGE %>" alt="<%= product.P_NAME %>" style="width: 50px; height: auto;" /></td>
-                                    <td><%= product.P_NAME %></td>
+                                    <td><img src="\<%= product.P_OWNER_ID %>\<%= product.P_IMAGE %>" alt="<%= product.P_NAME %>"/></td>
+                                    <td><a href="/product/detail_product_form?p_no=<%= product.P_NO %>"><%= product.P_NAME %></a></td>
                                     <td><%= product.P_PRICE.toLocaleString() %> 원</td>
                                     <td><%= product.W_REG_DATE.toLocaleDateString() %></td>
+                                    <td><a href="#none" class="cancel-btn" data-product-no="<%= product.P_NO %>">취소</a></td>
                                 </tr>
                             <% }) %>
                         <% } %>
                     </tbody>
                 </table>
+                <%- include('../include/pagination.ejs', {
+                    currentPage: pagination.currentPage,
+                    totalPages: pagination.totalPages,
+                    pageRange: pagination.pageRange,
+                    baseUrl: pagination.baseUrl
+                }) %>
             </div>
 
         </div>

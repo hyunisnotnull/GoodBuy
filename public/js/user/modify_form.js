@@ -1,5 +1,5 @@
-const modifyForm = () => {
-    console.log('modifyForm()');
+const modifyComfirm = () => {
+    console.log('modifyComfirm()');
 
     let form = document.modify_form;
 
@@ -60,6 +60,15 @@ function resetForm () {
 
 }
 
+function deleteConfirm() {
+    console.log('deleteConfirm()');
+
+    if (confirm('정말 탈퇴하시겠습니까?')) 
+        location.href = '/user/delete_confirm';
+
+}
+
+// 프로필 변경 함수 시작
 $(document).ready(function() {
     console.log('DOCUMENT READY!!');
 
