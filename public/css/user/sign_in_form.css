@@ -1,0 +1,102 @@
+body {
+    font-family: 'Arial', sans-serif; /* 모던한 폰트 */
+    background-color: #f5f7fa; /* 부드러운 배경색 */
+}
+
+article div.article_wrap {
+    max-width: 400px; /* 너비 조정 */
+    margin: 50px auto; /* 중앙 정렬 */
+    padding: 20px; /* 패딩 추가 */
+    border-radius: 10px; /* 둥근 모서리 */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+    background: #ffffff; /* 흰색 배경 */
+}
+
+article div.title {
+    text-align: center;
+    font-size: 1.6em; /* 제목 크기 조정 */
+    color: #333; /* 제목 색상 */
+    margin-bottom: 20px; /* 제목 아래 여백 */
+}
+
+article div.content {
+    margin-top: 10px;
+    text-align: center;
+}
+
+/* 입력칸 너비 조정 */
+article div.content input,
+article div.content select {
+    width: calc(100% - 100px); /* 기존 값 */
+    padding: 10px; /* 패딩 */
+    margin: 8px 0; /* 여백 */
+    border: 1px solid #ddd; /* 연한 테두리 */
+    border-radius: 5px; /* 둥근 모서리 */
+    font-size: 1em; /* 폰트 크기 */
+    transition: border 0.3s, box-shadow 0.3s; /* 전환 효과 */
+}
+
+/* 로그인/초기화 버튼의 너비를 줄임 */
+article div.content input[type="button"],
+article div.content input[type="reset"] {
+    width: 35%; /* 버튼 너비 45%로 설정 */
+    background-color: #6c63ff; /* 버튼 배경색 */
+    color: #ffffff; /* 버튼 글자색 */
+    border: none; /* 테두리 제거 */
+    border-radius: 5px; /* 둥근 모서리 */
+    padding: 12px; /* 패딩 */
+    font-size: 0.9em; /* 글자 크기 */
+    cursor: pointer; /* 포인터 커서 */
+    transition: background-color 0.3s, transform 0.2s; /* 전환 효과 */
+}
+
+article div.content input[type="button"] {
+    margin-right: 10px; /* 로그인 버튼 오른쪽에 간격 추가 */
+}
+
+/* 로그인, 초기화 버튼에 hover 효과 */
+article div.content input[type="button"]:hover,
+article div.content input[type="reset"]:hover {
+    background-color: #5a54d1; /* 호버 시 배경색 변화 */
+    transform: translateY(-2px); /* 호버 시 약간 올라오는 효과 */
+}
+
+/* 소셜 로그인 구분선 스타일 */
+.social-login {
+    margin-top: 20px;
+    text-align: center;
+}
+
+/* 소셜 로그인 버튼 */
+.social-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* 버튼 간 간격 */
+}
+
+.social-buttons img {
+    width: 40px;  /* 이미지의 너비를 40px로 설정 */
+    height: 40px; /* 이미지의 높이를 40px로 설정 */
+    object-fit: contain;  /* 이미지가 비율을 유지하며 크기 맞추기 */
+    transition: transform 0.3s, box-shadow 0.3s; /* 호버 시 변화를 부드럽게 */
+}
+
+.social-buttons img:hover {
+    transform: scale(1.1); /* 호버 시 이미지 확대 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 호버 시 그림자 효과 추가 */
+}
+
+/* 구분선 스타일 */
+hr {
+    border: none;
+    border-top: 1px solid #ddd; /* 연한 회색 구분선 */
+    margin: 20px 0; /* 구분선 위아래 여백 */
+}
+
+/* 에러 메시지 스타일 */
+.error-message {
+    color: red;         /* 빨간색으로 텍스트 색상 변경 */
+    font-weight: bold;  /* 텍스트를 굵게 설정 */
+    font-size: 0.9em;   /* 글자 크기 살짝 키움 */
+    margin-top: 10px;   /* 위쪽 여백 */
+}

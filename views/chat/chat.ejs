@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%- include('../include/title.ejs') %>
+    
     <link href="/css/chat/chat.css" rel="stylesheet" type="text/css">
     <script src="/socket.io/socket.io.js"></script>
     
@@ -16,7 +17,8 @@
     <article>
         <div class="article_wrap">
             <div class="title">
-                <button onclick="goBack()" class="back-button">←</button>
+                <button onclick="goBack();" class="back-button">←</button>&nbsp;&nbsp;
+                <button onclick="deleteChat();" class="back-button">X</button>
             </div>
             <div class="content">
                 <div class="chat-header">
@@ -27,7 +29,6 @@
                     <% } %>
                     <div class="user-info">
                         <h3 class="username"><%= otherNick %></h3>
-                        <span class="member-count">2</span>
                     </div>
                 </div>
 
@@ -50,6 +51,7 @@
         const otherId = '<%= otherId %>';
         const otherNick = '<%= otherNick %>';
         const otherthum = '<%= otherthum %>';
+        const lastExitTime = '<%= lastExitTime %>';
     </script>
 
     <script src="/js/chat/chatClient.js"></script>

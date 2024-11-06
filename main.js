@@ -20,6 +20,7 @@ app.use(compression());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static('c:\\goodbuy\\upload\\profile_thums\\'));
 app.use(express.static('c:\\goodbuyforadmin\\upload\\event_images\\'));
+app.use(express.json());
 
 // session
 const maxAge = 1000 * 60 * 30;
@@ -38,7 +39,7 @@ app.use(session(sessionObj));
 let passport = pp.passport(app);
 app.post('/user/sign_in_confirm', passport.authenticate('local', {
     successRedirect: '/',
-    failureRedirect: '/user/sign_in_form?errMsg=INCORRECT USER ID OR PW',
+    failureRedirect: '/user/sign_in_form?errMsg=ID 또는 PW가 일치하지 않습니다.',
 }));
 
 // view template engine
@@ -66,6 +67,8 @@ const productRouter = require('./routes/productRouter');
 const { MulterError } = require('multer');
 app.use('/product', productRouter);
 
+const uploadRouter = require('./routes/uploadRouter');
+app.use('/upload', uploadRouter);
 
 app.use((err, req, res, next) => {
     if (req.files.length === 3);

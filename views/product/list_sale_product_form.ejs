@@ -21,9 +21,9 @@
 
                 <div class="total_count">
                     <% if (keyword) { %>
-                        총 <span id="product_count"><%= products.length %></span> 건에 대한 "<%= keyword %>" 검색 결과
+                        총 <span id="product_count"><%= totalCount %></span> 건에 대한 "<%= keyword %>" 검색 결과
                     <% } else { %>
-                        총 <span id="product_count"><%= products.length %></span> 건
+                        총 <span id="product_count"><%= totalCount %></span> 건
                     <% } %>
                 </div>
                 <div class="sort_menu">
@@ -41,7 +41,14 @@
                             <th>NAME</th>
                             <th>PRICE</th>
                             <th>THUM</th>
-                            <th>CATEGORY</th>
+                            <th>
+                                CATEGORY
+                                <select name="category" onchange="filterByCategoryForSale(event);">
+                                    <% category.forEach(cat => { %>
+                                        <option value="<%= cat.C_NO %>" <%= cat.C_NO == currentCategory ? 'selected' : '' %>><%= cat.C_NAME %></option>
+                                    <% }); %>
+                                </select>
+                            </th>
                             <th>ADDRESS</th>
                             <th>OWNER</th>
                             <th>MOD_DATE</th>
@@ -61,6 +68,12 @@
                             </tr>
                         <% }%>
                 </table>
+                <%- include('../include/pagination_list_product.ejs', {
+                    currentPage: pagination.currentPage,
+                    totalPages: pagination.totalPages,
+                    pageRange: pagination.pageRange,
+                    baseUrl: pagination.baseUrl
+                }) %>
             </div>
         </div>
     </article>

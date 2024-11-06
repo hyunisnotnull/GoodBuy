@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%- include('../include/title.ejs') %>
-    <link href="/css/user/sign_up_form.css" rel="stylesheet" type="text/css">
+    <link href="/css/user/sign_in_form.css" rel="stylesheet" type="text/css">
     <script src="/js/user/sign_up_form.js"></script>
 </head>
 <body>
@@ -15,24 +15,32 @@
     <article>
         <div class="article_wrap">
             <div class="title">
-                <h4>user SIGNIN FORM</h4>
+                <h4>로그인</h4>
             </div>
             <div class="content">
                 <form action="/user/sign_in_confirm" name="sign_in_form" method="post">
-                    <input type="text" name="u_id" placeholder="INPUT ID"><br>
-                    <input type="password" name="u_pw" placeholder="INPUT PW"><br>
+                    <input type="text" name="u_id" placeholder="ID"><br>
+                    <input type="password" name="u_pw" placeholder="PW"><br>
                     <%
                         if (errMsg !== undefined) {
                     %>
-                            <%= errMsg %><br>
+                        <div class="error-message"><%= errMsg %></div><br>
                     <%
                         }
                     %>
-                    <input type="button" value="SUBMIT" onclick="signinForm();">
-                    <input type="reset" value="RESET">
+                    <div class="button-group">
+                        <input type="button" value="로그인" onclick="signinForm();">
+                        <input type="reset" value="초기화">
+                    </div>
                 </form>
-                <br>
-                <a href="/auth/google">login with google</a>
+                <div class="social-login">
+                    <hr>
+                    <div class="social-buttons">
+                        <a href="/auth/google"><img src="/img/google.png" alt="Google Login"></a>
+                        <a href="/auth/naver"><img src="/img/naver.png" alt="Naver Login"></a>
+                    </div>
+                    <hr>
+                </div>
             </div>
         </div>
     </article>
