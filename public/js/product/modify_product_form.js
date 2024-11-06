@@ -65,11 +65,13 @@ const showImage = (e) => {
 }
 
 
-const changeModalImage = (e,img) =>{
-    console.log('changeImage()', img)
+const changeModalImage = (e, no, img) =>{
+    console.log('changeImage()')
     $('.img_btn span').text('○');
     $(e.target).text('●');
-    $('img.img_modal').attr('src', img);
+    $('.img_modal').attr('src', img);
+    $('input[name="p_image_no"]').val(no);
+    $('#img').attr('src', img);
 };
 
 
@@ -81,7 +83,6 @@ const changeImage = () => {
     let p_no = $('input[name="p_no"]').val();
     let append = "";
     $('.img_modal_wrap').css('display', 'block');
-
 
     let msgDto = {
         pi_p_no: p_no
@@ -97,7 +98,7 @@ const changeImage = () => {
             console.log(data)
             for(let i= 0; i < data.length; i++){
 
-                append += `<span value="${data[i].PI_NO}" onclick="changeModalImage(event,'/${p_owner_id}/${data[i].PI_FILE}')">`;
+                append += `<span value="${data[i].PI_NO}" onclick="changeModalImage(event,${data[i].PI_NO},'/${p_owner_id}/${data[i].PI_FILE}')">`;
                 if( $('.img_modal').attr('src') === '/'+ p_owner_id + '/' + data[i].PI_FILE) {
                     append += "●</span>";
                 } else {
@@ -123,12 +124,6 @@ const changeImage = () => {
 
 const hideImage = () => {
     $('.img_modal_wrap').css('display', 'none');
-
-    console.log($('.img_btn span').text());
-    console.log($('.img_btn span').text().indexOf('●'));
-    console.log($('.img_btn span')[$('.img_btn span').text().indexOf('●')].attr('value'));
-
-
 }
 
 $( document ).ready(function() {

@@ -12,9 +12,12 @@ router.get('/add_product_form', (req, res) => {
 
 router.post('/add_product_confirm', roleCheck(1), uploads.UPLOAD_MULTI_PROFILE_MIDDLEWARE(), (req, res) => {
     console.log('/product/add_product_confirm');
+
     productService.addProductConfirm(req, res);
 
+
 });
+
 
 router.get('/modify_product_form', (req, res) => {
     console.log('/product/modify_product_form');

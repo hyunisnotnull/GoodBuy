@@ -1,12 +1,14 @@
 $(document).ready(function () {
     console.log('ready!');
     if ($('input[name="p_trade_date"]').val()) {
-        console.log('timer')
-    setInterval(()=>{
 
         let trade_date = $('input[name="p_trade_date"]').val().replace(/\s*\(.*\)/,'').replace('. ','-').replace('. ','-').replace('.','');
         let auction_time = new Date(trade_date).getTime();
         let d_day = auction_time - new Date().getTime(); 
+
+        if (d_day > 0) {
+    setInterval(()=>{
+
         let date = Math.floor(d_day / (1000 * 60 * 60 *24));
         let hour = Math.ceil((d_day % (1000 * 60 * 60 *24) )/ (1000 * 60 * 60));
         let minute = Math.ceil(((d_day % (1000 * 60 * 60 *24) )% (1000 * 60 * 60)) / (1000 * 60));
@@ -19,6 +21,9 @@ $(document).ready(function () {
         
         }, 1000);
     }
+    }
+    
+
 });
 
 const changeImage = (e,img) =>{
