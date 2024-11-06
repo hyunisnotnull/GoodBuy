@@ -10,11 +10,14 @@ router.get('/add_product_form', (req, res) => {
 
 });
 
-router.post('/add_product_confirm', roleCheck(1), uploads.UPLOAD_PROFILE_MIDDLEWARE(), (req, res) => {
+router.post('/add_product_confirm', roleCheck(1), uploads.UPLOAD_MULTI_PROFILE_MIDDLEWARE(), (req, res) => {
     console.log('/product/add_product_confirm');
+
     productService.addProductConfirm(req, res);
 
+
 });
+
 
 router.get('/modify_product_form', (req, res) => {
     console.log('/product/modify_product_form');
@@ -66,11 +69,9 @@ router.get('/list_auction_product_form', async (req, res) => {
 
 router.get('/detail_product_form', (req, res) => {
     console.log('/product/detail_product_form');
-    if(!req.isAuthenticated()) {
-        res.redirect('/user/sign_in_form');
-    } else {
+
         productService.detailProductForm(req, res);
-    }
+
 
 });
 
@@ -90,19 +91,37 @@ router.post('/filter_state_product_confirm', (req, res) => {
 
 router.post('/add_wishlist_confirm', (req, res) => {
     console.log('/product/add_wishlist_confirm');
+    if(!req.isAuthenticated()) {
+        res.redirect('/user/sign_in_form');
+    } else {
     productService.addWishlistConfirm(req, res);
+    }
 
 });
 
 router.post('/add_report_confirm', (req, res) => {
     console.log('/product/add_report_confirm');
+    if(!req.isAuthenticated()) {
+        res.redirect('/user/sign_in_form');
+    } else {
     productService.addReportConfirm(req, res);
+    }
 
 });
 
 router.post('/join_auction_confirm', (req, res) => {
     console.log('/product/join_auction_confirm');
+    if(!req.isAuthenticated()) {
+        res.redirect('/user/sign_in_form');
+    } else {
     productService.joinAuctionConfirm(req, res);
+    }
+    
+});
+
+router.post('/get_product_images', (req, res) => {
+    console.log('/product/get_product_images');
+    productService.getProductImages(req, res);
 
 });
 
