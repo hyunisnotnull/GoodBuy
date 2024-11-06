@@ -7,6 +7,12 @@
     <link href="/css/user/modify_form.css" rel="stylesheet" type="text/css">
     <script src="/js/user/modify_form.js"></script>
 
+    <script>
+
+        let loginedUId = '<%= user.U_ID %>';
+
+    </script>
+
 </head>
 <body>
 
@@ -70,9 +76,32 @@
                     <input type="text" id="user_address" placeholder="상세주소" value="<%= user.U_POST_ADDRESS.split(' ').slice(1).join(' ') %>" required><br>
                     <input type="text" name="u_detail_address" id="user_detailAddress" placeholder="상세주소" value="<%= user.U_DETAIL_ADDRESS %>" required><br>
 
-                    <input type="button" value="MODIFY" onclick="modifyForm();">
-                    <input type="button" value="RESET" onclick="resetForm();">
+                    <input type="button" value="계정 수정" onclick="modifyForm();">
+                    <input type="button" value="초기화" onclick="resetForm();">
                 </form>
+            </div>
+
+            <div id="profile_modal_wrap">
+                <div class="profile_thum_close">
+                    <a href="#none">CLOSE</a>
+                </div>
+                <div class="profile_thum">
+                    <div class="thum">
+
+                        <%
+                            if (user.U_PROFILE_THUM && user.U_PROFILE_THUM !== '') {
+                        %>
+                                <img src="/<%=user.U_ID%>/<%=user.U_PROFILE_THUM%>">
+                        <%
+                            } else {
+                        %>
+                                <img src="/img/default_profile_thum.png">
+                        <%    
+                            }
+                        %>
+                        
+                    </div>
+                </div>
             </div>
 
         </div>
