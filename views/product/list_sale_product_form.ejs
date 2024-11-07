@@ -18,7 +18,7 @@
                 <h4>SALE PRODUCT LIST</h4>
             </div>
             <div class="content">
-
+                <div class="subtitle">
                 <div class="total_count">
                     <% if (keyword) { %>
                         총 <span id="product_count"><%= totalCount %></span> 건에 대한 "<%= keyword %>" 검색 결과
@@ -33,7 +33,24 @@
                     <a href="/product/list_sale_product_form?category=<%= currentCategory %>&keyword=<%= keyword %>&sort=price_low">저가순</a> |
                     <a href="/product/list_sale_product_form?category=<%= currentCategory %>&keyword=<%= keyword %>&sort=price_high">고가순</a>
                 </div>
+                </div>
 
+                <div class="related-products-container">
+                    <ul class="related-products">
+                        <% products.forEach(product => { %>
+                            <li>
+                                <a href="/product/detail_product_form?p_no=<%= product.P_NO %>" class="product-link" data-product-id="<%= product.P_NO %>">
+                                    <img src="/<%= product.P_OWNER_ID %>/<%= product.P_IMAGE %>" alt="<%= product.P_NAME %>">
+                                    <div class="item-info">
+                                        <p class="item-title"><%= product.P_NAME %></p>
+                                        <p class="item-price"><%= product.P_PRICE.toLocaleString() %> 원</p>
+                                    </div>
+                                </a>
+                            </li>
+                        <% }) %>
+                    </ul>
+                </div>
+<!--
                 <table>
                     <thead>
                         <tr>
@@ -68,6 +85,7 @@
                             </tr>
                         <% }%>
                 </table>
+-->
                 <%- include('../include/pagination_list_product.ejs', {
                     currentPage: pagination.currentPage,
                     totalPages: pagination.totalPages,
