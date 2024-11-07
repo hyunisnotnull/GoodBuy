@@ -90,7 +90,7 @@ CREATE TABLE TBL_AUCTION(
    AU_PRICE            INT,
    AU_TRADE_DATE         DATETIME,
    AU_STATE            TINYINT,                     -- 0(삭제), 1(취소), 2(완료), 4(경매중)
-   AU_CNT				  INT,
+   AU_CNT				  INT DEFAULT 0,
    AU_REG_DATE            DATETIME DEFAULT NOW(),
    AU_MOD_DATE            DATETIME DEFAULT NOW(),
    PRIMARY KEY(AU_NO)

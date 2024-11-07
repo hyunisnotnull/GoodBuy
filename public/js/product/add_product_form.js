@@ -71,14 +71,27 @@ const addProductForm = () => {
 
 const showAutionDate = () => {
     console.log('showAutionDate()');
-    $('input[name="p_trade_date"]').css('display', 'block');
+    // 현재 날짜 시간 가져오기 (YYYY-MM-DDTHH:mm)
+    const now = new Date();
+    const minDate = now.toISOString().slice(0, 16); // ISO 형식에서 'YYYY-MM-DDTHH:mm' 형식으로 변환
+    now.setDate(now.getDate() + 7); // 7일 후 날짜 설정
+    const maxDate = now.toISOString().slice(0, 16); // 7일 후 최대 날짜
+
+    // p_trade_date 필드의 min과 max 속성 설정
+    const tradeDateInput = document.querySelector('input[name="p_trade_date"]');
+    tradeDateInput.setAttribute('min', minDate);
+    tradeDateInput.setAttribute('max', maxDate);
+
+    // 경매 날짜 입력 필드 표시
+    tradeDateInput.style.display = 'block';
 
 }
 
 const hideAutionDate = () => {
     console.log('hideAutionDate()');
-    $('input[name="p_trade_date"]').val('');
-    $('input[name="p_trade_date"]').css('display', 'none');
+    const tradeDateInput = document.querySelector('input[name="p_trade_date"]');
+    tradeDateInput.value = '';  // 경매 날짜 필드 값 초기화
+    tradeDateInput.style.display = 'none';  // 경매 날짜 필드 숨김
 
 
 }

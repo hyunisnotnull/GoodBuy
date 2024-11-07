@@ -82,7 +82,7 @@ window.addEventListener('DOMContentLoaded', function () {
                 </a>
                 <div class="product-info">
                     <p>${product.productName}</p>
-                    <p>${product.productPrice} 원</p>
+                    <p>${product.productPrice.toLocaleString().concat('원')}</p>
                 </div>
             `;
 

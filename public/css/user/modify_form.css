@@ -139,13 +139,34 @@ article div.content input[name="profile_thum"] {
     width: 600px;
     text-align: center;
     margin: 0 auto;
-    padding: 15px 0;
     background-color: rgba(255, 255, 255, 1);
 }
 
 #profile_modal_wrap div.profile_thum div.thum {
-    width: 600px;
+    width: 100%; /* 전체 너비를 100%로 설정 */
+    max-width: 600px; /* 최대 너비 제한 */
+    height: 400px; /* 이미지 영역의 높이를 설정 */
     text-align: center;
+}
+
+#profile_modal_wrap div.profile_thum div.thum img {
+    width: 100%; /* 이미지 너비를 100%로 설정 */
+    height: 100%; /* 이미지 높이를 100%로 설정 */
+    object-fit: cover; /* 이미지의 비율을 맞추면서 잘라내기 */
+}
+
+article div.content div.profile_thum_wrap {
+    width: 200px; /* 프로필 이미지 영역 너비 */
+    height: 200px; /* 프로필 이미지 영역 높이 */
+    margin: 0 auto; /* 중앙 정렬 */
+    overflow: hidden; /* 내용 넘침 방지 */
+    border-radius: 100px; /* 원형으로 만들기 */
+}
+
+article div.content div.profile_thum_wrap img {
+    width: 100%; /* 이미지 너비를 100%로 설정 */
+    height: 100%; /* 이미지 높이를 100%로 설정 */
+    object-fit: cover; /* 비율에 맞게 이미지 크기를 조정하고 넘치는 부분은 잘라냄 */
 }
 /* PROFILE_MODAL_WRAP END */
 

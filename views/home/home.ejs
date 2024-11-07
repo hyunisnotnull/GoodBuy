@@ -42,7 +42,7 @@
                                     <img src="/<%= auction.P_OWNER_ID %>/<%= auction.P_IMAGE %>" alt="<%= auction.P_NAME %>" />
                                 </a>
                                 <h5><%= auction.P_NAME %></h5>
-                                <p>현재가: <%= auction.P_PRICE %> 원</p>
+                                <p>현재가: <%= auction.P_PRICE.toLocaleString().concat('원') %></p>
                             </div>
                         <% }) %>
                     </div>
@@ -61,7 +61,7 @@
                                     <img src="/<%= product.P_OWNER_ID %>/<%= product.P_IMAGE %>" alt="<%= product.P_NAME %>" />
                                 </a>
                                 <h5><%= product.P_NAME %></h5>
-                                <p>가격: <%= product.P_PRICE %> 원</p>
+                                <p>가격: <%= product.P_PRICE.toLocaleString().concat('원') %></p>
                             </div>
                         <% }) %>
                     </div>

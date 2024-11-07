@@ -69,14 +69,21 @@
                                 </td>
                                 <td>
                                     <input type="hidden" name="state" value="<%= products[i].P_STATE %>">
-                                    <select name="p_state" onchange="changeSate(event);" <% if (loginedUser.U_ACTIVE !== 1) { %> disabled <% } %>>
-                                        <% for (let j = 1; j < result.length; j++) { %>
-                                            <option value="<%= result[j].ST_NO %>" 
-                                                <% if (result[j].ST_NO === parseInt(products[i].P_STATE) ) { %>
-                                                    SELECTED
-                                                <% } %>><%= result[j].ST_NAME %></option>
-                                        <% } %>
-                                    </select>
+                                
+                                    <% if (products[i].P_STATE === 5) { %> <!-- 위반 상태인 경우 -->
+                                        <span style="color: red;">정책 위반</span> <!-- 위반 상태 표시 -->
+                                    <% } else { %> <!-- 위반 상태가 아닐 경우 -->
+                                        <select name="p_state" onchange="changeSate(event);" <% if (loginedUser.U_ACTIVE !== 1) { %> disabled <% } %>>
+                                            <% for (let j = 1; j < result.length; j++) { %>
+                                                <% if (result[j].ST_NO !== 0 && result[j].ST_NO !== 5) { %> <!-- 삭제 상태와 위반 상태 제외 -->
+                                                    <option value="<%= result[j].ST_NO %>" 
+                                                        <% if (result[j].ST_NO === parseInt(products[i].P_STATE)) { %> SELECTED <% } %> >
+                                                        <%= result[j].ST_NAME %>
+                                                    </option>
+                                                <% } %>
+                                            <% } %>
+                                        </select>
+                                    <% } %>
                                 </td>
                                 <td>
                                     <%= products[i].P_STATE === 4  ? products[i].P_PRICE.toLocaleString().concat('원')  : "" %>

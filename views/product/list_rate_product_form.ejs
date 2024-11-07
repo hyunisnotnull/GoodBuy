@@ -47,14 +47,14 @@
                         </div>
                         <% if (registeredPrices.length > 0) { %>
                             <h5>등록가 시세</h5>
-                            <p><%= Math.floor(averageRegisteredPrice) %> 원</p>
+                            <p><%= Math.floor(averageRegisteredPrice).toLocaleString().concat('원') %></p>
                         <% } else { %>
                             <p>최근 등록가 시세가 없습니다.</p>
                         <% } %>
 
                         <% if (salePrices.length > 0) { %>
                             <h5>판매가 시세</h5>
-                            <p><%= Math.floor(averageSalePrice) %> 원</p>
+                            <p><%= Math.floor(averageSalePrice).toLocaleString().concat('원') %></p>
                         <% } else { %>
                             <p>최근 판매가 시세가 없습니다.</p>
                         <% } %>
@@ -68,7 +68,7 @@
                                             <img src="<%= item.image %>" alt="<%= item.title %>">
                                             <div class="item-info">
                                                 <p class="item-title"><%= item.title %></p>
-                                                <p class="item-price"><%= item.lprice %> 원</p>
+                                                <p class="item-price"><%= parseInt(item.lprice).toLocaleString().concat('원') %></p>
                                             </div>
                                         </a>
                                     </li>
