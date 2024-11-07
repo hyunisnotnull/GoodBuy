@@ -54,6 +54,8 @@ article {
     height: auto;
     min-height:100%;
     padding-bottom: 100px;
+}
+
 /* 공통 이미지 크기 설정 */
 .auction-item img,
 .product-item img {
