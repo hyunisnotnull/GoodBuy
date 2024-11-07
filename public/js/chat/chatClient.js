@@ -1,4 +1,4 @@
-const socket = io(); // Socket.io 클라이언트 연결
+let socket = null;
 
 const chatWindow = document.getElementById('chatWindow');
 const messageInput = document.getElementById('messageInput');
@@ -9,13 +9,49 @@ let lastMessageTime = null;
 let lastSenderId = null;
 let currentMessageGroup = null;
 
-// lastExitTime의 유효성 검사
-const validExitTime = lastExitTime && !isNaN(new Date(lastExitTime).getTime()) 
-    ? new Date(new Date(lastExitTime).getTime() + 9 * 60 * 60 * 1000).toISOString().slice(0, 19)
-    : null;
+function joinRoom(isAdminChat, roomId, senderId, senderNick, otherId, otherNick, otherthum, lastExitTime) {
+    
+    const port = isAdminChat ? 3002 : 3001; // 관리자와의 대화이면 3002 포트, 그렇지 않으면 3001 포트 사용
+    console.log("joinRoom 함수 호출됨 - isAdminChat 값:", isAdminChat);
 
-// 서버에 채팅방 입장을 알림
-socket.emit('joinRoom', { roomId, senderId, senderNick, otherId, otherNick, otherthum, validExitTime });
+    // 기존 연결이 있다면 종료
+    if (socket) {
+        socket.disconnect();
+    }
+
+    // 새로운 포트로 소켓 연결 초기화
+    socket = io(`http://localhost:${port}`);
+    console.log(`소켓 연결 시도: http://localhost:${port}`);
+
+    // 연결 성공 확인 로그
+    socket.on('connect', () => {
+        console.log(`소켓 연결 성공: ${socket.id} (포트: ${port})`);
+    });
+
+    // lastExitTime 유효성 검사
+    const validExitTime = lastExitTime && !isNaN(new Date(lastExitTime).getTime()) 
+        ? new Date(new Date(lastExitTime).getTime() + 9 * 60 * 60 * 1000).toISOString().slice(0, 19)
+        : null;
+
+    // 서버에 채팅방 입장을 알림
+    socket.emit('joinRoom', { roomId, senderId, senderNick, otherId, otherNick, otherthum, validExitTime });
+
+    // 소켓 이벤트 설정
+    setupSocketEvents();
+}
+
+// 소켓 이벤트 설정 함수
+function setupSocketEvents() {
+    // 서버로부터 메시지 수신 이벤트
+    socket.on('message', (data) => {
+        displayMessage(data);
+    });
+
+    // 서버로부터 연결 해제 이벤트 수신
+    socket.on('disconnect', () => {
+        console.log("서버와 연결이 끊어졌습니다.");
+    });
+}
 
 // 메시지 전송 함수
 function sendMessage() {
@@ -64,11 +100,6 @@ messageInput.addEventListener('keypress', (event) => {
     if (event.key === 'Enter') {
         sendMessage();
     }
-});
-
-// 서버로부터 메시지 수신
-socket.on('message', (data) => {
-    displayMessage(data);
 });
 
 // 메시지를 화면에 출력하는 함수
@@ -206,28 +237,37 @@ function deleteChat() {
     }
 }
 
+// $(document).ready(function() {
+//     console.log('DOCUMENT READY!!');
+
+//     initEvents();
+
+// });
+
+// function initEvents() {
+//     console.log('initEvents()');
+
+//     $(document).on('click', 'div.profile_thum_wrap a', function(){
+//         console.log('profile_thum_wrap CLICKED!!');
+
+//         $('#profile_modal_wrap').css('display', 'block');
+
+//     });
+
+//     $(document).on('click', '#profile_modal_wrap div.profile_thum_close a', function(){
+//         console.log('profile_thum_close CLICKED!!');
+
+//         $('#profile_modal_wrap').css('display', 'none');
+
+//     });
+
+// }
+
 $(document).ready(function() {
-    console.log('DOCUMENT READY!!');
+    console.log('join READY!!');
+
+    // joinRoom 함수를 여기서 호출
+    joinRoom(isAdminChat, roomId, senderId, senderNick, otherId, otherNick, otherthum, lastExitTime);
 
     initEvents();
-
 });
-
-function initEvents() {
-    console.log('initEvents()');
-
-    $(document).on('click', 'div.profile_thum_wrap a', function(){
-        console.log('profile_thum_wrap CLICKED!!');
-
-        $('#profile_modal_wrap').css('display', 'block');
-
-    });
-
-    $(document).on('click', '#profile_modal_wrap div.profile_thum_close a', function(){
-        console.log('profile_thum_close CLICKED!!');
-
-        $('#profile_modal_wrap').css('display', 'none');
-
-    });
-
-}
