@@ -91,7 +91,7 @@
                             <img src="/<%= product.P_OWNER_ID %>/<%= product.PI_FILE %>" alt="<%= product.P_NAME %>">
                             <div class="item-info">
                                 <p class="item-title"><%= product.P_NAME %></p>
-                                <p class="item-price"><%= product.P_PRICE %> 원</p>
+                                <p class="item-price"><%= product.P_PRICE.toLocaleString() %> 원</p>
                             </div>
                         </a>
                     </li>

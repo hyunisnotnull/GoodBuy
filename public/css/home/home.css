@@ -77,3 +77,9 @@ button.next {
     object-fit: contain; /* 비율 유지하며 이미지가 잘리지 않도록 설정 */
     border-radius: 8px; /* 모서리 둥글게 */
 }
+
+article {
+    height: auto;
+    min-height:100%;
+    padding-bottom: 100px;
+}

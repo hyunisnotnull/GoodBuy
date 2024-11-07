@@ -115,9 +115,17 @@ div.state_menu ul li:hover {
     border-radius: 5px;
 }
 
+div.subtitle {
+    width: 80%;
+    padding: 0;
+    margin: 10px auto;
+    display: flex;
+    justify-content:space-between;
+}
 
 /* 총 몇건, 카테고리별 sort 부분 */
 .total_count {
+    display: inline-block;
     text-align: left; /* 왼쪽 정렬 */
     font-size: 1.2em; /* 폰트 크기 조정 */
     color: #333; /* 텍스트 색상 */
@@ -125,6 +133,7 @@ div.state_menu ul li:hover {
 }
 
 .sort_menu {
+    display: inline-block;
     text-align: right; /* 오른쪽 정렬 */
     margin-bottom: 20px; /* 아래 여백 */
 }
@@ -141,29 +150,6 @@ div.state_menu ul li:hover {
 }
 
 
-td img {
-    border-radius: 5px; /* 이미지를 둥글게 */
-    max-width: 50px; /* 이미지 최대 너비 제한 */
-    height: auto; /* 비율 유지 */
-    display: block; /* 블록 요소로 설정하여 정렬 */
-    margin: 0 auto; /* 중앙 정렬 */
-}
-
-/* 추가 버튼 스타일 
-a[href="/product/add_product_form"] {
-    display: inline-block;
-    margin-top: 20px;
-    background-color: #2289ff; 
-    padding: 10px 15px;
-    color: white;
-    border-radius: 4px;
-    transition: background-color 0.3s ease;
-}
-
-a[href="/product/add_product_form"]:hover {
-    background-color: #193be6; 
-}
-*/
 div.auction_input {
     position:absolute;
     width: 200px;
@@ -178,4 +164,72 @@ div.auction_input {
 
 .end_date_input {
     display: none;
+}
+
+
+/* 유사 상품 리스트 스타일 */
+.related-products {
+    display: flex;                  /* 가로로 나열 */
+    justify-content: center;  /* 첫 번째 상품은 맨 왼쪽, 마지막 상품은 맨 오른쪽에 배치 */
+    flex-wrap: wrap;                 /* 화면 크기에 맞게 줄 바꿈 */
+    margin-top: 40px;                /* 유사 상품 섹션의 위쪽 여백 */
+    gap: 65px;                       /* 상품 간 간격 */
+    width: 80%;                     /* 전체 너비 100%로 설정 (시세 조회 영역에 맞게 조정) */
+    box-sizing: border-box;          /* 테두리와 패딩을 포함한 크기 계산 */
+    margin: 0 auto;
+    margin-bottom: 40px;
+}
+
+/* 각 상품 아이템 스타일 */
+.related-products li {
+    width: 16%;                      /* 각 상품이 차지하는 가로 너비 (4개 상품이 한 줄에 나올 수 있도록 설정) */
+    list-style: none;                /* 리스트 아이템의 기본 스타일 제거 */
+    border: 1px solid #ddd;         /* 상품 테두리 */
+    border-radius: 8px;              /* 모서리 둥글게 */
+    overflow: hidden;                /* 넘치는 부분을 잘라내어 깔끔하게 표시 */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* 호버 시 애니메이션 효과 */
+    box-sizing: border-box;          /* 패딩과 테두리를 너비에 포함 */
+    margin-bottom: 20px;             /* 아래쪽 여백 */
+}
+
+/* 호버 시 효과 */
+.related-products li:hover {
+    transform: translateY(-5px);     /* 호버 시 약간 위로 올라가는 효과 */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* 호버 시 그림자 효과 */
+}
+
+/* 상품 이미지 스타일 */
+.related-products img {
+    width: 100%;                     /* 이미지의 가로 크기를 부모 요소에 맞게 조정 */
+    height: 200px;                   /* 이미지 높이 고정 */
+    object-fit: cover;               /* 이미지를 잘라서 영역에 맞게 채우기 */
+    border-bottom: 1px solid #ddd;   /* 이미지 하단에 구분선 */
+}
+
+/* 상품 정보 스타일 */
+.related-products .item-info {
+    padding: 10px;
+    text-align: center;
+}
+
+.related-products .item-title {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    margin: 10px 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; /* 상품명이 길어지면 잘리도록 설정 */
+}
+
+.related-products .item-price {
+    font-size: 16px;
+    color: #e67e22;
+    font-weight: bold;
+}
+
+article {
+    height: auto;
+    min-height:100%;
+    padding-bottom: 100px;
 }
