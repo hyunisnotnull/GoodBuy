@@ -222,7 +222,7 @@ const joinAuction = () => {
                 alert(xhr.responseJSON.message);
                 window.location.href = xhr.responseJSON.redirectTo;  // 로그인 페이지로 리디렉션
             } else {
-                alert('알 수 없는 오류가 발생했습니다. 다시 시도해 주세요.');
+                alert(xhr.responseJSON.message || '알 수 없는 오류가 발생했습니다. 다시 시도해 주세요.');
             }
 
         },
