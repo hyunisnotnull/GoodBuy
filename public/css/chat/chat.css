@@ -83,16 +83,15 @@ article {
 }
 
 
-
 /* 상대방 메시지 그룹: 왼쪽 정렬 */
 .other-message-group {
-    align-items: flex-start;
+    text-align: start;
     margin-right: auto; /* 왼쪽 정렬 */
 }
 
 /* 내 메시지 그룹: 오른쪽 정렬 */
 .my-message-group {
-    align-items: flex-end;
+    text-align: end;
     margin-left: auto; /* 오른쪽 정렬 */
 }
 
@@ -123,14 +122,15 @@ article {
 .my-message {
     display: inline-block;
     max-width: 100%;
+
 }
 
 .my-message{
-    text-align: right;
+    /* text-align: right; */
 }
 
 .other-message{
-    text-align: left;
+    /* text-align: left; */
 }
 
 .message-text {
@@ -138,6 +138,7 @@ article {
     font-size: 14px;
     word-wrap: break-word;
     display: inline-block;
+    max-width: 70%;
 }
 
 .chat-image {

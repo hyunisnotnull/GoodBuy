@@ -12,9 +12,10 @@ const cors = require('cors');
 const http = require('http');
 const server = http.createServer(app);
 const { initSocket } = require('./lib/socket/socket');
+const port = 3001;
 
 // Socket.io 초기화
-initSocket(server);
+initSocket(server, port);
 
 app.use(cors());
 app.use(bodyParser.urlencoded({extended: false}));
@@ -78,4 +79,4 @@ app.use((err, req, res, next) => {
     res.status(500).json({ message: '이미지는 최대 3장까지만 가능합니다.' })
 })
 
-server.listen(3001);
+server.listen(port);
