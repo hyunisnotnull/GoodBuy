@@ -77,4 +77,5 @@ app.use((err, req, res, next) => {
     if (req.files.length === 3);
     res.status(500).json({ message: '이미지는 최대 3장까지만 가능합니다.' })
 })
+
 server.listen(3001);
