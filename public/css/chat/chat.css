@@ -78,7 +78,7 @@ article {
 .other-message-group, .my-message-group {
     display: flex;
     flex-direction: column;
-    max-width: 60%;
+    max-width: 80%;
     margin-bottom: 10px;
 }
 
@@ -121,10 +121,16 @@ article {
 /* 메시지 말풍선 스타일 */
 .other-message,
 .my-message {
-    padding: 10px 12px;
     display: inline-block;
     max-width: 100%;
-    align-items: center;
+}
+
+.my-message{
+    text-align: right;
+}
+
+.other-message{
+    text-align: left;
 }
 
 .message-text {
@@ -135,8 +141,8 @@ article {
 }
 
 .chat-image {
-    padding: 3px;
-    max-width: 78%;
+    padding: 2px;
+    max-width: 70%;
     border-radius: 10px;
 }
 

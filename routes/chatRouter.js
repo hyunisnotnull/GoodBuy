@@ -26,7 +26,7 @@ router.get('/chat/:roomId', (req, res) => {
 
 // 채팅방 삭제 경로 등록
 router.delete('/delete/:roomId', (req, res) => {
-    console.log('/chat/delete/:roomId');
+    console.log('/chat/delete/:roomId/');
     chatService.deleteChatRoom(req, res);
 });
 
@@ -68,6 +68,13 @@ router.post('/uploadImage/:roomId', uploads.UPLOAD_CHAT_IMAGE_MIDDLEWARE(), (req
     } else {
         res.status(400).json({ error: '파일 업로드 실패' });
     }
+
+});
+
+// 관리자와 채팅
+router.get('/adminContact', (req, res) => {
+    console.log('/chat/adminContact/');
+    chatService.getOrCreateAdminChat(req, res);
 });
 
 
