@@ -25,7 +25,8 @@ document.querySelectorAll('.product-link').forEach(item => {
                     productId: productId,
                     productName: data.products[data.products.length - 1].productName, // 이름
                     productImage: data.products[data.products.length - 1].productImage, // 이미지
-                    productOwnerId: data.products[data.products.length - 1].productOwnerId
+                    productOwnerId: data.products[data.products.length - 1].productOwnerId,
+                    productPrice: data.products[data.products.length - 1].productPrice // 가격
                 });
 
                 // 최대 5개의 최근 본 상품만 저장
@@ -79,7 +80,10 @@ window.addEventListener('DOMContentLoaded', function () {
                 <a href="/product/detail_product_form?p_no=${product.productId}">
                     <img src="/${product.productOwnerId}/${product.productImage}" alt="${product.productName}" />
                 </a>
-                <p>${product.productName}</p>
+                <div class="product-info">
+                    <p>${product.productName}</p>
+                    <p>${product.productPrice} 원</p>
+                </div>
             `;
 
             recentProductsContainer.appendChild(productItem);

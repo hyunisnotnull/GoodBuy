@@ -4,7 +4,7 @@ const uploads = require('../lib/upload/uploads');
 const { uploadImageToFlask } = require('../lib/service/uploadService'); 
 
 // 이미지 업로드 및 예측 처리 라우트
-router.post('/upload', uploads.UPLOAD_PROFILE_MIDDLEWARE(), async (req, res) => {
+router.post('/upload', uploads.UPLOAD_MULTI_PROFILE_MIDDLEWARE(), async (req, res) => {
     if (!req.file) {
         return res.status(400).json({ error: 'No file uploaded.' });
     }

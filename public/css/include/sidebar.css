@@ -3,7 +3,7 @@
     position: fixed;  /* 고정 위치 */
     top: 170px;        /* 네비바 바로 아래에 고정 (네비바 높이에 맞게 조정) */
     right: 40px;
-    width: 160px;
+    width: 150px;
     padding: 15px;
     background-color: #fff;
     border: 1px solid #ccc;
@@ -15,6 +15,8 @@
 .sidebar h4 {
     font-size: 18px;
     margin-bottom: 10px;
+    border-bottom: 2px solid #ccc; /* 최근 본 상품 아래에 구분선 추가 */
+    padding-bottom: 10px;
 }
 
 .recent-products {
@@ -29,18 +31,20 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
+    position: relative; /* 위치 조정을 위한 상대적 위치 지정 */
+    width: 120px;
 }
 
 .recent-products img {
-    width: 100px;
-    height: 100px;
+    width: 120px;
+    height: 120px;
     object-fit: cover;
-    margin-bottom: 5px;
+    transition: opacity 0.3s ease;
 }
 
 /* 페이지 네비게이션 */
 .pagination_nav {
-    margin-top: 10px;
+    margin-top: 5px;
 }
 
 .prev-text, .next-text {
@@ -66,4 +70,42 @@
 
 .top-button:hover {
     background-color: #0056b3;
+}
+
+.recent-products .product-item p {
+    margin: 0;
+    white-space: nowrap;           /* 줄 바꿈 방지 */
+    overflow: hidden;              /* 넘치는 텍스트 숨기기 */
+    text-overflow: ellipsis;       /* '...'으로 표시 */
+    width: 100px;                  /* 원하는 너비 설정 */
+    text-align: left;            /* 가운데 정렬 */
+}
+
+.recent-products .product-info {
+    position: absolute;
+    left: -110px;                 /* 이미지 왼쪽에 위치시키기 위한 설정 */
+    top: 50%;                     /* 세로 중앙 정렬 */
+    transform: translateY(-50%);  /* 정확한 세로 중앙 정렬 */
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5)); /* 부드러운 그라데이션 배경 */
+    color: white;
+    padding: 10px 15px;           /* 패딩을 줘서 여유를 두고 */
+    font-size: 14px;
+    width: 90px;                 /* 이미지 크기보다 약간 넓게 설정 */
+    height: 50px;                /* 이미지와 동일한 높이 */
+    opacity: 0;                    /* 처음에는 숨겨둡니다 */
+    visibility: hidden;           /* 처음에는 보이지 않음 */
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 10;                  /* 이미지 위에 표시되도록 설정 */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    text-align: left;             /* 텍스트 왼쪽 정렬 */
+    border-radius: 8px;           /* 상품 정보 박스의 둥근 모서리 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* 상품 정보 박스에 그림자 추가 */
+}
+
+.recent-products .product-item:hover .product-info {
+    opacity: 1;         /* 보이게 함 */
+    visibility: visible; /* 보이게 설정 */
 }
