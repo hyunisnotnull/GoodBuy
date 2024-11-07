@@ -9,6 +9,10 @@ $(document).ready(function () {
         if (d_day > 0) {
     setInterval(()=>{
 
+        let trade_date = $('input[name="p_trade_date"]').val().replace(/\s*\(.*\)/,'').replace('. ','-').replace('. ','-').replace('.','');
+        let auction_time = new Date(trade_date).getTime();
+        let d_day = auction_time - new Date().getTime(); 
+        
         let date = Math.floor(d_day / (1000 * 60 * 60 *24));
         let hour = Math.ceil((d_day % (1000 * 60 * 60 *24) )/ (1000 * 60 * 60));
         let minute = Math.ceil(((d_day % (1000 * 60 * 60 *24) )% (1000 * 60 * 60)) / (1000 * 60));
@@ -218,7 +222,7 @@ const joinAuction = () => {
                 alert(xhr.responseJSON.message);
                 window.location.href = xhr.responseJSON.redirectTo;  // 로그인 페이지로 리디렉션
             } else {
-                alert('알 수 없는 오류가 발생했습니다. 다시 시도해 주세요.');
+                alert(xhr.responseJSON.message || '알 수 없는 오류가 발생했습니다. 다시 시도해 주세요.');
             }
 
         },
