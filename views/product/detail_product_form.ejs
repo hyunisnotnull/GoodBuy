@@ -50,7 +50,7 @@
                     <input type="hidden" name="u_nick" value="<%= product[0].P_OWNER_NICK %>">
                     <input type="text" name="p_name" value="<%= product[0].P_NAME %>" readonly><br>
                     <input type="text" name="p_price" value="<%= product[0].P_PRICE.toLocaleString() %>원" readonly><br>
-                    ● 상품번호 : <input type="text" name="p_no" value="<%= product[0].P_NO %>"><br>
+                    ● 상품번호 : <input type="text" name="p_no" value="<%= product[0].P_NO %>" readonly><br>
                     ● 분&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;류 : <input type="text" name="p_category" value="<%= category[parseInt(product[0].P_CATEGORY)].C_NAME %>"  readonly><br>
                     ● 등&nbsp;&nbsp;록&nbsp;&nbsp;일 : <input type="text" name="p_mod_date" value="<%= product[0].P_MOD_DATE.toLocaleString('ko-KR', {hour12:false, timeStyle:'short', dateStyle:'medium'}) %>"  readonly><br>
                     ● 판&nbsp;&nbsp;매&nbsp;&nbsp;자 : <input type="text" name="p_owner_nick" value="<%= product[0].P_OWNER_NICK %>"  readonly><br>
@@ -74,7 +74,7 @@
                     </div>
                     <hr>
                     <div class="product-description">
-                        <%- product.P_DESC %>
+                        <%- product[0].P_DESC %>
                     </div>
                 </form>
                     
