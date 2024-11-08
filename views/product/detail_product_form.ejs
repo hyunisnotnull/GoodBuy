@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%- include('../include/title.ejs') %>
     <link href="/css/product/detail_product_form.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/43.3.1/ckeditor5.css" />
+    <script src="https://cdn.ckeditor.com/ckeditor5/43.3.1/ckeditor5.umd.js"></script>
     <script src="/js/product/detail_product_form.js"></script>
 </head>
 <body>
@@ -60,6 +62,7 @@
                     <div class="auctionBox">
                         ● 입&nbsp;&nbsp;찰&nbsp;&nbsp;가 : <input type="number" name="auction_price" min="<%= product[0].P_PRICE %>" step="100" value="<%= product[0].P_PRICE %>">
                         <input type="button" id="join" value="입찰" onclick="joinAuction();"><input type="button" id="cancel" value="취소" onclick="hideAuction();">
+                        
                     </div>
                     <div class="buttonBox">
                         <input type="button" value="찜하기" onclick="addWish();">
@@ -70,7 +73,9 @@
                         <% } %>
                     </div>
                     <hr>
-                    <textarea name="p_desc" readonly><%= product[0].P_DESC %></textarea><br>
+                    <div class="product-description">
+                        <%- product.P_DESC %>
+                    </div>
                 </form>
                     
 

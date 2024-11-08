@@ -131,3 +131,7 @@ div.img_modal_content {
 img.img_modal {
    max-width: calc(100% - 100px);
 }
+
+.ck-editor__editable {
+    height: 150px !important;  /* 고정된 높이 */
+}
