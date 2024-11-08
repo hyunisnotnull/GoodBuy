@@ -52,13 +52,14 @@
                     </div>
                     <input type="datetime-local" name="p_trade_date" value="<%= Intl.DateTimeFormat('ko-KR',{year:'numeric', month:'2-digit', day:'2-digit', hour12: false, hour:'2-digit', minute:'2-digit'}).format(new Date(product.P_TRADE_DATE)).replace('. ','-').replace('. ','-').replace('. ','T') %>"><br>
                     <textarea name="p_desc" id="p_desc"><%= product.P_DESC %></textarea><br>
-                    <input type="file" name="profile_thum" onchange="showImage(event);"><br>
+                    <input type="file" name="profile_thum" multiple onchange="showImage(event);"><br>
                     <input type="button" value="SUBMIT" onclick="modifyProductConfirm();">
                     <input type="button" value="RESET" onclick="resetBtn();">
                 </form>
             </div>
         </div>
     </article>
+<!--
     <div class="img_modal_wrap">
         <div class="img_modal_content">
             <div class="img_btn">
@@ -66,6 +67,7 @@
             <img class="img_modal" src="/<%= product.P_OWNER_ID %>/<%= product.P_IMAGE %>" onclick="hideImage();">
         </div>
     </div>
+-->        
     <%- include('../include/footer.ejs') %>
 </body>
 </html>

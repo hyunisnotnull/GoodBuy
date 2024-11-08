@@ -93,6 +93,7 @@ const resetBtn = () => {
 
 const showImage = (e) => {
     console.log('showImae()');
+    console.log(e.target.files)
     $("#img").attr("src", URL.createObjectURL(e.target.files[0]));
 
 }
@@ -112,47 +113,47 @@ const changeModalImage = (e, no, img) =>{
 const changeImage = () => {
     console.log('changeImage()');
 
-    let p_owner_id = $('input[name="u_id"]').val();
-    let p_no = $('input[name="p_no"]').val();
-    let append = "";
-    $('.img_modal_wrap').css('display', 'block');
+    // let p_owner_id = $('input[name="u_id"]').val();
+    // let p_no = $('input[name="p_no"]').val();
+    // let append = "";
+    // $('.img_modal_wrap').css('display', 'block');
 
-    let msgDto = {
-        pi_p_no: p_no
-    }
+    // let msgDto = {
+    //     pi_p_no: p_no
+    // }
 
-    $.ajax({
-        url: '/product/get_product_images',
-        method: 'POST',
-        data:  msgDto,
-        dataType: 'json',
-        success: function(data) {
-            console.log('getProductImage() COMMUNICATION SUCCESS!!');
-            console.log(data)
-            for(let i= 0; i < data.length; i++){
+    // $.ajax({
+    //     url: '/product/get_product_images',
+    //     method: 'POST',
+    //     data:  msgDto,
+    //     dataType: 'json',
+    //     success: function(data) {
+    //         console.log('getProductImage() COMMUNICATION SUCCESS!!');
+    //         console.log(data)
+    //         for(let i= 0; i < data.length; i++){
 
-                append += `<span value="${data[i].PI_NO}" onclick="changeModalImage(event,${data[i].PI_NO},'/${p_owner_id}/${data[i].PI_FILE}')">`;
-                if( $('.img_modal').attr('src') === '/'+ p_owner_id + '/' + data[i].PI_FILE) {
-                    append += "●</span>";
-                } else {
-                    append += "○</span>";
-                }
-            }
-            $('div.img_btn').empty();
-            $('div.img_btn').append(append);
-        },
-        error: function(error) {
-            console.log('getProductImage() COMMUNICATION ERROR!!');
+    //             append += `<span value="${data[i].PI_NO}" onclick="changeModalImage(event,${data[i].PI_NO},'/${p_owner_id}/${data[i].PI_FILE}')">`;
+    //             if( $('.img_modal').attr('src') === '/'+ p_owner_id + '/' + data[i].PI_FILE) {
+    //                 append += "●</span>";
+    //             } else {
+    //                 append += "○</span>";
+    //             }
+    //         }
+    //         $('div.img_btn').empty();
+    //         $('div.img_btn').append(append);
+    //     },
+    //     error: function(error) {
+    //         console.log('getProductImage() COMMUNICATION ERROR!!');
 
-        },
-        complete: function() {
-            console.log('getProductImage() COMMUNICATION COMPLETE!!');
+    //     },
+    //     complete: function() {
+    //         console.log('getProductImage() COMMUNICATION COMPLETE!!');
     
 
-        }
+    //     }
 
-    });
-    // $('input[type="file"]').trigger('click');
+    // });
+    $('input[type="file"]').trigger('click');
 }
 
 const hideImage = () => {
