@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%- include('../include/title.ejs') %>
     <link href="/css/product/detail_product_form.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/43.3.1/ckeditor5.css" />
+    <script src="https://cdn.ckeditor.com/ckeditor5/43.3.1/ckeditor5.umd.js"></script>
     <script src="/js/product/detail_product_form.js"></script>
 </head>
 <body>
@@ -51,7 +53,9 @@
                         <% } %>
                         <input type="number" name="auction_price" min="<%= product.P_PRICE %>" step="100" value="<%= product.P_PRICE %>"><br>
                         <input type="button" id="join" value="입찰" onclick="joinAuction();"><input type="button" id="cancel" value="취소" onclick="hideAuction();">
-                        <textarea name="p_desc" readonly><%= product.P_DESC %></textarea><br>
+                        <div class="product-description">
+                            <%- product.P_DESC %>
+                        </div>
                 </form>
                     
 
