@@ -20,7 +20,8 @@ router.get('/chatList', (req, res) => {
 
 // 목록에서 채팅방 입장
 router.get('/chat/:roomId', (req, res) => {
-    console.log('/chat/chat/:roomId/');
+    const { roomId } = req.params;
+    console.log(`/chat/chat/:roomId/ - 요청된 roomId: ${roomId}`);
     chatService.enterChatRoom(req, res);
 });
 
@@ -71,10 +72,17 @@ router.post('/uploadImage/:roomId', uploads.UPLOAD_CHAT_IMAGE_MIDDLEWARE(), (req
 
 });
 
-// 관리자와 채팅
+// 관리자와 채팅 생성
 router.get('/adminContact', (req, res) => {
-    console.log('/chat/adminContact/');
-    chatService.getOrCreateAdminChat(req, res);
+    console.log('/관리자와 채팅 생성/');
+    chatService.createAdminChat(req, res);
+});
+
+// 관리자 채팅방 입장
+router.get('/chatA/:roomId', (req, res) => {
+    const { roomId } = req.params;
+    console.log(`/chat/chatA/:roomId/ - 요청된 roomId: ${roomId}`);
+    chatService.enterAdminChatRoom(req, res);
 });
 
 
