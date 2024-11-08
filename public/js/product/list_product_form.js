@@ -79,7 +79,7 @@ const changeSate = (e) => {
     let p_no = $(e.target).closest('tr').find('td:first-child').text();
     let p_state = $(e.target).closest('tr').find('input[name="state"]').val();
     let sel_index = e.target.selectedIndex;
-    let sel_text = e.target.options[sel_index].innerText
+    let sel_text = e.target.options[sel_index].innerText.trim();
     let sel_value = e.target.options[sel_index].value
     
     if(confirm(`상태를 ${sel_text}로 변경하시겠습니까?`)) {
@@ -134,6 +134,38 @@ const changeAuction = (e) => {
     let p_no = $(e.target).closest('tr').find('td:first-child').text();
     let p_state = $(e.target).closest('tr').find('select[name="p_state"]').val();
     let p_trade_date = $(e.target).val();
+
+    // 경매 날짜가 없으면 경고하고 리턴
+    if (!p_trade_date) {
+        alert("경매 날짜를 지정해주세요.");
+        return;
+    }
+
+    // 유효한 날짜인지 확인 (간단한 검증: 값이 올바른 날짜 형식인지 확인)
+    let datePattern = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$/;
+    if (!datePattern.test(p_trade_date)) {
+        alert("올바른 날짜 형식을 입력해주세요.");
+        return;
+    }
+
+    // 현재 시간과 최대 7일 뒤의 날짜 계산
+    const currentDate = new Date();
+    const currentDateString = currentDate.toISOString().slice(0, 16);  // "YYYY-MM-DDTHH:mm"
+    
+    const maxDate = new Date(currentDate.getTime() + 7 * 24 * 60 * 60 * 1000); // 최대 7일
+    const maxDateString = maxDate.toISOString().slice(0, 16);  // "YYYY-MM-DDTHH:mm"
+
+    // 경매 날짜가 현재 시간 이후인지 확인
+    if (new Date(p_trade_date) < currentDate) {
+        alert("경매 날짜는 현재 시간 이후로 설정해야 합니다.");
+        return;
+    }
+
+    // 경매 날짜가 7일 이내인지 확인
+    if (new Date(p_trade_date) > maxDate) {
+        alert("경매 날짜는 최대 7일 이내로 설정할 수 있습니다.");
+        return;
+    }
 
     let msgDto = {
         'p_no': p_no,

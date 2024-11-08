@@ -1,7 +1,41 @@
+// CK EDITOR START
+document.addEventListener("DOMContentLoaded", function() {
+    const { ClassicEditor, Essentials, Bold, Italic, Font, Paragraph } = CKEDITOR;
+    
+    ClassicEditor
+        .create(document.querySelector('#p_desc'), {
+            plugins: [Essentials, Bold, Italic, Font, Paragraph],
+            toolbar: ['undo', 'redo', '|', 'fontSize', 'fontColor', '|', 'bold', 'italic'],
+            fontSize: {
+                options: [9, 11, 13, 15, 17, 19, 21, 23, 25, 30]
+            },
+            fontColor: {
+                columns: 5
+            },
+            placeholder: '상품 설명을 입력해주세요.',
+            language: 'ko'
+        })
+        .then(editor => {
+            window.editor = editor;
+
+            const editorRoot = editor.editing.view.getDomRoot();
+
+            editorRoot.style.height = '300px'; // 원하는 높이
+        })
+        .catch(error => {
+            console.error(error);
+        });
+});
+    
 const addProductForm = () => {
     console.log('addProductForm()');
 
     let form = document.add_product_form;
+
+    if (window.editor) {
+        form.p_desc.value = window.editor.getData();
+    } 
+
     if (form.p_name.value === '') {
         alert('상품 이름을 입력해주세요.');
         form.p_name.focus();
@@ -71,14 +105,30 @@ const addProductForm = () => {
 
 const showAutionDate = () => {
     console.log('showAutionDate()');
-    $('input[name="p_trade_date"]').css('display', 'block');
+    // 현재 날짜 시간 가져오기 (YYYY-MM-DDTHH:mm)
+    const now = new Date();
+    const minDate = now.toISOString().slice(0, 16); // ISO 형식에서 'YYYY-MM-DDTHH:mm' 형식으로 변환
+    now.setDate(now.getDate() + 7); // 7일 후 날짜 설정
+    const maxDate = now.toISOString().slice(0, 16); // 7일 후 최대 날짜
+
+    // p_trade_date 필드의 min과 max 속성 설정
+    const tradeDateInput = document.querySelector('input[name="p_trade_date"]');
+    tradeDateInput.setAttribute('min', minDate);
+    tradeDateInput.setAttribute('max', maxDate);
+
+    // 경매 날짜 입력 필드 표시
+    tradeDateInput.style.display = 'block';
 
 }
 
 const hideAutionDate = () => {
     console.log('hideAutionDate()');
-    $('input[name="p_trade_date"]').val('');
-    $('input[name="p_trade_date"]').css('display', 'none');
+    const tradeDateInput = document.querySelector('input[name="p_trade_date"]');
+    tradeDateInput.value = '';  // 경매 날짜 필드 값 초기화
+    tradeDateInput.style.display = 'none';  // 경매 날짜 필드 숨김
 
 
 }
+
+
+

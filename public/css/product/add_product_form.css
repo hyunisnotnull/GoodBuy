@@ -99,3 +99,7 @@ input[type="radio"]:checked:focus {
     border: 0px;
     box-shadow: 0 0 0 1px #fff;
 }
+
+.ck-editor__editable {
+    height: 150px !important;  /* 고정된 높이 */
+}

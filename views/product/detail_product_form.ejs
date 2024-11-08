@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%- include('../include/title.ejs') %>
     <link href="/css/product/detail_product_form.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/43.3.1/ckeditor5.css" />
+    <script src="https://cdn.ckeditor.com/ckeditor5/43.3.1/ckeditor5.umd.js"></script>
     <script src="/js/product/detail_product_form.js"></script>
 </head>
 <body>
@@ -15,53 +17,75 @@
     <article>
         <div class="article_wrap">
             <div class="title">
-                <h4>DETAIL PRODUCT 
-                    <% if (parseInt(product.P_STATE) === 3) { %>    
-                        (판매)
-                    <% }  else { %>
-                        (경매)
-                    <% } %>
-                </h4>
             </div>
             <div class="content">
                 
                 <div class="left">
-                    <img id="img" src="\<%= product.P_OWNER_ID %>\<%= product.P_IMAGE %>" onclick="showImage();">
+
+                    <div class="img_box">
+                    <% for (let i = 0; i < product.length; i++) { %>
+                        <% if (product[i].P_IMAGE_NO === product[i].PI_NO) { %> 
+                            <img class="img img<%= i %>" src="\<%= product[i].P_OWNER_ID %>\<%= product[i].P_IMAGE %>" onmouseover="showArrowBtn();" onmouseleave="hideArrowBtn();">
+                        <% } else { %>
+                        <img class="img img<%= i %>" style="display:none" src="\<%= product[i].P_OWNER_ID %>\<%= product[i].P_IMAGE %>"  onmouseover="showArrowBtn();" onmouseleave="hideArrowBtn();">
+                        <% } %>
+                    <% } %>
+                    </div>
+                    <% for (let i = 0; i < product.length; i++) { %>
+                        <% if (product[i].P_IMAGE_NO === product[i].PI_NO) { %> 
+                            <span class="img_btn" onclick="showImage(event, '<%= i %>');">●</span>
+                        <% } else { %>
+                            <span class="img_btn" onclick="showImage(event, '<%= i %>');">○</span>
+                        <% } %>
+                    <% } %>
+                    <div class="leftArrow" onmouseover="showArrowBtn()" onclick="showNextImage(event)">《&nbsp;</div>
+                    <div class="rightArrow" onmouseover="showArrowBtn()" onclick="showNextImage(event)">&nbsp;》</div>
                 </div>
                 <div class="right">
                     <form action="/product/join_auction_confirm" name="join_auction_form" method="post">
                     <input type="hidden" name="loginedUser" value="<%= loginedUser ? loginedUser.U_NO : '' %>">
                     <input type="hidden" name="loginedUserID" value="<%= loginedUser ? loginedUser.U_ID : '' %>">
                     <input type="hidden" name="loginedUserNICK" value="<%= loginedUser ? loginedUser.U_NICK : '' %>">
-                    <input type="hidden" name="p_no" value="<%= product.P_NO %>">
-                    <input type="hidden" name="u_id" value="<%= product.P_OWNER_ID %>">
-                    <input type="hidden" name="u_nick" value="<%= product.P_OWNER_NICK %>">
-                    <input type="text" name="p_name" value="<%= product.P_NAME %>" readonly><br>
-                    <input type="text" name="p_price" value="<%= product.P_PRICE.toLocaleString() %>원" readonly><br>
-                    <% if (parseInt(product.P_STATE) === 4) { %>    
-                    <input type="text" name="p_trade_date" value="<%= product.P_TRADE_DATE.toLocaleString('ko-KR', {hour12:false, timeStyle:'short', dateStyle:'medium'}) %>"  readonly><br>
-                    <% } %>
-                    <input type="text" name="p_category" value="<%= category[parseInt(product.P_CATEGORY)].C_NAME %>"  readonly><br>
-                    <input type="button" value="찜하기" onclick="addWish();">
-                    <input type="button" value="신고하기" onclick="addReport();">
-                    <input type="button" value="1대1 대화하기" onclick="startChat()">
-                    <hr>
-                    <% if (parseInt(product.P_STATE) === 4) { %>    
-                        <input type="button" id="try" value="입찰하기" onclick="showAuction();">    
+                    <input type="hidden" name="u_id" value="<%= product[0].P_OWNER_ID %>">
+                    <input type="hidden" name="u_nick" value="<%= product[0].P_OWNER_NICK %>">
+                    <input type="text" name="p_name" value="<%= product[0].P_NAME %>" readonly><br>
+                    <input type="text" name="p_price" value="<%= product[0].P_PRICE.toLocaleString() %>원" readonly><br>
+                    ● 상품번호 : <input type="text" name="p_no" value="<%= product[0].P_NO %>" readonly><br>
+                    ● 분&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;류 : <input type="text" name="p_category" value="<%= category[parseInt(product[0].P_CATEGORY)].C_NAME %>"  readonly><br>
+                    ● 등&nbsp;&nbsp;록&nbsp;&nbsp;일 : <input type="text" name="p_mod_date" value="<%= product[0].P_MOD_DATE.toLocaleString('ko-KR', {hour12:false, timeStyle:'short', dateStyle:'medium'}) %>"  readonly><br>
+                    ● 판&nbsp;&nbsp;매&nbsp;&nbsp;자 : <input type="text" name="p_owner_nick" value="<%= product[0].P_OWNER_NICK %>"  readonly><br>
+                    <% if (parseInt(product[0].P_STATE) === 4) { %>    
+                        ● 경&nbsp;&nbsp;매&nbsp;&nbsp;일 : <input type="text" name="p_trade_date" value="<%= product[0].P_TRADE_DATE.toLocaleString('ko-KR', {hour12:false, timeStyle:'short', dateStyle:'medium'}) %>"  readonly>
+                        <input type="text" name="p_trade_date1" readonly>
+                        <br>
                         <% } %>
-                        <input type="number" name="auction_price" min="<%= product.P_PRICE %>" step="100" value="<%= product.P_PRICE %>"><br>
+                    <div class="auctionBox">
+                        ● 입&nbsp;&nbsp;찰&nbsp;&nbsp;가 : <input type="number" name="auction_price" min="<%= product[0].P_PRICE %>" step="100" value="<%= product[0].P_PRICE %>">
                         <input type="button" id="join" value="입찰" onclick="joinAuction();"><input type="button" id="cancel" value="취소" onclick="hideAuction();">
-                        <textarea name="p_desc" readonly><%= product.P_DESC %></textarea><br>
+                        
+                    </div>
+                    <div class="buttonBox">
+                        <input type="button" value="찜하기" onclick="addWish();">
+                        <input type="button" value="신고하기" onclick="addReport();">
+                        <input type="button" value="대화하기" onclick="startChat()">
+                        <% if (parseInt(product[0].P_STATE) === 4) { %>    
+                            <input type="button" id="try" value="입찰하기" onclick="showAuction();">    
+                        <% } %>
+                    </div>
+                    <hr>
+                    <div class="product-description">
+                        <%- product[0].P_DESC %>
+                    </div>
                 </form>
                     
 
                     
                 
                 <form name="test" action="/chat/chat" method="post">
-                    <input type="hidden" name="p_no" value="<%= product.P_NO %>">
-                    <input type="hidden" name="u_id" value="<%= product.P_OWNER_ID %>">
-                    <input type="hidden" name="u_nick" value="<%= product.P_OWNER_NICK %>">
-                    <input type="hidden" name="u_thum" value="<%= product.U_PROFILE_THUM %>">
+                    <input type="hidden" name="p_no" value="<%= product[0].P_NO %>">
+                    <input type="hidden" name="u_id" value="<%= product[0].P_OWNER_ID %>">
+                    <input type="hidden" name="u_nick" value="<%= product[0].P_OWNER_NICK %>">
+                    <input type="hidden" name="u_thum" value="<%= product[0].U_PROFILE_THUM %>">
                     <input type="hidden" name="my_id" value="<%= loginedUser ? loginedUser.U_ID : '' %>">
                     <input type="hidden" name="my_nick" value="<%= loginedUser ? loginedUser.U_NICK : '' %>">
                     <input type="hidden" name="my_thum" value="<%= loginedUser ? loginedUser.U_THUM : ''%>">
@@ -71,14 +95,16 @@
             </div>
         </div>
     </article>
+<!--
     <div class="img_modal_wrap">
         <div class="img_modal_content">
             <div class="img_btn">
             </div>
-            <img class="img_modal" src="\<%= product.P_OWNER_ID %>\<%= product.P_IMAGE %>" onclick="hideImage();">
+            <img class="img_modal" src="\<%= product[0].P_OWNER_ID %>\<%= product[0].P_IMAGE %>" onclick="hideImage();">
         </div>
 
     </div>
+-->    
 
     <%- include('../include/sidebar.ejs') %>
 
