@@ -19,14 +19,14 @@
                 <h4>My Chat Rooms</h4>
             </div>
             <div class="content">
-                <ul>
+                <ul id="chatList">
                     <% if (allChatRooms.length > 0) { %>
                         <% allChatRooms.forEach(function(room) { %>
-                            <li>
+                            <li data-room-id="<%= room.ISADMINCHAT ? room.AC_NO : room.CH_NO %>">
                                 <a href="<%= room.ISADMINCHAT ? 'http://localhost:3001/chat/chatA/' + room.AC_NO : 'http://localhost:3001/chat/chat/' + room.CH_NO %>">
-                                    <img src="/<%= room.ISADMINCHAT ? room.userId : room.otherId %>/<%= room.ISADMINCHAT ? room.userThum : room.otherthum %>" alt="프로필" class="profile-image">
+                                    <img src="<%= room.ISADMINCHAT ? '/img/default_profile_thum.png' : '/' + room.otherId + '/' + room.otherthum %>" alt="프로필" class="profile-image">
                                     <div class="chat-info">
-                                        <div class="chat-name"><%= room.ISADMINCHAT ? room.userNick : room.otherNick %></div>
+                                        <div class="chat-name"><%= room.ISADMINCHAT ? '관리자' : room.otherNick %></div>
                                     </div>
                                     <div class="chat-info">
                                         <div class="chat-last-message"><%= room.ISADMINCHAT ? room.AC_TITLE : room.CH_TITLE %></div>

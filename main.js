@@ -22,6 +22,7 @@ app.use(compression());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static('c:\\goodbuy\\upload\\profile_thums\\'));
 app.use('/uploads/chat_images', express.static('c:\\goodbuy\\upload\\chat_images\\'));
+app.use('/uploads/admin_chat_images', express.static('c:\\goodbuy\\upload\\admin_chat_images'));
 app.use(express.static('c:\\goodbuyforadmin\\upload\\event_images\\'));
 app.use(express.json());
 
