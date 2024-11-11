@@ -12,10 +12,9 @@ const cors = require('cors');
 const http = require('http');
 const server = http.createServer(app);
 const { initSocket } = require('./lib/socket/socket');
-const port = 3001;
 
 // Socket.io 초기화
-initSocket(server, port);
+initSocket(server);
 
 app.use(cors());
 app.use(bodyParser.urlencoded({extended: false}));
@@ -23,6 +22,7 @@ app.use(compression());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static('c:\\goodbuy\\upload\\profile_thums\\'));
 app.use('/uploads/chat_images', express.static('c:\\goodbuy\\upload\\chat_images\\'));
+app.use('/uploads/admin_chat_images', express.static('c:\\goodbuy\\upload\\admin_chat_images'));
 app.use(express.static('c:\\goodbuyforadmin\\upload\\event_images\\'));
 app.use(express.json());
 
@@ -75,10 +75,8 @@ const uploadRouter = require('./routes/uploadRouter');
 app.use('/upload', uploadRouter);
 
 app.use((err, req, res, next) => {
-    console.log(err)
-    console.log(MulterError)
     if (req.files.length === 3);
     res.status(500).json({ message: '이미지는 최대 3장까지만 가능합니다.' })
 })
 
-server.listen(port);
+server.listen(3001);

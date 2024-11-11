@@ -8,19 +8,18 @@ const { getIO } = require('../lib/socket/socket');
 router.post('/chat', (req, res) => {
     console.log('/chat/chat/');
     chatService.createRoom(req, res);
-
 });
 
 // 채팅방 목록
 router.get('/chatList', (req, res) => {
     console.log('/chat/chatList/');
     chatService.chatList(req, res);
-
 });
 
 // 목록에서 채팅방 입장
 router.get('/chat/:roomId', (req, res) => {
-    console.log('/chat/chat/:roomId/');
+    const { roomId } = req.params;
+    console.log(`/chat/chat/:roomId/ - 요청된 roomId: ${roomId}`);
     chatService.enterChatRoom(req, res);
 });
 
@@ -34,11 +33,8 @@ router.delete('/delete/:roomId', (req, res) => {
 router.post('/uploadImage/:roomId', uploads.UPLOAD_CHAT_IMAGE_MIDDLEWARE(), (req, res) => {
     console.log('파일 업로드 라우트 호출됨');
     
-    const roomId = req.params.roomId;
-    const senderId = req.body.senderId;
-    const senderNick = req.body.senderNick;
-    const receiverId = req.body.receiverId;
-    const receiverNick = req.body.receiverNick;
+    const { roomId } = req.params;
+    const { senderId, senderNick, receiverId, receiverNick } = req.body;
 
     if (req.file) {
         const imagePath = `/uploads/chat_images/${roomId}/${req.file.filename}`;
@@ -68,14 +64,19 @@ router.post('/uploadImage/:roomId', uploads.UPLOAD_CHAT_IMAGE_MIDDLEWARE(), (req
     } else {
         res.status(400).json({ error: '파일 업로드 실패' });
     }
-
 });
 
-// 관리자와 채팅
+// 관리자와 채팅 생성
 router.get('/adminContact', (req, res) => {
-    console.log('/chat/adminContact/');
-    chatService.getOrCreateAdminChat(req, res);
+    console.log('/관리자와 채팅 생성/');
+    chatService.createAdminChat(req, res);
 });
 
+// 관리자 채팅방 입장
+router.get('/chatA/:roomId', (req, res) => {
+    const { roomId } = req.params;
+    console.log(`관리자/chat/chatA/:roomId/ - 요청된 roomId: ${roomId}`);
+    chatService.enterAdminChatRoom(req, res);
+});
 
 module.exports = router;

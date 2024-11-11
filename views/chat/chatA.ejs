@@ -7,7 +7,7 @@
     
     <link href="/css/chat/chat.css" rel="stylesheet" type="text/css">
     <script src="/socket.io/socket.io.js"></script>
-
+    
 </head>
 <body>
 
@@ -22,18 +22,14 @@
             </div>
             <div class="content">
                 <div class="chat-header">
-                    <% if (otherthum !== '') { %>
-                        <img src="/<%= otherId %>/<%= otherthum %>" class="profile-image">
-                    <% } else { %>
-                        <img src="/img/default_profile_thum.png" class="profile-image">
-                    <% } %>
+                    <img src="/img/default_profile_thum.png" class="profile-image" alt="프로필">
                     <div class="user-info">
-                        <h3 class="username"><%= otherNick %></h3>
+                        <h3 class="username">관리자</h3>
                     </div>
                 </div>
-
+                
                 <div id="chatWindow" class="chat-window"></div>
-
+                
                 <div class="chat-input">
                     <input type="text" id="messageInput" placeholder="메시지를 입력하세요..." class="message-input">
                     <input type="file" id="imageInput" style="display: none;" accept="image/*">
@@ -54,11 +50,11 @@
         const roomId = '<%= roomId %>';
         const senderId = '<%= loginedUser.U_ID %>';
         const senderNick = '<%= loginedUser.U_NICK %>';
-        const otherId = '<%= otherId %>';
-        const otherNick = '<%= otherNick %>';
-        const otherthum = '<%= otherthum %>';
-        const lastExitTime = '<%= lastExitTime %>';
-        const isAdminChat = '<%= isAdminChat %>';
+        const otherId = null;
+        const otherNick = '관리자';
+        const otherthum = null;
+        const lastExitTime = null;
+        const isAdminChat = '<%= room.ISADMINCHAT %>';
     </script>
 
     <script src="/js/chat/chatClient.js"></script>

@@ -1,7 +1,41 @@
+// CK EDITOR START
+document.addEventListener("DOMContentLoaded", function() {
+    const { ClassicEditor, Essentials, Bold, Italic, Font, Paragraph } = CKEDITOR;
+    
+    ClassicEditor
+        .create(document.querySelector('#p_desc'), {
+            plugins: [Essentials, Bold, Italic, Font, Paragraph],
+            toolbar: ['undo', 'redo', '|', 'fontSize', 'fontColor', '|', 'bold', 'italic'],
+            fontSize: {
+                options: [9, 11, 13, 15, 17, 19, 21, 23, 25, 30]
+            },
+            fontColor: {
+                columns: 5
+            },
+            placeholder: '상품 설명을 입력해주세요.',
+            language: 'ko'
+        })
+        .then(editor => {
+            window.editor = editor;
+
+            const editorRoot = editor.editing.view.getDomRoot();
+
+            editorRoot.style.height = '300px'; // 원하는 높이
+        })
+        .catch(error => {
+            console.error(error);
+        });
+});
+    
 const addProductForm = () => {
     console.log('addProductForm()');
 
     let form = document.add_product_form;
+
+    if (window.editor) {
+        form.p_desc.value = window.editor.getData();
+    } 
+
     if (form.p_name.value === '') {
         alert('상품 이름을 입력해주세요.');
         form.p_name.focus();
@@ -95,3 +129,6 @@ const hideAutionDate = () => {
 
 
 }
+
+
+
