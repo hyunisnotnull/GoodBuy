@@ -150,7 +150,7 @@ const addWish = () => {
                 alert(xhr.responseJSON.message);
                 window.location.href = xhr.responseJSON.redirectTo;  // 로그인 페이지로 리디렉션
             } else {
-                alert('알 수 없는 오류가 발생했습니다. 다시 시도해 주세요.');
+                alert(error.message || '알 수 없는 오류가 발생했습니다. 다시 시도해 주세요.');
             }
 
         },
@@ -187,11 +187,15 @@ const addReport = () => {
         error: function(xhr, status, error) {
             console.log('addReportConfirm() COMMUNICATION ERROR!!');
 
+            console.log('xhr.status :: ',xhr.status);
+
             if (xhr.status === 401) {
+                // 로그인되지 않은 상태에서 요청을 보낼 때
                 alert(xhr.responseJSON.message);
                 window.location.href = xhr.responseJSON.redirectTo;  // 로그인 페이지로 리디렉션
             } else {
-                alert('알 수 없는 오류가 발생했습니다. 다시 시도해 주세요.');
+                // 그 외의 오류 처리
+                alert(error.message || xhr.responseJSON.message || '알 수 없는 오류가 발생했습니다. 다시 시도해 주세요.');
             }
 
         },
@@ -251,16 +255,18 @@ const joinAuction = () => {
             console.log('addReportConfirm() COMMUNICATION ERROR!!');
 
             if (xhr.status === 401) {
+                // 로그인되지 않은 상태에서 요청을 보낼 때
                 alert(xhr.responseJSON.message);
                 window.location.href = xhr.responseJSON.redirectTo;  // 로그인 페이지로 리디렉션
+
             } else {
-                alert(xhr.responseJSON.message || '알 수 없는 오류가 발생했습니다. 다시 시도해 주세요.');
+                // 그 외의 오류 처리
+                alert(error.message || xhr.responseJSON.message || '알 수 없는 오류가 발생했습니다. 다시 시도해 주세요.');
             }
 
         },
         complete: function() {
             console.log('addReportConfirm() COMMUNICATION COMPLETE!!');
-    
 
         }
 

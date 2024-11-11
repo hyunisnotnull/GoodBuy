@@ -6,6 +6,7 @@
     <%- include('../include/title.ejs') %>
     <link href="/css/user/sign_in_form.css" rel="stylesheet" type="text/css">
     <script src="/js/user/sign_up_form.js"></script>
+    <script src="/js/user/slide.js"></script>
     <script src="/js/user/find_functions.js"></script>
 </head>
 <body>
@@ -46,6 +47,21 @@
                         <a href="/auth/naver"><img src="/img/naver.png" alt="Naver Login"></a>
                     </div>
                     <hr>
+                </div>
+                <div class="banner">
+                    <div class="banner-slider">
+                        <button class="prev"><</button>
+                        <div class="banner-list">
+                            <% events.forEach((event, index) => { %>
+                                <div class="banner-item <%= index === 0 ? 'active' : '' %>">
+                                    <a href="<%= event.E_URL.startsWith('http') ? event.E_URL : 'http://' + event.E_URL %>">
+                                        <img src="/<%= event.E_NO %>/<%= event.E_IMAGE %>" alt="<%= event.E_TITLE %>" />
+                                    </a>
+                                </div>
+                            <% }) %>
+                        </div>
+                        <button class="next">></button>
+                    </div>
                 </div>
             </div>
         </div>
