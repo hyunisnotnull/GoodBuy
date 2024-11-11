@@ -15,18 +15,17 @@
     <article>
         <div class="article_wrap">
             <div class="title">
-                <h4>MY PRODUCT LIST</h4>
+                <h4>내 상품</h4>
             </div>
             <div class="content">
                 <table>
                     <thead>
                         <tr>
                             <th>NO</th>
-                            <th>NAME</th>
-                            <th>PRICE</th>
-                            <th>THUM</th>
+                            <th>상품 이름</th>
+                            <th>가격</th>
+                            <th>상품 이미지</th>
                             <th>
-                                CATEGORY
                                 <select name="category" onchange="filterByCategory(event);">
                                     <% category.forEach(cat => { %>
                                         <option value="<%= cat.C_NO %>" <%= cat.C_NO == currentCategory ? 'selected' : '' %>><%= cat.C_NAME %></option>
@@ -34,7 +33,6 @@
                                 </select>
                             </th>
                             <th>
-                                STATE
                                 <select name="state" onchange="filterByState(event);">
                                     <option value="">전체</option>
                                     <% result.forEach(st => { %>
@@ -44,9 +42,9 @@
                                     <% }); %>
                                 </select>
                             </th>
-                            <th>MAX_PRICE</th>
-                            <th>END_TIME</th>
-                            <th>MOD_DATE</th>
+                            <th>입찰가</th>
+                            <th>경매 종료일</th>
+                            <th>수정일</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -103,7 +101,7 @@
                             </tr>
                         <% }%>
                 </table>
-                <a href="/product/add_product_form">상품 등록</a>
+                <br><br>
                 <%- include('../include/pagination_my_product.ejs', {
                     currentPage: pagination.currentPage,
                     totalPages: pagination.totalPages,
