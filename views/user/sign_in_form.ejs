@@ -6,6 +6,7 @@
     <%- include('../include/title.ejs') %>
     <link href="/css/user/sign_in_form.css" rel="stylesheet" type="text/css">
     <script src="/js/user/sign_up_form.js"></script>
+    <script src="/js/user/find_functions.js"></script>
 </head>
 <body>
 
@@ -31,6 +32,11 @@
                     <div class="button-group">
                         <input type="button" value="로그인" onclick="signinForm();">
                         <input type="reset" value="초기화">
+                    </div>
+                    <div class="link-group">
+                        <a href="javascript:void(0)" onclick="findId()">아이디 찾기</a>
+                        <a href="javascript:void(0)" onclick="findPw()">비밀번호 찾기</a>
+                        <a href="/user/sign_up_form">회원가입</a>
                     </div>
                 </form>
                 <div class="social-login">

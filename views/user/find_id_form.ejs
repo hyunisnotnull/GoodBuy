@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('../include/title.ejs') %>
+    <link href="/css/user/sign_in_form.css" rel="stylesheet" type="text/css">
+    <script src="/js/user/find_functions.js"></script>
+</head>
+<body>
+    <article>
+        <div class="article_wrap">
+            <div class="title">
+                <h4>아이디 찾기</h4>
+            </div>
+            <div class="content">
+                <form action="/user/find_id_confirm" name="find_id_form" method="post">
+                    <input type="text" name="u_nick" placeholder="닉네임을 입력해주세요."><br>
+                    <input type="text" name="u_phone" placeholder="연락처를 입력해주세요."><br>
+                    <div class="button-group">
+                        <input type="button" value="아이디 찾기" onclick="findIdBy();">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </article>
+</body>
+</html>
