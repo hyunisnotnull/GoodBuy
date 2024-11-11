@@ -1,5 +1,8 @@
 // CK EDITOR START
 document.addEventListener("DOMContentLoaded", function() {
+
+    
+
     const { ClassicEditor, Essentials, Bold, Italic, Font, Paragraph } = CKEDITOR;
     
     ClassicEditor
@@ -167,7 +170,7 @@ const hideImage = () => {
 $( document ).ready(function() {
     console.log( "ready!" );
     $('input[type="file"]').css('display', 'none');
-
+    if ($("input:radio[name=p_state]:checked").val() === '4') $('input[name="p_trade_date"]').css('display', 'block');
 });
 
 const showAutionDate = () => {
