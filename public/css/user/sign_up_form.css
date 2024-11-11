@@ -150,3 +150,41 @@ article div.content input[type="file"]::-webkit-file-upload-button {
 article div.content input[type="file"]::-webkit-file-upload-button:hover {
     background-color: #5a54d1;
 }
+
+/* 배너 스타일 */
+.banner {
+    margin-top: 20px; /* 폼과 배너 사이에 여백 추가 */
+    max-width: 100%; /* 배너가 전체 너비를 사용하도록 설정 */
+    width: 100%; /* 배너 영역의 너비를 100%로 설정 */
+}
+
+.banner-slider {
+    position: relative; /* 배너 버튼 위치 조정을 위한 상대적 위치 지정 */
+}
+
+.banner-list {
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    width: 100%;
+}
+
+.banner-item {
+    margin: 0 10px;
+    max-width: 100%;
+}
+
+.banner img {
+    width: 300px; /* 배너 이미지가 배너 영역에 맞게 크기 조정 */
+    height: 100px; /* 비율에 맞게 높이 자동 조정 */
+    object-fit: contain; /* 이미지 비율에 맞춰 크기 조정 */
+    border-radius: 10px; /* 배너 이미지 둥근 모서리 추가 */
+    border: 1px solid #ddd;
+    padding: 10px; 
+    box-sizing: border-box;
+}
+
+/* 배너 슬라이더 버튼 스타일 */
+.banner-slider button {
+    display: none;
+}

@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const productService = require('../lib/service/productService');
 const uploads = require('../lib/upload/uploads');
-const roleCheck = require('../lib/passport/roleCheck');
+const { roleCheck } = require('../lib/passport/roleCheck');
 
 router.get('/add_product_form', (req, res) => {
     console.log('/product/add_product_form');
@@ -14,7 +14,6 @@ router.post('/add_product_confirm', roleCheck(1), uploads.UPLOAD_MULTI_PROFILE_M
     console.log('/product/add_product_confirm');
 
     productService.addProductConfirm(req, res);
-
 
 });
 
@@ -75,20 +74,6 @@ router.get('/detail_product_form', (req, res) => {
 
 });
 
-/*
-router.post('/filter_category_product_confirm', (req, res) => {
-    console.log('/product/filter_category_product_confirm');
-    productService.filterCategoryProductConfirm(req, res);
-
-});
-
-router.post('/filter_state_product_confirm', (req, res) => {
-    console.log('/product/filter_state_product_confirm');
-    productService.filterStateProductConfirm(req, res);
-
-});
-*/
-
 router.post('/add_wishlist_confirm', (req, res) => {
     console.log('/product/add_wishlist_confirm');
 
@@ -111,6 +96,13 @@ router.post('/add_report_confirm', (req, res) => {
             redirectTo: '/user/sign_in_form'  
         });
     }
+
+    if (!req.user || req.user.U_ACTIVE !== 1) {
+        return res.status(403).json({
+            message: '정지된 계정은 이 작업을 진행할 수 없습니다. 관리자에게 문의하세요.'
+        });
+    }
+
     productService.addReportConfirm(req, res);
 
 
@@ -125,6 +117,13 @@ router.post('/join_auction_confirm', (req, res) => {
             redirectTo: '/user/sign_in_form'  
         });
     }
+
+    if (!req.user || req.user.U_ACTIVE !== 1) {
+        return res.status(403).json({
+            message: '정지된 계정은 이 작업을 진행할 수 없습니다. 관리자에게 문의하세요.'
+        });
+    }
+
     productService.joinAuctionConfirm(req, res);
 
 });

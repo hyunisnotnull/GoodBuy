@@ -47,3 +47,43 @@ header {
         margin-top: 10px; /* 메뉴와 로고 사이 간격 추가 */
     }
 }
+
+/* 검색바 스타일 */
+#searchForm {
+    display: flex;                
+    align-items: center;          
+    border-radius: 5px;          
+    overflow: hidden;             
+    background-color: white;      
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin: 0 auto;              /* 가운데 정렬 */
+}
+
+#searchKeyword {
+    border: none;                 
+    padding: 10px;               
+    font-size: 16px;             
+    flex-grow: 1;                
+    outline: none;               
+    width: 150px;                /* 너비를 적절히 설정 */
+}
+
+#searchKeyword::placeholder {
+    color: #aaa;                 
+}
+
+#searchForm button {
+    padding: 10px 15px;         
+    background-color: white;  
+    color: white;                
+    border: none;                
+    cursor: pointer;             
+    transition: background-color 0.3s; 
+    margin-left: 10px;          
+    font-size: 16px;            /* 아이콘 크기 조정 */
+}
+
+#searchForm button span {
+    display: inline-block;       /* 이모지가 버튼 중앙에 오도록 */
+    vertical-align: middle;      /* 수직 정렬 */
+}

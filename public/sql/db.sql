@@ -205,7 +205,7 @@ SELECT * FROM TBL_CATEGORY;
 DROP TABLE IF EXISTS TBL_ACTIVE;
 CREATE TABLE TBL_ACTIVE(
    AC_NO                  INT AUTO_INCREMENT,
-   AC_NAME                  VARCHAR(20),                  -- 0(삭제) 1(정지), 2(활동)
+   AC_NAME                  VARCHAR(20),                  -- 0(삭제) 1(활동), 2(정지), 3(자체광고), 4(자체광고활성화)
    PRIMARY KEY(AC_NO)
 );
 SELECT * FROM TBL_ACTIVE;
@@ -244,7 +244,7 @@ CREATE TABLE TBL_EVENT (
     E_IMAGE VARCHAR(255) NOT NULL,                          -- 이벤트 이미지
     E_URL VARCHAR(255),                                    -- 이벤트 URL
     E_DESC TEXT,                                            -- 이벤트 설명 (선택적)
-    E_ACTIVE TINYINT DEFAULT 1,                              -- 0(DELETE), 1(ACTIVE), 2(STOP)
+    E_ACTIVE TINYINT DEFAULT 1,                              -- 0(DELETE), 1(ACTIVE), 2(STOP), 3(자체광고 활성화), 4(자체광고 비활성화)
     E_START_DATE DATETIME,                                  -- 이벤트 시작 날짜
     E_END_DATE DATETIME,                                    -- 이벤트 종료 날짜
     E_REG_DATE DATETIME DEFAULT NOW(),                      -- 등록 날짜
@@ -312,6 +312,8 @@ INSERT INTO TBL_CATEGORY (C_NAME) VALUE('중고차');
 INSERT INTO TBL_ACTIVE VALUES(0,'삭제');
 INSERT INTO TBL_ACTIVE(AC_NAME) VALUES('활성');
 INSERT INTO TBL_ACTIVE(AC_NAME) VALUES('비활성');
+INSERT INTO TBL_ACTIVE(AC_NAME) VALUES('자체광고');
+INSERT INTO TBL_ACTIVE(AC_NAME) VALUES('자체광고비활성');
 
 DROP TRIGGER IF EXISTS AFTER_INSERT_MESSAGE;
 DELIMITER $$
