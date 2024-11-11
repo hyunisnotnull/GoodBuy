@@ -53,26 +53,27 @@
                     ● 상품번호 : <input type="text" name="p_no" value="<%= product[0].P_NO %>" readonly><br>
                     ● 분&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;류 : <input type="text" name="p_category" value="<%= category[parseInt(product[0].P_CATEGORY)].C_NAME %>"  readonly><br>
                     ● 등&nbsp;&nbsp;록&nbsp;&nbsp;일 : <input type="text" name="p_mod_date" value="<%= product[0].P_MOD_DATE.toLocaleString('ko-KR', {hour12:false, timeStyle:'short', dateStyle:'medium'}) %>"  readonly><br>
+                    <div class="medal_wrap">
                     ● 판&nbsp;&nbsp;매&nbsp;&nbsp;자 : <span name="p_owner_nick"><%= product[0].P_OWNER_NICK %></span>
-                    <div class="medal_wrap" width="20px">
-                        <svg width="20.000000pt" height="20.000000pt" viewBox="0 0 48.000000 48.000000" fill=
+                    
+                        <svg width="30.000000pt" height="30.000000pt" viewBox="0 0 48.000000 48.000000" fill=
                         <% if(product[0].U_CLASS === 0) { %>
-                            "black"
+                            var(--UNRANK)
                         <% } else if(product[0].U_CLASS === 1) { %> 
-                            "#A59C94"
+                            var(--IRON)
                         <% } else if(product[0].U_CLASS === 2) { %> 
-                            "#ce8946"
+                            var(--BRONZE)
                         <% } else if(product[0].U_CLASS === 3) { %> 
-                            "#c4c4c4"
+                            var(--SILVER)
                         <% } else if(product[0].U_CLASS === 4) { %> 
-                            "#ffd700"
+                            var(--GOLD)
                         <% } else if(product[0].U_CLASS === 5) { %> 
-                            "#d9d9d9"                          
+                            var(--PLATINUN)                      
                         <% } else if(product[0].U_CLASS === 6) { %> 
-                            "#B9F2FF"                            
+                            var(--DIAMOND)                        
                         <% } %>
                         >
-                        <use xlink:href="#medal"></use></svg></div><br>
+                        <use xlink:href="#medal"></use></svg></div>
                     <% if (parseInt(product[0].P_STATE) === 4) { %>    
                         ● 경&nbsp;&nbsp;매&nbsp;&nbsp;일 : <input type="text" name="p_trade_date" value="<%= product[0].P_TRADE_DATE.toLocaleString('ko-KR', {hour12:false, timeStyle:'short', dateStyle:'medium'}) %>"  readonly>
                         <input type="text" name="p_trade_date1" readonly>

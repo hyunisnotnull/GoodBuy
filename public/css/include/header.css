@@ -47,3 +47,18 @@ header {
         margin-top: 10px; /* 메뉴와 로고 사이 간격 추가 */
     }
 }
+
+:root {
+--UNRANK: #000 ;
+--IRON: #A86830 ;
+--BRONZE: #8392d6 ;
+--SILVER: #E0DDDD ;
+--GOLD: #FFD700 ;
+--PLATINUM: #BECED1 ;
+--DIAMOND: #B9F2FF ;
+}
+
+div.medal_wrap {
+    display: flex;
+    place-items: center;
+}

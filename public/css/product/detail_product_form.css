@@ -70,11 +70,10 @@ input[name="p_category"] {
 }
 
 span[name="p_owner_nick"] {
-    display: inline-block;
+
     padding-left: 20px;
     color: rgba(0, 0, 0, .8);
-    margin-bottom: 7px;
-
+    margin-left: 7px;
 }
 
 div.medal_wrap {
@@ -198,3 +197,4 @@ article div.content input[value="입찰"],
 article div.content input[value="취소"] {
     width: 70px;
 }
+
