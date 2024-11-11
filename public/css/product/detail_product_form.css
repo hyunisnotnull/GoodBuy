@@ -31,7 +31,7 @@ article div.content input {
     display: inline-block;
     border: none;
     font-size: 1.2em;
-    margin: 5px 0;
+    margin: 7px 3px;
 }
 
 article div.content .product-description {
@@ -62,12 +62,23 @@ article div.content input[name="p_price"] {
 }
 
 input[name="p_no"],
-input[name="p_owner_nick"],
 input[name="p_mod_date"],
 input[name="p_category"] {
     display: inline-block;
     padding-left: 20px;
     color: rgba(0, 0, 0, .8);
+}
+
+span[name="p_owner_nick"] {
+    display: inline-block;
+    padding-left: 20px;
+    color: rgba(0, 0, 0, .8);
+    margin-bottom: 7px;
+
+}
+
+div.medal_wrap {
+    display: inline;
 }
 
 input[name="p_trade_date"] {

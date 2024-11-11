@@ -58,5 +58,29 @@ router.post('/cancel_wishlist', (req, res) => {
 
 });
 
+router.get('/find_id_form', (req, res) => {
+    console.log('/user/find_id_form');
+    userService.findIdForm(req, res);
+
+});
+
+router.post('/find_id_confirm', (req, res) => {
+    console.log('/user/find_id_confirm');
+    userService.findIdConfirm(req, res);
+
+});
+
+router.get('/find_password_form', (req, res) => {
+    console.log('/user/find_password_form');
+    userService.findPasswordForm(req, res);
+
+});
+
+router.post('/find_password_confirm', (req, res) => {
+    console.log('/user/find_password_confirm');
+    userService.findPasswordConfirm(req, res);
+
+});
+
 
 module.exports = router;

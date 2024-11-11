@@ -24,7 +24,7 @@ router.get('/modify_product_form', (req, res) => {
 
 });
 
-router.post('/modify_product_confirm', roleCheck(1), uploads.UPLOAD_PROFILE_MIDDLEWARE(), (req, res) => {
+router.post('/modify_product_confirm', roleCheck(1), uploads.UPLOAD_MULTI_PROFILE_MIDDLEWARE(), (req, res) => {
     console.log('/product/modify_product_confirm');
     productService.modifyProductConfirm(req, res);
 

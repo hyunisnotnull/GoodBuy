@@ -1,5 +1,8 @@
 // CK EDITOR START
 document.addEventListener("DOMContentLoaded", function() {
+
+    
+
     const { ClassicEditor, Essentials, Bold, Italic, Font, Paragraph } = CKEDITOR;
     
     ClassicEditor
@@ -108,51 +111,55 @@ const changeModalImage = (e, no, img) =>{
     $('#img').attr('src', img);
 };
 
+const showModalImage = () => {
+    console.log('showModalImage()')
+
+    let p_owner_id = $('input[name="u_id"]').val();
+    let p_no = $('input[name="p_no"]').val();
+    let append = "";
+    $('.img_modal_wrap').css('display', 'block');
+
+    let msgDto = {
+        pi_p_no: p_no
+    }
+
+    $.ajax({
+        url: '/product/get_product_images',
+        method: 'POST',
+        data:  msgDto,
+        dataType: 'json',
+        success: function(data) {
+            console.log('getProductImage() COMMUNICATION SUCCESS!!');
+            console.log(data)
+            for(let i= 0; i < data.length; i++){
+
+                append += `<span value="${data[i].PI_NO}" onclick="changeModalImage(event,${data[i].PI_NO},'/${p_owner_id}/${data[i].PI_FILE}')">`;
+                if( $('.img_modal').attr('src') === '/'+ p_owner_id + '/' + data[i].PI_FILE) {
+                    append += "●</span>";
+                } else {
+                    append += "○</span>";
+                }
+            }
+            $('div.img_btn').empty();
+            $('div.img_btn').append(append);
+        },
+        error: function(error) {
+            console.log('getProductImage() COMMUNICATION ERROR!!');
+
+        },
+        complete: function() {
+            console.log('getProductImage() COMMUNICATION COMPLETE!!');
+    
+
+        }
+
+    });
+}
 
 
 const changeImage = () => {
     console.log('changeImage()');
 
-    // let p_owner_id = $('input[name="u_id"]').val();
-    // let p_no = $('input[name="p_no"]').val();
-    // let append = "";
-    // $('.img_modal_wrap').css('display', 'block');
-
-    // let msgDto = {
-    //     pi_p_no: p_no
-    // }
-
-    // $.ajax({
-    //     url: '/product/get_product_images',
-    //     method: 'POST',
-    //     data:  msgDto,
-    //     dataType: 'json',
-    //     success: function(data) {
-    //         console.log('getProductImage() COMMUNICATION SUCCESS!!');
-    //         console.log(data)
-    //         for(let i= 0; i < data.length; i++){
-
-    //             append += `<span value="${data[i].PI_NO}" onclick="changeModalImage(event,${data[i].PI_NO},'/${p_owner_id}/${data[i].PI_FILE}')">`;
-    //             if( $('.img_modal').attr('src') === '/'+ p_owner_id + '/' + data[i].PI_FILE) {
-    //                 append += "●</span>";
-    //             } else {
-    //                 append += "○</span>";
-    //             }
-    //         }
-    //         $('div.img_btn').empty();
-    //         $('div.img_btn').append(append);
-    //     },
-    //     error: function(error) {
-    //         console.log('getProductImage() COMMUNICATION ERROR!!');
-
-    //     },
-    //     complete: function() {
-    //         console.log('getProductImage() COMMUNICATION COMPLETE!!');
-    
-
-    //     }
-
-    // });
     $('input[type="file"]').trigger('click');
 }
 
@@ -163,7 +170,7 @@ const hideImage = () => {
 $( document ).ready(function() {
     console.log( "ready!" );
     $('input[type="file"]').css('display', 'none');
-
+    if ($("input:radio[name=p_state]:checked").val() === '4') $('input[name="p_trade_date"]').css('display', 'block');
 });
 
 const showAutionDate = () => {
