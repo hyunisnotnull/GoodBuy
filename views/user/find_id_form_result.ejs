@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('../include/title.ejs') %>
+    <link href="/css/user/sign_in_form.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <article>
+        <div class="article_wrap">
+            <div class="title">
+                <h4>아이디 찾기 결과</h4>
+            </div>
+            <div class="content">
+                <div class="result-wrap">
+                    <% if (result && result.length > 0) { %>
+                        <p><b><%= post.u_nick %></b>님의 아이디는 <b>'<%= result[0].U_ID %>'</b> 입니다.</p>
+                    <% } else { %>
+                        <p>입력하신 정보와 일치하는 회원이 없습니다.</p>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    </article>
+</body>
+</html>
