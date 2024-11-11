@@ -81,8 +81,8 @@ window.addEventListener('DOMContentLoaded', function () {
                     <img src="/${product.productOwnerId}/${product.productImage}" alt="${product.productName}" />
                 </a>
                 <div class="product-info">
-                    <p>${product.productName}</p>
-                    <p>${product.productPrice.toLocaleString().concat('원')}</p>
+                    <p class="sidebar-description">${product.productName}</p>
+                    <p class="sidebar-description">${product.productPrice.toLocaleString().concat('원')}</p>
                 </div>
             `;
 

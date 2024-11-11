@@ -164,6 +164,19 @@ div.auction_input {
 
 .end_date_input {
     display: none;
+    width: 100%; /* 셀의 전체 너비를 차지하도록 */
+    padding: 8px; /* 적당한 여백 */
+    border: 1px solid #ccc; /* 연한 회색 테두리 */
+    border-radius: 5px; /* 둥근 테두리 */
+    font-size: 14px; /* 적당한 글씨 크기 */
+    box-sizing: border-box; /* 패딩과 테두리가 포함된 너비 계산 */
+}
+
+.end_date_value {
+    font-size: 14px; /* 값 표시 글씨 크기 */
+    color: #333; /* 어두운 색상으로 텍스트 */
+    margin-top: 5px; /* 위쪽 여백 */
+    font-family: 'Arial', sans-serif; /* 글꼴 설정 */
 }
 
 
@@ -232,4 +245,60 @@ article {
     height: auto;
     min-height:100%;
     padding-bottom: 100px;
+}
+
+
+/* SELECT BOX */
+/* 기본 select 박스 스타일 */
+select {
+    padding: 10px 15px; /* 적당한 패딩 */
+    font-size: 14px; /* 폰트 크기 */
+    color: #333; /* 텍스트 색상 */
+    background-color: #fff; /* 배경색 */
+    border: 1px solid #ddd; /* 테두리 */
+    border-radius: 6px; /* 둥근 모서리 */
+    cursor: pointer; /* 마우스 포인터 */
+    outline: none; /* 포커스 외곽선 제거 */
+    width: auto;
+    min-width: 150px; /* 최소 너비 */
+}
+
+/* hover 시 테두리 색상 변화 */
+select:hover {
+    border-color: #6c63ff;
+}
+
+/* 포커스 시 테두리 색상 변화 */
+select:focus {
+    border-color: #6c63ff;
+    box-shadow: 0 0 5px rgba(108, 99, 255, 0.4); /* 포커스 쉐도우 */
+}
+
+/* 드롭다운 화살표 커스터마이징 (기본 드롭다운 화살표 유지) */
+select::-ms-expand {
+    display: none; /* IE에서는 기본 화살표를 숨김 */
+}
+
+/* 크롬/파이어폭스에서 기본 화살표 제거하고, 커스텀 화살표 추가 */
+select {
+    -webkit-appearance: none;  /* 기본 드롭다운 화살표 제거 (크롬, 사파리) */
+    -moz-appearance: none; /* 파이어폭스 */
+    appearance: none; /* 모든 브라우저에서 기본 화살표 제거 */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 6"><path fill="none" stroke="black" stroke-width="1" d="M0,0 L5,5 L10,0" /></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px center;  /* 화살표를 오른쪽에 배치 */
+    background-size: 10px; /* 화살표 크기 */
+    padding-right: 30px; /* 화살표 여백 */
+}
+
+/* 옵션 항목 스타일 */
+select option {
+    padding: 10px; /* 옵션 항목의 여백 */
+    font-size: 14px; /* 옵션 폰트 크기 */
+    color: #333; /* 옵션 색상 */
+}
+
+/* 옵션 hover 시 배경색 변화 */
+select option:hover {
+    background-color: #f0f0f0;
 }
