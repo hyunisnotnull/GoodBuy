@@ -35,7 +35,7 @@
                     </select><br>
                     <input type="hidden" name="ori_img" value="\<%= product.P_OWNER_ID %>\<%= product.P_IMAGE %>">
                     <input type="hidden" name="p_image_no" value="<%= product.P_IMAGE_NO %>">
-                    <img id="img" src="\<%= product.P_OWNER_ID %>\<%= product.P_IMAGE %>">
+                    <img id="img" src="\<%= product.P_OWNER_ID %>\<%= product.P_IMAGE %>" onclick="showModalImage();">
                     <a href="#none" name="change_image" onclick="changeImage();">CHANGE IMAGE</a>
                     <div class="radio">
                     <input type="radio" name="p_state" value="3" 
@@ -57,7 +57,7 @@
             </div>
         </div>
     </article>
-<!--
+
     <div class="img_modal_wrap">
         <div class="img_modal_content">
             <div class="img_btn">
@@ -65,7 +65,7 @@
             <img class="img_modal" src="/<%= product.P_OWNER_ID %>/<%= product.P_IMAGE %>" onclick="hideImage();">
         </div>
     </div>
--->        
+
     <%- include('../include/footer.ejs') %>
 </body>
 </html>
