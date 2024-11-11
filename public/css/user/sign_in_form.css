@@ -143,3 +143,31 @@ hr {
 .banner-slider button {
     display: none;
 }
+
+
+/* ID , PW 찾기 칸 */
+/* 링크 그룹 스타일 */
+.link-group {
+    margin-top: 20px; /* 링크와 폼 간 간격 */
+    text-align: center; /* 가운데 정렬 */
+}
+
+.link-group a {
+    color: #6c63ff; /* 기본 링크 색상 */
+    font-size: 0.9em; /* 폰트 크기 조정 */
+    text-decoration: none; /* 밑줄 제거 */
+    padding: 5px 10px; /* 링크에 패딩 추가 */
+    border-radius: 5px; /* 둥근 모서리 */
+    transition: background-color 0.3s, color 0.3s; /* 배경색 및 글자색 변화 */
+}
+
+/* 링크에 마우스를 올렸을 때 스타일 */
+.link-group a:hover {
+    background-color: #f0f0f0; /* 배경색 변화 */
+    color: #5a54d1; /* 글자색 변화 */
+}
+
+/* 링크 간 간격 */
+.link-group a + a {
+    margin-left: 15px; /* 각 링크 간 간격 */
+}

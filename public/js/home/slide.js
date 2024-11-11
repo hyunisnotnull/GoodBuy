@@ -54,6 +54,6 @@ document.addEventListener('DOMContentLoaded', function () {
     bannerSliders.forEach(slider => setupSlider(slider, 1));
 
     // 경매와 상품은 3개씩 슬라이드
-    auctionSliders.forEach(slider => setupSlider(slider, 3));
-    productSliders.forEach(slider => setupSlider(slider, 3));
+    auctionSliders.forEach(slider => setupSlider(slider, 4));
+    productSliders.forEach(slider => setupSlider(slider, 4));
 });

@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function () {
         setInterval(() => {
             currentIndex = (currentIndex + 1) % Math.ceil(items.length / groupSize);
             updateSlider();
-        }, 5000);
+        }, 3000);
 
         updateSlider();  // 초기 상태 설정
     }
