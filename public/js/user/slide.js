@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function () {
         setInterval(() => {
             currentIndex = (currentIndex + 1) % Math.ceil(items.length / groupSize);
             updateSlider();
-        }, 5000);
+        }, 3000);
 
         updateSlider();  // 초기 상태 설정
     }
@@ -54,6 +54,6 @@ document.addEventListener('DOMContentLoaded', function () {
     bannerSliders.forEach(slider => setupSlider(slider, 1));
 
     // 경매와 상품은 3개씩 슬라이드
-    auctionSliders.forEach(slider => setupSlider(slider, 4));
-    productSliders.forEach(slider => setupSlider(slider, 4));
+    auctionSliders.forEach(slider => setupSlider(slider, 3));
+    productSliders.forEach(slider => setupSlider(slider, 3));
 });

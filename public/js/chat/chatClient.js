@@ -11,8 +11,8 @@ let currentMessageGroup = null;
 
 function joinRoom(isAdminChat, roomId, senderId, senderNick, otherId, otherNick, otherthum, lastExitTime) {
     
-    const port = isAdminChat ? 3002 : 3001; // 관리자와의 대화이면 3002 포트, 그렇지 않으면 3001 포트 사용
-    console.log("joinRoom 함수 호출됨 - isAdminChat 값:", isAdminChat);
+    // 관리자와의 대화이면 3002 포트, 그렇지 않으면 3001 포트 사용
+    const port = isAdminChat ? 3002 : 3001;
 
     // 기존 연결이 있다면 종료
     if (socket) {
@@ -21,11 +21,9 @@ function joinRoom(isAdminChat, roomId, senderId, senderNick, otherId, otherNick,
 
     // 새로운 포트로 소켓 연결 초기화
     socket = io(`http://localhost:${port}`);
-    console.log(`소켓 연결 시도: http://localhost:${port}`);
 
     // 연결 성공 확인 로그
     socket.on('connect', () => {
-        console.log(`소켓 연결 성공: ${socket.id} (포트: ${port})`);
     });
 
     // lastExitTime 유효성 검사
@@ -49,7 +47,6 @@ function setupSocketEvents() {
 
     // 서버로부터 연결 해제 이벤트 수신
     socket.on('disconnect', () => {
-        console.log("서버와 연결이 끊어졌습니다.");
     });
 }
 
@@ -79,7 +76,10 @@ imageInput.addEventListener('change', function () {
         formData.append('receiverNick', otherNick);
 
         // 서버로 파일 업로드
-        fetch(`/chat/uploadImage/${roomId}`, {
+        const port = isAdminChat ? 3002 : 3001;
+        const uploadUrl = `http://localhost:${port}${isAdminChat ? '/chat/chatA/uploadImage' : '/chat/uploadImage'}/${roomId}`;
+
+        fetch(uploadUrl, {
             method: 'POST',
             body: formData
         })
@@ -129,9 +129,16 @@ function displayMessage(data) {
 
             const profileImage = document.createElement('img');
             profileImage.classList.add('chat-profile-image');
-            profileImage.src = otherthum !== '' 
-                ? `/${otherId}/${otherthum}` 
-                : '/img/default_profile_thum.png';
+            
+            // 관리자일 경우 고정 프로필 사진으로 설정
+            if (isAdminChat) {
+                profileImage.src = '/img/logo.png';
+            } else {
+                // 사용자일 경우 동적으로 설정된 프로필 사진
+                profileImage.src = otherthum !== '' 
+                    ? `http://localhost:3001/${otherId}/${otherthum}`
+                    : '/img/default_profile_thum.png';
+            }
 
             const nickname = document.createElement('span');
             nickname.classList.add('message-user');
@@ -184,90 +191,12 @@ function displayMessage(data) {
         });
 
     }
-    
 
     const messageGroup = currentMessageGroup.querySelector(data.senderId === senderId ? '.my-message-group' : '.other-message-group');
     messageGroup.appendChild(messageElement);
-
-    // 마지막 message에 대해 inline-block 스타일 적용
-    // const allMessages = messageGroup.querySelectorAll('.other-message, .my-message');
-    // allMessages.forEach((msg) => msg.style.display = 'block');
-    // if (allMessages.length > 0) {
-    //     allMessages[allMessages.length - 1].style.display = 'inline-block';
-    // }
-
-    // 마지막 메시지에 시간 표시
-    // const timeElement = document.createElement('div');
-    // timeElement.classList.add('message-time');
-    // timeElement.textContent = formattedTime;
-    // messageGroup.appendChild(timeElement);
 
     // 텍스트 메시지의 경우 바로 스크롤 조정
     if (!data.message.includes('<img')) {
         chatWindow.scrollTop = chatWindow.scrollHeight;
     }
 }
-
-// 채팅방 나가기
-function goBack() {
-    location.href = '/chat/chatList';
-}
-
-// 채팅방 삭제
-function deleteChat() {
-    if (confirm("채팅방을 삭제하시겠습니까?")) {
-        fetch(`/chat/delete/${roomId}`, {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-        .then(response => {
-            if (response.ok) {
-                alert("채팅방이 삭제되었습니다.");
-                window.location.href = "/chat/chatList";
-            } else {
-                alert("채팅방 삭제에 실패했습니다.");
-            }
-        })
-        .catch(error => {
-            console.error("채팅방 삭제 중 오류 발생:", error);
-            alert("오류가 발생했습니다. 다시 시도해주세요.");
-        });
-    }
-}
-
-// $(document).ready(function() {
-//     console.log('DOCUMENT READY!!');
-
-//     initEvents();
-
-// });
-
-// function initEvents() {
-//     console.log('initEvents()');
-
-//     $(document).on('click', 'div.profile_thum_wrap a', function(){
-//         console.log('profile_thum_wrap CLICKED!!');
-
-//         $('#profile_modal_wrap').css('display', 'block');
-
-//     });
-
-//     $(document).on('click', '#profile_modal_wrap div.profile_thum_close a', function(){
-//         console.log('profile_thum_close CLICKED!!');
-
-//         $('#profile_modal_wrap').css('display', 'none');
-
-//     });
-
-// }
-
-$(document).ready(function() {
-    console.log('join READY!!');
-
-    // joinRoom 함수를 여기서 호출
-    joinRoom(isAdminChat, roomId, senderId, senderNick, otherId, otherNick, otherthum, lastExitTime);
-
-    initEvents();
-});

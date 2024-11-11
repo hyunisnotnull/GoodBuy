@@ -1,7 +1,43 @@
+// CK EDITOR START
+document.addEventListener("DOMContentLoaded", function() {
+
+    
+
+    const { ClassicEditor, Essentials, Bold, Italic, Font, Paragraph } = CKEDITOR;
+    
+    ClassicEditor
+        .create(document.querySelector('#p_desc'), {
+            plugins: [Essentials, Bold, Italic, Font, Paragraph],
+            toolbar: ['undo', 'redo', '|', 'fontSize', 'fontColor', '|', 'bold', 'italic'],
+            fontSize: {
+                options: [9, 11, 13, 15, 17, 19, 21, 23, 25, 30]
+            },
+            fontColor: {
+                columns: 5
+            },
+            placeholder: '상품 설명을 입력해주세요.',
+            language: 'ko'
+        })
+        .then(editor => {
+            window.editor = editor;
+
+            const editorRoot = editor.editing.view.getDomRoot();
+
+            editorRoot.style.height = '300px'; // 원하는 높이
+        })
+        .catch(error => {
+            console.error(error);
+        });
+});
+
 const modifyProductConfirm = () => {
     console.log('modifyProductConfirm()');
 
     let form = document.modify_product_form;
+
+    if (window.editor) {
+        form.p_desc.value = window.editor.getData();
+    } 
 
     if (form.p_name.value === '') {
         alert('상품 이름을 입력해주세요.');
@@ -60,6 +96,7 @@ const resetBtn = () => {
 
 const showImage = (e) => {
     console.log('showImae()');
+    console.log(e.target.files)
     $("#img").attr("src", URL.createObjectURL(e.target.files[0]));
 
 }
@@ -74,10 +111,8 @@ const changeModalImage = (e, no, img) =>{
     $('#img').attr('src', img);
 };
 
-
-
-const changeImage = () => {
-    console.log('changeImage()');
+const showModalImage = () => {
+    console.log('showModalImage()')
 
     let p_owner_id = $('input[name="u_id"]').val();
     let p_no = $('input[name="p_no"]').val();
@@ -119,7 +154,13 @@ const changeImage = () => {
         }
 
     });
-    // $('input[type="file"]').trigger('click');
+}
+
+
+const changeImage = () => {
+    console.log('changeImage()');
+
+    $('input[type="file"]').trigger('click');
 }
 
 const hideImage = () => {
@@ -129,7 +170,7 @@ const hideImage = () => {
 $( document ).ready(function() {
     console.log( "ready!" );
     $('input[type="file"]').css('display', 'none');
-
+    if ($("input:radio[name=p_state]:checked").val() === '4') $('input[name="p_trade_date"]').css('display', 'block');
 });
 
 const showAutionDate = () => {
@@ -147,9 +188,3 @@ const hideAutionDate = () => {
 
 }
 
-$(document).ready(function(){
-    console.log()
-    if ($('input[name="p_state"]:checked').val() === '4'){
-        $('input[name="p_trade_date"]').css('display', 'block');
-    }
-});

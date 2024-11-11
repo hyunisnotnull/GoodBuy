@@ -79,7 +79,7 @@ const changeSate = (e) => {
     let p_no = $(e.target).closest('tr').find('td:first-child').text();
     let p_state = $(e.target).closest('tr').find('input[name="state"]').val();
     let sel_index = e.target.selectedIndex;
-    let sel_text = e.target.options[sel_index].innerText
+    let sel_text = e.target.options[sel_index].innerText.trim();
     let sel_value = e.target.options[sel_index].value
     
     if(confirm(`상태를 ${sel_text}로 변경하시겠습니까?`)) {

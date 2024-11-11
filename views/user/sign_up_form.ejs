@@ -8,6 +8,7 @@
     <script src="/js/user/sign_up_form.js"></script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script src="/js/user/user_address.js"></script>
+    <script src="/js/user/slide.js"></script>
 </head>
 <body>
 
@@ -47,7 +48,7 @@
                     </div>
                     <input type="text" id="user_address" placeholder="주소" required>
                     <input type="text" id="user_extraAddress" placeholder="참고주소"><br>
-                    <input type="text" id="user_detailAddress" name="u_detail_address" placeholder="상세주소" required><br>
+                    <input type="text" id="user_detailAddress" name="u_detail_address" placeholder="상세주소" required><br><br>
 
                     <p class="profile-image-label">프로필 이미지 (선택)</p>
                     <input type="file" name="profile_thum" placeholder="SELECT PROFILE IMAGE"><br>
@@ -56,8 +57,24 @@
                         <input type="reset" value="초기화">
                     </div>
                 </form>
+                <div class="banner">
+                    <div class="banner-slider">
+                        <button class="prev"><</button>
+                        <div class="banner-list">
+                            <% events.forEach((event, index) => { %>
+                                <div class="banner-item <%= index === 0 ? 'active' : '' %>">
+                                    <a href="<%= event.E_URL.startsWith('http') ? event.E_URL : 'http://' + event.E_URL %>">
+                                        <img src="/<%= event.E_NO %>/<%= event.E_IMAGE %>" alt="<%= event.E_TITLE %>" />
+                                    </a>
+                                </div>
+                            <% }) %>
+                        </div>
+                        <button class="next">></button>
+                    </div>
+                </div>
             </div>
         </div>
+        
     </article>
 
     <%- include('../include/footer.ejs') %>

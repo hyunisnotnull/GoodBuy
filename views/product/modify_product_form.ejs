@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%- include('../include/title.ejs') %>
     <link href="/css/product/modify_product_form.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/43.3.1/ckeditor5.css" />
+    <script src="https://cdn.ckeditor.com/ckeditor5/43.3.1/ckeditor5.umd.js"></script>
     <script src="/js/product/modify_product_form.js"></script>
 </head>
 <body>
@@ -35,7 +37,7 @@
                     </select><br>
                     <input type="hidden" name="ori_img" value="\<%= product.P_OWNER_ID %>\<%= product.P_IMAGE %>">
                     <input type="hidden" name="p_image_no" value="<%= product.P_IMAGE_NO %>">
-                    <img id="img" src="\<%= product.P_OWNER_ID %>\<%= product.P_IMAGE %>">
+                    <img id="img" src="\<%= product.P_OWNER_ID %>\<%= product.P_IMAGE %>" onclick="showModalImage();">
                     <a href="#none" name="change_image" onclick="changeImage();">CHANGE IMAGE</a>
                     <div class="radio">
                     <input type="radio" name="p_state" value="3" 
@@ -49,14 +51,15 @@
                     <% } %> onclick="showAutionDate();">경매
                     </div>
                     <input type="datetime-local" name="p_trade_date" value="<%= Intl.DateTimeFormat('ko-KR',{year:'numeric', month:'2-digit', day:'2-digit', hour12: false, hour:'2-digit', minute:'2-digit'}).format(new Date(product.P_TRADE_DATE)).replace('. ','-').replace('. ','-').replace('. ','T') %>"><br>
-                    <textarea name="p_desc"><%= product.P_DESC %></textarea><br>
-                    <input type="file" name="profile_thum" onchange="showImage(event);"><br>
+                    <textarea name="p_desc" id="p_desc"><%= product.P_DESC %></textarea><br>
+                    <input type="file" name="profile_thum" multiple onchange="showImage(event);"><br>
                     <input type="button" value="SUBMIT" onclick="modifyProductConfirm();">
                     <input type="button" value="RESET" onclick="resetBtn();">
                 </form>
             </div>
         </div>
     </article>
+
     <div class="img_modal_wrap">
         <div class="img_modal_content">
             <div class="img_btn">
@@ -64,6 +67,7 @@
             <img class="img_modal" src="/<%= product.P_OWNER_ID %>/<%= product.P_IMAGE %>" onclick="hideImage();">
         </div>
     </div>
+
     <%- include('../include/footer.ejs') %>
 </body>
 </html>

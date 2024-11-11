@@ -3,8 +3,14 @@
 <header>
     <div class="header_wrap">
         <a href="/">
-            <img src="/img/logo.png" alt="Logo" class="logo">
+            <img src="/img/GOODBUY2.png" alt="Logo" class="logo">
         </a>
+
+        <form id="searchForm" action="/product/list_sale_product_form" method="get">
+            <input type="text" name="keyword" id="searchKeyword" placeholder="검색어 입력">
+            <button type="submit"><span role="img" aria-label="검색">🔍</span></button>
+        </form>
+
         <div class="menu">
             <a href="/">HOME</a>| &nbsp; 
             <%
@@ -17,9 +23,51 @@
             %>
                     <a href="/user/modify_form">계정수정</a>| &nbsp;
                     <a href="/user/sign_out_confirm">로그아웃</a>
+                    <div class="medal_wrap">
+                    <span><%= loginedUser.U_NICK %></span>
+                        <svg width="30.000000pt" height="30.000000pt" viewBox="0 0 48.000000 48.000000" fill=
+                        <% if(loginedUser.U_CLASS === 0) { %>
+                           var(--UNRANK)
+                        <% } else if(loginedUser.U_CLASS === 1) { %> 
+                            var(--IRON)
+                        <% } else if(loginedUser.U_CLASS === 2) { %> 
+                            var(--BRONZE)
+                        <% } else if(loginedUser.U_CLASS === 3) { %> 
+                            var(--SILVER)
+                        <% } else if(loginedUser.U_CLASS === 4) { %> 
+                            var(--GOLD)
+                        <% } else if(loginedUser.U_CLASS === 5) { %> 
+                            var(--PLATINUM)               
+                        <% } else if(loginedUser.U_CLASS === 6) { %> 
+                            var(--DIAMOND)               
+                        <% } %>>
+                        <use xlink:href="#medal"></use></svg>
+                    </div>
             <%
                 }
             %>
+                    
         </div>
     </div>
 </header>
+
+<svg version="1.0" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+width="48.000000pt" height="48.000000pt" viewBox="0 0 48.000000 48.000000"
+ preserveAspectRatio="xMidYMid meet" display="none">
+    <symbol id="medal">
+        <g filter="url(#blurMe)" transform="translate(0.000000,48.000000) scale(0.100000,-0.100000)"
+        stroke="black">
+        <path stroke-width="8" d="M87 403 c-4 -3 -7 -17 -7 -30 0 -17 9 -27 36 -38 20 -8 39 -15 43
+        -15 3 0 6 20 6 45 0 45 0 45 -36 45 -20 0 -39 -3 -42 -7z"/>
+        <path stroke-width="8" d="M190 355 c0 -50 2 -55 25 -61 14 -3 36 -3 50 0 23 6 25 11 25 61 l0
+        55 -50 0 -50 0 0 -55z"/>
+        <path stroke-width="8" d="M315 365 c0 -25 3 -45 6 -45 4 0 23 7 43 15 32 13 37 20 34 43 -3 24
+        -8 27 -43 30 l-40 3 0 -46z"/>
+        <path stroke-width="8" d="M217 235 c-14 -30 -21 -35 -52 -35 -42 0 -46 -20 -11 -48 21 -16 24
+        -24 19 -62 l-6 -44 36 22 37 21 37 -21 36 -22 -6 44 c-5 38 -2 46 19 62 35 28
+        31 48 -11 48 -31 0 -38 5 -52 35 -9 19 -20 35 -23 35 -3 0 -14 -16 -23 -35z
+        m41 -54 c8 -4 12 -19 10 -32 -2 -18 -9 -24 -28 -24 -19 0 -26 6 -28 24 -3 20
+        11 41 28 41 3 0 11 -4 18 -9z"/>
+        </g>
+</symbol>
+</svg>

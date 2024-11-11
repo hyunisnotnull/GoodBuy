@@ -7,6 +7,7 @@ const Memorystore = require('memorystore')(session);
 const path = require('path');
 const pp = require('./lib/passport/passport');
 const cors = require('cors');
+const errorHandler = require('./lib/config/utils');
 
 // Socket.IO 설정
 const http = require('http');
@@ -22,6 +23,7 @@ app.use(compression());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static('c:\\goodbuy\\upload\\profile_thums\\'));
 app.use('/uploads/chat_images', express.static('c:\\goodbuy\\upload\\chat_images\\'));
+app.use('/uploads/admin_chat_images', express.static('c:\\goodbuy\\upload\\admin_chat_images'));
 app.use(express.static('c:\\goodbuyforadmin\\upload\\event_images\\'));
 app.use(express.json());
 
@@ -77,5 +79,8 @@ app.use((err, req, res, next) => {
     if (req.files.length === 3);
     res.status(500).json({ message: '이미지는 최대 3장까지만 가능합니다.' })
 })
+
+// 404 페이지 처리
+app.use(errorHandler.handle404);
 
 server.listen(3001);

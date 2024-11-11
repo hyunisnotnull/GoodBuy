@@ -2,27 +2,23 @@
 
 <nav>
     <div class="nav_wrap">
-        
-        <form id="searchForm" action="/product/list_sale_product_form" method="get">
-            <input type="text" name="keyword" id="searchKeyword" placeholder="검색어 입력">
-            <button type="submit"><span role="img" aria-label="검색">🔍</span></button>
-        </form>
+        <div class="left-menu">
+            <a href="/product/list_sale_product_form">상품</a> &nbsp;
+            <a href="/product/list_auction_product_form">경매</a> &nbsp;
+            <a href="/product/list_rate_product_form">시세조회</a> &nbsp;
+        </div>
 
-        <a href="/product/list_sale_product_form">상품</a> &nbsp;
-        <a href="/product/list_auction_product_form">경매</a> &nbsp;
-        <a href="/product/list_rate_product_form">시세조회</a> &nbsp;        
-
-        <%
-            if(loginedUser !== undefined) {
-                
-        %>
-            <a href="/product/add_product_form">상품등록</a> &nbsp;
-            <a href="/product/list_my_product_form">내상품</a> &nbsp;
-            <a href="/chat/chatList">마이톡</a> &nbsp;
-            <a href="/user/mylist">마이페이지</a> &nbsp;
-        <%
-            }
-        %>
-
+        <div class="right-menu">
+            <%
+                if(loginedUser !== undefined) {
+            %>
+                <a href="/product/add_product_form">상품등록</a> &nbsp;
+                <a href="/product/list_my_product_form">내상품</a> &nbsp;
+                <a href="/chat/chatList">마이톡</a> &nbsp;
+                <a href="/user/mylist">마이페이지</a> &nbsp;
+            <%
+                }
+            %>
+        </div>
     </div>
 </nav>
