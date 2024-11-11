@@ -3,9 +3,14 @@ body {
     background-color: #f5f7fa; /* 부드러운 배경색 */
 }
 
+article {
+    height: 66vh;
+}
+
 article div.article_wrap {
     max-width: 400px; /* 너비 조정 */
     margin: 50px auto; /* 중앙 정렬 */
+    margin-top: 120px;
     padding: 20px; /* 패딩 추가 */
     border-radius: 10px; /* 둥근 모서리 */
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
@@ -99,4 +104,70 @@ hr {
     font-weight: bold;  /* 텍스트를 굵게 설정 */
     font-size: 0.9em;   /* 글자 크기 살짝 키움 */
     margin-top: 10px;   /* 위쪽 여백 */
+}
+
+/* 배너 스타일 */
+.banner {
+    margin-top: 20px; /* 폼과 배너 사이에 여백 추가 */
+    max-width: 100%; /* 배너가 전체 너비를 사용하도록 설정 */
+    width: 100%; /* 배너 영역의 너비를 100%로 설정 */
+}
+
+.banner-slider {
+    position: relative; /* 배너 버튼 위치 조정을 위한 상대적 위치 지정 */
+}
+
+.banner-list {
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    width: 100%;
+}
+
+.banner-item {
+    margin: 0 10px;
+    max-width: 100%;
+}
+
+.banner img {
+    width: 300px; /* 배너 이미지가 배너 영역에 맞게 크기 조정 */
+    height: 100px; /* 비율에 맞게 높이 자동 조정 */
+    object-fit: contain; /* 이미지 비율에 맞춰 크기 조정 */
+    border-radius: 10px; /* 배너 이미지 둥근 모서리 추가 */
+    border: 1px solid #ddd;
+    padding: 10px; 
+    box-sizing: border-box;
+}
+
+/* 배너 슬라이더 버튼 스타일 */
+.banner-slider button {
+    display: none;
+}
+
+
+/* ID , PW 찾기 칸 */
+/* 링크 그룹 스타일 */
+.link-group {
+    margin-top: 20px; /* 링크와 폼 간 간격 */
+    text-align: center; /* 가운데 정렬 */
+}
+
+.link-group a {
+    color: #6c63ff; /* 기본 링크 색상 */
+    font-size: 0.9em; /* 폰트 크기 조정 */
+    text-decoration: none; /* 밑줄 제거 */
+    padding: 5px 10px; /* 링크에 패딩 추가 */
+    border-radius: 5px; /* 둥근 모서리 */
+    transition: background-color 0.3s, color 0.3s; /* 배경색 및 글자색 변화 */
+}
+
+/* 링크에 마우스를 올렸을 때 스타일 */
+.link-group a:hover {
+    background-color: #f0f0f0; /* 배경색 변화 */
+    color: #5a54d1; /* 글자색 변화 */
+}
+
+/* 링크 간 간격 */
+.link-group a + a {
+    margin-left: 15px; /* 각 링크 간 간격 */
 }

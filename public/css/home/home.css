@@ -32,6 +32,7 @@ article div.article_wrap div.content {
 .banner-item img {
     max-width: 100%; /* 이미지 크기 조정 */
     height: auto; /* 자동 높이 설정 */
+    margin-bottom: 20px;
 }
 
 /* 배너 이미지 */
@@ -111,7 +112,7 @@ article {
 .product-slider,
 .auction-slider {
     position: relative;
-    max-width: 800px; /* 슬라이드의 최대 너비 */
+    max-width: 1000px; /* 슬라이드의 최대 너비 */
     margin: auto;
     overflow: hidden; /* 넘치는 부분 숨기기 */
 }
@@ -120,6 +121,10 @@ article {
 .auction-list {
     display: flex;
     transition: transform 0.5s ease; /* 슬라이드 전환 효과 */
+}
+
+.auction-list{
+    margin-bottom: 20px;
 }
 
 .auction-slide,
