@@ -47,6 +47,20 @@ header {
     }
 }
 
+:root {
+--UNRANK: #000 ;
+--IRON: #A86830 ;
+--BRONZE: #8392d6 ;
+--SILVER: #E0DDDD ;
+--GOLD: #FFD700 ;
+--PLATINUM: #BECED1 ;
+--DIAMOND: #B9F2FF ;
+}
+
+div.medal_wrap {
+    display: flex;
+    place-items: center;
+}
 /* 검색바 스타일 */
 #searchForm {
     display: flex;                
