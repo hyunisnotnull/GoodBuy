@@ -613,8 +613,8 @@ VALUES
 ('gildong@gmail.com', 'gildong', '7','15.6인치 3D/게이밍 노트북/8GB', 400000,'15.6인치 UHD 화면으로 화질이 밝고\n\n선명합니다\n\n고화질 3D영상, 3D게임 가능합니다\n\n견고하게 만들어지고 내구성 좋은 제품입니다\n\n얇고 가벼워 이동하기 좋고 휴대하기\n\n편리합니다\n\n키보드 감이 부드럽고 불편하지 않습니다\n\nCPU는 I3 32나노 공정으로\n\n엄청난 빠른 속도를 자랑합니다\n\n롤, 서든등 잘됩니다','2024-11-01T16:08','2024-11-01T16:08',62);
 
 
-insert into tbl_product_image (pi_p_no, pi_file)
-values 
+INSERT INTO TBL_PRODUCT_IMAGE (PI_P_NO, PI_FILE)
+VALUES 
 (51, '17303834774557ha_Qtn0H.jpg'),
 (52, '17303834774557ha_Qtn0H.jpg'),
 (53, '17303834774557ha_Qtn0H.jpg'),
@@ -644,8 +644,8 @@ VALUES
 ('gildong@gmail.com', 'gildong', '7', '15.6인치 3D/게이밍 노트북/8GB', 239000,'15.6인치 UHD 화면으로 화질이 밝고\n\n선명합니다\n\n고화질 3D영상, 3D게임 가능합니다\n\n견고하게 만들어지고 내구성 좋은 제품입니다\n\n얇고 가벼워 이동하기 좋고 휴대하기\n\n편리합니다\n\n키보드 감이 부드럽고 불편하지 않습니다\n\nCPU는 I3 32나노 공정으로\n\n엄청난 빠른 속도를 자랑합니다\n\n롤, 서든등 잘됩니다','2024-10-30T16:08','2024-10-30T16:08',73,2),
 ('gildong@gmail.com', 'gildong', '7', '15.6인치 3D/게이밍 노트북/8GB', 350000,'15.6인치 UHD 화면으로 화질이 밝고\n\n선명합니다\n\n고화질 3D영상, 3D게임 가능합니다\n\n견고하게 만들어지고 내구성 좋은 제품입니다\n\n얇고 가벼워 이동하기 좋고 휴대하기\n\n편리합니다\n\n키보드 감이 부드럽고 불편하지 않습니다\n\nCPU는 I3 32나노 공정으로\n\n엄청난 빠른 속도를 자랑합니다\n\n롤, 서든등 잘됩니다','2024-11-01T16:08','2024-11-01T16:08',74,2);
 
-insert into tbl_product_image (pi_p_no, pi_file)
-values 
+INSERT INTO TBL_PRODUCT_IMAGE (PI_P_NO, PI_FILE)
+VALUES 
 (63, '17303834774557ha_Qtn0H.jpg'),
 (64, '17303834774557ha_Qtn0H.jpg'),
 (65, '17303834774557ha_Qtn0H.jpg'),
