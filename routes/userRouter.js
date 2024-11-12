@@ -82,5 +82,14 @@ router.post('/find_password_confirm', (req, res) => {
 
 });
 
+// 소셜 로그인 회원가입 처리
+router.get('/social_sign_up_ok', (req, res) => {
+    const isNewUser = req.query.newUser === 'true'; 
+    if (isNewUser) {
+        return res.render('user/social_sign_up_ok', { newUser: true });
+    }
+    res.redirect('/');
+});
+
 
 module.exports = router;

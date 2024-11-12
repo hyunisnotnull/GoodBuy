@@ -76,8 +76,10 @@ const uploadRouter = require('./routes/uploadRouter');
 app.use('/upload', uploadRouter);
 
 app.use((err, req, res, next) => {
-    if (req.files.length === 3);
-    res.status(500).json({ message: '이미지는 최대 3장까지만 가능합니다.' })
+    if (req.files.length === 3){
+        res.status(500).json({ message: '이미지는 최대 3장까지만 가능합니다.' });
+    }
+    console.log(err);
 })
 
 // 404 페이지 처리
