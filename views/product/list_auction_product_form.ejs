@@ -27,7 +27,7 @@
                         <ul class="related-products">
                             <% products.forEach(product => { %>
                                 <li>
-                                    <a href="/product/detail_product_form?p_no=<%= product.P_NO %>" class="product-link" data-product-id="<%= product.P_NO %>">
+                                    <a href="/product/detail_product_form?p_no=<%= product.P_NO %>&u_no=<%= loginedUser?.U_NO %>" class="product-link" data-product-id="<%= product.P_NO %>">
                                         <img src="/<%= product.P_OWNER_ID %>/<%= product.P_IMAGE %>" alt="<%= product.P_NAME %>">
                                         <div class="item-info">
                                             <p class="item-title"><%= product.P_NAME %></p>

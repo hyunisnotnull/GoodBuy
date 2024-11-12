@@ -38,7 +38,7 @@
                     <div class="auction-list">
                         <% auctions.forEach((auction, index) => { %>
                             <div class="auction-item">
-                                <a href="/product/detail_product_form?p_no=<%= auction.P_NO %>" class="product-link" data-product-id="<%= auction.P_NO %>">
+                                <a href="/product/detail_product_form?p_no=<%= auction.P_NO %>&u_no=<%= loginedUser?.U_NO %>" class="product-link" data-product-id="<%= auction.P_NO %>">
                                     <img src="/<%= auction.P_OWNER_ID %>/<%= auction.P_IMAGE %>" alt="<%= auction.P_NAME %>" />
                                 </a>
                                 <h5><%= auction.P_NAME %></h5>
@@ -57,7 +57,7 @@
                     <div class="product-list">
                         <% products.forEach((product, index) => { %>
                             <div class="product-item">
-                                <a href="/product/detail_product_form?p_no=<%= product.P_NO %>" class="product-link" data-product-id="<%= product.P_NO %>">
+                                <a href="/product/detail_product_form?p_no=<%= product.P_NO %>&u_no=<%= loginedUser?.U_NO %>" class="product-link" data-product-id="<%= product.P_NO %>">
                                     <img src="/<%= product.P_OWNER_ID %>/<%= product.P_IMAGE %>" alt="<%= product.P_NAME %>" />
                                 </a>
                                 <h5><%= product.P_NAME %></h5>
