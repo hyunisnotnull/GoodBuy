@@ -37,23 +37,43 @@ const addProductForm = () => {
     } 
 
     if (form.p_name.value === '') {
-        alert('상품 이름을 입력해주세요.');
+        Swal.fire({
+            title: '상품 이름을 입력해주세요.',
+            icon: 'warning',
+            confirmButtonText: '확인'
+        });
         form.p_name.focus();
         return;
     } else if (form.p_price.value === '') {
-        alert('상품 가격을 입력해주세요.');
+        Swal.fire({
+            title: '상품 가격을 입력해주세요.',
+            icon: 'warning',
+            confirmButtonText: '확인'
+        });
         form.p_price.focus();
         return;
     } else if (form.p_category.value === '') {
-        alert('SELECT CATEGORY PLEASE.');
+        Swal.fire({
+            title: '카테고리를 선택해주세요.',
+            icon: 'warning',
+            confirmButtonText: '확인'
+        });
         form.p_category.focus();
         return;
     } else if (form.p_desc.value === '') {
-        alert('상품 설명을 입력해주세요.');
+        Swal.fire({
+            title: '상품 설명을 입력해주세요.',
+            icon: 'warning',
+            confirmButtonText: '확인'
+        });
         form.p_desc.focus();
         return;
     } else if (form.profile_thum.value === '') {
-        alert('상품 사진을 등록해주세요.');
+        Swal.fire({
+            title: '상품 사진을 등록해주세요.',
+            icon: 'warning',
+            confirmButtonText: '확인'
+        });
         form.profile_thum.focus();
         return;
     }
@@ -62,7 +82,11 @@ const addProductForm = () => {
     const isAuction = form.p_state.value === '4'; 
     if (isAuction) {
         if (form.p_trade_date.value === '') {
-            alert('경매 날짜를 입력해주세요.');
+            Swal.fire({
+                title: '경매 날짜를 선택해주세요.',
+                icon: 'warning',
+                confirmButtonText: '확인'
+            });
             form.p_trade_date.focus();
             return;
         }
@@ -79,27 +103,59 @@ const addProductForm = () => {
         formData.delete('p_trade_date');
     }
 
-    fetch('/product/add_product_confirm', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => {
-        if (!response.ok) {
-            return response.json().then(err => {
-                throw new Error(err.message || '알 수 없는 오류가 발생했습니다.');
+    Swal.fire({
+        title: '상품 등록 확인',
+        text: '상품을 등록하시겠습니까?',
+        icon: 'question',
+        showCancelButton: true, // 취소 버튼 추가
+        confirmButtonText: '확인',
+        cancelButtonText: '취소',
+        reverseButtons: true
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // 폼 데이터 전송
+            const formData = new FormData(form);
+
+            // p_trade_date가 빈 문자열이면 null로 설정
+            if (!form.p_trade_date.value) {
+                formData.delete('p_trade_date');
+            }
+
+            // fetch 요청
+            fetch('/product/add_product_confirm', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (!response.ok) {
+                    return response.json().then(err => {
+                        throw new Error(err.message || '알 수 없는 오류가 발생했습니다.');
+                    });
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log(data);
+                if (data.message) {
+                    Swal.fire({
+                        title: '상품 등록 성공!',
+                        text: data.message,
+                        icon: 'success',
+                        confirmButtonText: '확인'
+                    }).then(() => {
+                        window.location.href = '/product/list_my_product_form'; 
+                    });
+                }
+            })
+            .catch(error => {
+                Swal.fire({
+                    title: '등록 오류',
+                    text: error.message,
+                    icon: 'error',
+                    confirmButtonText: '확인'
+                });
             });
         }
-        return response.json();
-    })
-    .then(data => {
-        console.log(data);
-        if (data.message) {
-            alert(data.message); 
-            window.location.href = '/product/list_my_product_form'; // 리다이렉션
-        }
-    })
-    .catch(error => {
-        alert(error.message);
     });
 }
 

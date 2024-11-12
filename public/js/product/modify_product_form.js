@@ -40,22 +40,42 @@ const modifyProductConfirm = () => {
     } 
 
     if (form.p_name.value === '') {
-        alert('상품 이름을 입력해주세요.');
+        Swal.fire({
+            title: '입력 오류',
+            text: '상품 이름을 입력해주세요.',
+            icon: 'warning',
+            confirmButtonText: '확인',
+        });
         form.p_name.focus();
         return;
 
     } else if (form.p_price.value === '') {
-        alert('상품 가격을 입력해주세요.');
+        Swal.fire({
+            title: '입력 오류',
+            text: '상품 가격을 입력해주세요.',
+            icon: 'warning',
+            confirmButtonText: '확인',
+        });
         form.p_price.focus();
         return;
 
     } else if (form.p_category.value === '') {
-        alert('SELECT CATEGORY PLEASE.');
+        Swal.fire({
+            title: '선택 오류',
+            text: '카테고리를 선택해주세요.',
+            icon: 'warning',
+            confirmButtonText: '확인',
+        });
         form.p_category.focus();
         return;
 
     } else if (form.p_desc.value === '') {
-        alert('상품 설명을 입력해주세요.');
+        Swal.fire({
+            title: '입력 오류',
+            text: '상품 설명을 입력해주세요.',
+            icon: 'warning',
+            confirmButtonText: '확인',
+        });
         form.p_desc.focus();
         return;
     }
@@ -77,12 +97,23 @@ const modifyProductConfirm = () => {
     .then(data => {
         console.log(data);
         if (data.message) {
-            alert(data.message); 
-            window.location.href = '/product/list_my_product_form'; // 리다이렉션
+            Swal.fire({
+                title: '성공',
+                text: data.message,
+                icon: 'success',
+                confirmButtonText: '확인',
+            }).then(() => {
+                window.location.href = '/product/list_my_product_form'; // 리다이렉션
+            });
         }
     })
     .catch(error => {
-        alert(error.message);
+        Swal.fire({
+            title: '오류',
+            text: error.message,
+            icon: 'error',
+            confirmButtonText: '확인',
+        });
     });
 }
 

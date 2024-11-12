@@ -1,4 +1,13 @@
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
-    alert('USER MODIFY SUCCESS!!');
-    location.href = '/';
+    window.onload = function() {  // 페이지 로드 후 실행
+    Swal.fire({
+        title: '정보수정 완료!',
+        text: '정보수정이 완료되었습니다.',
+        icon: 'success',
+        confirmButtonText: '확인'
+    }).then(() => {
+        window.location.href = '/user/modify_form'; 
+    });
+    };
 </script>

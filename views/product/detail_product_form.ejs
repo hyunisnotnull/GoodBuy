@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/43.3.1/ckeditor5.css" />
     <script src="https://cdn.ckeditor.com/ckeditor5/43.3.1/ckeditor5.umd.js"></script>
     <script src="/js/product/detail_product_form.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
 
@@ -16,8 +17,6 @@
     
     <article>
         <div class="article_wrap">
-            <div class="title">
-            </div>
             <div class="content">
                 
                 <div class="left">
@@ -49,7 +48,7 @@
                     <input type="hidden" name="u_id" value="<%= product[0].P_OWNER_ID %>">
                     <input type="hidden" name="u_nick" value="<%= product[0].P_OWNER_NICK %>">
                     <input type="text" name="p_name" value="<%= product[0].P_NAME %>" readonly><br>
-                    <input type="text" name="p_price" value="<%= product[0].P_PRICE.toLocaleString() %>원" readonly><br>
+                    <input type="text" name="p_price" value="<%= product[0].P_PRICE.toLocaleString() %>원" readonly><hr><br>
                     ● 상품번호 : <input type="text" name="p_no" value="<%= product[0].P_NO %>" readonly><br>
                     ● 분&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;류 : <input type="text" name="p_category" value="<%= category[parseInt(product[0].P_CATEGORY)].C_NAME %>"  readonly><br>
                     ● 등&nbsp;&nbsp;록&nbsp;&nbsp;일 : <input type="text" name="p_mod_date" value="<%= product[0].P_MOD_DATE.toLocaleString('ko-KR', {hour12:false, timeStyle:'short', dateStyle:'medium'}) %>"  readonly><br>
@@ -84,6 +83,7 @@
                         <input type="button" id="join" value="입찰" onclick="joinAuction();"><input type="button" id="cancel" value="취소" onclick="hideAuction();">
                         
                     </div>
+                    <br>
                     <div class="buttonBox">
                         <input type="button" 
                         <% if (product[0].W_NO) { %> 

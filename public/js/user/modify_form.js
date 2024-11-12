@@ -6,42 +6,72 @@ const modifyComfirm = () => {
     // 연락처 형식 검사 (000-0000-0000 형식)
     const phoneRegex = /^\d{3}-\d{4}-\d{4}$/;
     if (!phoneRegex.test(form.u_phone.value)) {
-        alert('연락처는 000-0000-0000 형식이어야 합니다.');
+        Swal.fire({
+            title: '연락처 형식 오류',
+            text: '연락처는 000-0000-0000 형식이어야 합니다.',
+            icon: 'error',
+            confirmButtonText: '확인'
+        });
         form.u_phone.focus();
         return;
     }
 
     // 닉네임
     if (form.u_nick.value === '') {
-        alert('닉네임을 입력해주세요.');
+        Swal.fire({
+            title: '닉네임 입력 오류',
+            text: '닉네임을 입력해주세요.',
+            icon: 'error',
+            confirmButtonText: '확인'
+        });
         form.u_nick.focus();
         return;
     }
 
     // 성별 선택
     if (form.u_sex.value === '') {
-        alert('성별을 선택해주세요.');
+        Swal.fire({
+            title: '성별 선택 오류',
+            text: '성별을 선택해주세요.',
+            icon: 'error',
+            confirmButtonText: '확인'
+        });
         form.u_sex.focus();
         return;
     }
 
     // 연령대 선택
     if (form.u_age.value === '') {
-        alert('연령대를 선택해주세요.');
+        Swal.fire({
+            title: '연령대 선택 오류',
+            text: '연령대를 선택해주세요.',
+            icon: 'error',
+            confirmButtonText: '확인'
+        });
         form.u_age.focus();
         return;
     }
 
     // 우편주소
     if (form.u_post_address.value === '') {
-        alert('우편 주소를 입력해주세요.');
+        Swal.fire({
+            title: '우편 주소 입력 오류',
+            text: '우편 주소를 입력해주세요.',
+            icon: 'error',
+            confirmButtonText: '확인'
+        });
         form.u_post_address.focus();
         return;
     }
 
     // 상세 주소
     if (form.u_detail_address.value === '') {
-        alert('상세 주소를 입력해주세요.');
+        Swal.fire({
+            title: '상세 주소 입력 오류',
+            text: '상세 주소를 입력해주세요.',
+            icon: 'error',
+            confirmButtonText: '확인'
+        });
         form.u_detail_address.focus();
         return;
     }
@@ -51,7 +81,12 @@ const modifyComfirm = () => {
         // 비밀번호 형식 검사 (특수문자 포함 6자리 이상)
         const pwRegex = /^(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{6,}$/;
         if (!pwRegex.test(form.u_pw.value)) {
-            alert('비밀번호는 특수문자를 포함하여 6자리 이상이어야 합니다.');
+            Swal.fire({
+                title: '비밀번호 형식 오류',
+                text: '비밀번호는 특수문자를 포함하여 6자리 이상이어야 합니다.',
+                icon: 'error',
+                confirmButtonText: '확인'
+            });
             form.u_pw.focus();
             return;
         }
@@ -74,10 +109,23 @@ function resetForm () {
 function deleteConfirm() {
     console.log('deleteConfirm()');
 
-    if (confirm('정말 탈퇴하시겠습니까?')) 
-        location.href = '/user/delete_confirm';
-
+    Swal.fire({
+        title: '정말 탈퇴하시겠습니까?',
+        text: '탈퇴 후에는 모든 정보가 삭제됩니다.',
+        icon: 'warning',
+        showCancelButton: true,  
+        confirmButtonText: '확인',  
+        cancelButtonText: '취소',  
+        reverseButtons: true  
+    }).then((result) => {
+        if (result.isConfirmed) {
+            location.href = '/user/delete_confirm';
+        } else {
+            console.log('탈퇴 취소');
+        }
+    });
 }
+
 
 // 프로필 변경 함수 시작
 $(document).ready(function() {
