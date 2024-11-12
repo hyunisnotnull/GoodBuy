@@ -208,7 +208,7 @@ const addWish = () => {
                 icon: 'success',
                 confirmButtonText: '확인',
             });
-            window.location.reload(true);
+            window.location.reload();
         },
         error: function(xhr, status, error) {
             console.log('addWishlistConfirm() COMMUNICATION ERROR!!');
@@ -287,8 +287,20 @@ const addReport = () => {
                     icon: 'warning',
                     confirmButtonText: '확인',
                 }).then(() => {
-                    window.location.href = xhr.responseJSON.redirectTo;  // 로그인 페이지로 리디렉션
+                    window.location.href = xhr.responseJSON.redirectTo;  
                 });
+
+            } else if (xhr.status === 403) {
+                // 정지된 계정
+                Swal.fire({
+                    title: '정지된 계정',
+                    text: xhr.responseJSON.message,
+                    icon: 'warning',
+                    confirmButtonText: '확인',
+                }).then(() => {
+                    window.location.href = '/';  
+                });
+
             } else {
                 Swal.fire({
                     title: '오류 발생',
@@ -347,7 +359,6 @@ const joinAuction = () => {
         dataType: 'json',
         success: function(data) {
             console.log('addReportConfirm() COMMUNICATION SUCCESS!!');
-            console.log(data)
             Swal.fire({
                 title: '입찰 완료',
                 text: data.message,
@@ -369,8 +380,19 @@ const joinAuction = () => {
                     icon: 'warning',
                     confirmButtonText: '확인',
                 }).then(() => {
-                    // 로그인 페이지로 리디렉션
+
                     window.location.href = xhr.responseJSON.redirectTo;
+                });
+
+            } else if (xhr.status === 403) {
+                // 정지된 계정
+                Swal.fire({
+                    title: '정지된 계정',
+                    text: xhr.responseJSON.message,
+                    icon: 'warning',
+                    confirmButtonText: '확인',
+                }).then(() => {
+                    window.location.href = '/';  
                 });
 
             } else {

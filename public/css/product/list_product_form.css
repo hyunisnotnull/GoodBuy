@@ -4,9 +4,10 @@ body {
 }
 
 article div.article_wrap {
-    max-width: 90%; /* 너비 조정 */
+    max-width: 1200px; /* 너비 조정 */
     margin: 50px auto; /* 중앙 정렬 */
-    padding: 20px; /* 패딩 추가 */
+    padding-top: 30px;
+    padding-bottom: 30px;
     border-radius: 10px; /* 둥근 모서리 */
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
     background: #ffffff; /* 흰색 배경 */
@@ -24,50 +25,68 @@ article div.content {
     text-align: center;
 }
 
-article div.content table {
+article div.contents {
+    margin-top: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    text-align: center;
+}
+
+article div.contents table {
     width: 100%;
+    table-layout: auto;
     border-collapse: collapse; 
 }
 
-article div.content thead th{
+article div.contents thead th{
     background-color: #6c63ff;
     padding: 10px 5px;
     margin-bottom: 5px;
     color: #fff;
 }
 
-article div.content thead th:first-child{
+article div.contents thead th:first-child{
     border-top-left-radius: 5px ;
 }
 
-article div.content thead th:last-child{
+article div.contents thead th:last-child{
     border-top-right-radius: 5px ;
 }
 
 
-article div.content tbody tr {
+article div.contents tbody tr {
     padding: 10px 5px;
     border-bottom: 1px solid #c8c8c8;
 }
 
-article div.content tbody tr td{
+article div.contents tbody tr td{
     padding-top: 5px;
 }
 
-article div.content tbody tr:last-child {
+article div.contents tbody tr:last-child {
     padding: 10px 5px;
     border-bottom: none;
 }
 
-article div.content tbody td:nth-child(3) {
+article div.contents tbody td:nth-child(3) {
     padding-right: 5px;
     text-align: right;
 }
 
-
-article div.content tbody img {
+article div.contents tbody img {
     max-width: 50px;
     max-height: 50px;
+}
+
+/* 상품 이름을 길어지면 ... 처리 */
+article div.contents tbody td a {
+    display: block;               
+    width: 100%;                  
+    white-space: nowrap;          
+    overflow: hidden;             
+    text-overflow: ellipsis; 
+    max-width: 150px;
+    margin: 0 auto;   
 }
 
 
@@ -118,9 +137,10 @@ div.state_menu ul li:hover {
 div.subtitle {
     width: 80%;
     padding: 0;
-    margin: 10px auto;
+    margin: 25px auto;
     display: flex;
     justify-content:space-between;
+    border-bottom: 1px solid #333; /* 밑줄 추가 */
 }
 
 /* 총 몇건, 카테고리별 sort 부분 */
@@ -141,7 +161,7 @@ div.subtitle {
 .sort_menu a {
     margin-left: 10px; /* 링크 간격 조정 */
     cursor: pointer; /* 마우스 포인터 커서 */
-    color: #6c63ff; /* 링크 색상 */
+    color: #555555;
     text-decoration: none; /* 밑줄 제거 */
 }
 
@@ -164,21 +184,22 @@ div.auction_input {
 
 .end_date_input {
     display: none;
-    width: 100%; /* 셀의 전체 너비를 차지하도록 */
+    width: 70%; /* 셀의 전체 너비를 차지하도록 */
     padding: 8px; /* 적당한 여백 */
     border: 1px solid #ccc; /* 연한 회색 테두리 */
     border-radius: 5px; /* 둥근 테두리 */
     font-size: 14px; /* 적당한 글씨 크기 */
     box-sizing: border-box; /* 패딩과 테두리가 포함된 너비 계산 */
+    text-align: center;
+    margin: 0 auto;
 }
 
 .end_date_value {
-    font-size: 14px; /* 값 표시 글씨 크기 */
-    color: #333; /* 어두운 색상으로 텍스트 */
-    margin-top: 5px; /* 위쪽 여백 */
-    font-family: 'Arial', sans-serif; /* 글꼴 설정 */
+    font-size: 14px; 
+    color: #333; 
+    margin-top: 5px; 
+    font-family: 'Arial', sans-serif; 
 }
-
 
 /* 유사 상품 리스트 스타일 */
 .related-products {
@@ -186,16 +207,16 @@ div.auction_input {
     justify-content: center;  /* 첫 번째 상품은 맨 왼쪽, 마지막 상품은 맨 오른쪽에 배치 */
     flex-wrap: wrap;                 /* 화면 크기에 맞게 줄 바꿈 */
     margin-top: 40px;                /* 유사 상품 섹션의 위쪽 여백 */
-    gap: 65px;                       /* 상품 간 간격 */
+    gap: 40px;                       /* 상품 간 간격 */
     width: 80%;                     /* 전체 너비 100%로 설정 (시세 조회 영역에 맞게 조정) */
     box-sizing: border-box;          /* 테두리와 패딩을 포함한 크기 계산 */
     margin: 0 auto;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
 }
 
 /* 각 상품 아이템 스타일 */
 .related-products li {
-    width: 16%;                      /* 각 상품이 차지하는 가로 너비 (4개 상품이 한 줄에 나올 수 있도록 설정) */
+    width: 21%;                      /* 각 상품이 차지하는 가로 너비 (4개 상품이 한 줄에 나올 수 있도록 설정) */
     list-style: none;                /* 리스트 아이템의 기본 스타일 제거 */
     border: 1px solid #ddd;         /* 상품 테두리 */
     border-radius: 8px;              /* 모서리 둥글게 */
@@ -260,7 +281,7 @@ select {
     cursor: pointer; /* 마우스 포인터 */
     outline: none; /* 포커스 외곽선 제거 */
     width: auto;
-    min-width: 150px; /* 최소 너비 */
+    min-width: 150px;
 }
 
 /* hover 시 테두리 색상 변화 */
@@ -301,4 +322,16 @@ select option {
 /* 옵션 hover 시 배경색 변화 */
 select option:hover {
     background-color: #f0f0f0;
+}
+
+select:focus {
+    outline: 3px solid #6c63ff;  /* 포커스 시 테두리 강조 */
+    box-shadow: 0 0 5px rgba(108, 99, 255, 0.4); /* 포커스 쉐도우 */
+}
+
+.sort_menu a.selected {
+    font-weight: 600;  
+    color: #212121;
+    text-decoration: none; 
+    transition: all 0.3s ease; 
 }

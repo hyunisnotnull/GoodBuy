@@ -10,7 +10,7 @@ body {
 .article_wrap {
     max-width: 800px;
     margin: 60px auto;
-    padding: 20px;
+    padding: 30px;
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -144,6 +144,11 @@ p {
     font-weight: bold;
 }
 
+.related-products-container{
+    max-width: 1200px;
+    margin: 50px auto;
+}
+
 /* 유사 상품 제목 가운데 정렬 */
 .related-products-container h5 {
     text-align: center;            /* 제목을 중앙에 정렬 */
@@ -160,7 +165,7 @@ p {
     flex-wrap: wrap;                 /* 화면 크기에 맞게 줄 바꿈 */
     margin-top: 40px;                /* 유사 상품 섹션의 위쪽 여백 */
     gap: 20px;                       /* 상품 간 간격 */
-    width: 70%;                     /* 전체 너비 100%로 설정 (시세 조회 영역에 맞게 조정) */
+    width: 100%;                     /* 전체 너비 100%로 설정 (시세 조회 영역에 맞게 조정) */
     box-sizing: border-box;          /* 테두리와 패딩을 포함한 크기 계산 */
     margin: 0 auto;
     margin-bottom: 40px;

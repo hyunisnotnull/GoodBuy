@@ -15,7 +15,7 @@
     <article>
         <div class="article_wrap">
             <div class="title">
-                <h4>SALE PRODUCT LIST</h4>
+                <h4>회원들의 상품</h4>
             </div>
             <div class="content">
                 <div class="subtitle">
@@ -25,13 +25,19 @@
                     <% } else { %>
                         총 <span id="product_count"><%= totalCount %></span> 건
                     <% } %>
+                    &nbsp;
+                    <select name="category" onchange="filterByCategoryForSale(event);">
+                        <% category.forEach(cat => { %>
+                            <option value="<%= cat.C_NO %>" <%= cat.C_NO == currentCategory ? 'selected' : '' %>><%= cat.C_NAME %></option>
+                        <% }); %>
+                    </select>
                 </div>
                 <div class="sort_menu">
                     정렬:
-                    <a href="/product/list_sale_product_form">전체</a> |
-                    <a href="/product/list_sale_product_form?category=<%= currentCategory %>&keyword=<%= keyword %>&sort=latest">최신순</a> |
-                    <a href="/product/list_sale_product_form?category=<%= currentCategory %>&keyword=<%= keyword %>&sort=price_low">저가순</a> |
-                    <a href="/product/list_sale_product_form?category=<%= currentCategory %>&keyword=<%= keyword %>&sort=price_high">고가순</a>
+                    <a href="/product/list_sale_product_form" class="<%= !sortBy || sortBy === '' ? 'selected' : '' %>">전체</a> |
+                    <a href="/product/list_sale_product_form?category=<%= currentCategory %>&keyword=<%= keyword %>&sort=latest" class="<%= sortBy === 'latest' ? 'selected' : '' %>">최신순</a> |
+                    <a href="/product/list_sale_product_form?category=<%= currentCategory %>&keyword=<%= keyword %>&sort=price_low" class="<%= sortBy === 'price_low' ? 'selected' : '' %>">저가순</a> |
+                    <a href="/product/list_sale_product_form?category=<%= currentCategory %>&keyword=<%= keyword %>&sort=price_high" class="<%= sortBy === 'price_high' ? 'selected' : '' %>">고가순</a>
                 </div>
                 </div>
 

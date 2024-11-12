@@ -13,11 +13,19 @@ a {
     color: inherit;
 }
 
+article div.content {
+    margin-top: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+    text-align: center;
+}
+
 /* 메인 콘텐츠 스타일 */
 article div.article_wrap {
     max-width: 1200px;
     margin: 50px auto;
-    padding: 30px;
+    padding-top: 30px;
+    padding-bottom: 30px;
     background: #fff;
     border-radius: 15px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); /* 그라데이션 효과 추가 */

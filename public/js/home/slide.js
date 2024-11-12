@@ -22,10 +22,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 item.style.display = 'none';
             });
 
-            // 3개씩 묶어서 표시
+            // 4개씩 묶어서 표시
             const groupStartIndex = slideIndex * groupSize;  // 그룹의 시작 인덱스
             for (let i = groupStartIndex; i < groupStartIndex + groupSize && i < items.length; i++) {
-                items[i].style.display = 'block';  // 3개의 아이템을 보이게 함
+                items[i].style.display = 'block';  // 4개의 아이템을 보이게 함
             }
         }
 
@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // 배너는 1개씩 슬라이드
     bannerSliders.forEach(slider => setupSlider(slider, 1));
 
-    // 경매와 상품은 3개씩 슬라이드
+    // 경매와 상품은 4개씩 슬라이드
     auctionSliders.forEach(slider => setupSlider(slider, 4));
     productSliders.forEach(slider => setupSlider(slider, 4));
 });
