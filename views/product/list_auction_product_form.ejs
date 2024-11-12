@@ -16,10 +16,28 @@
     <article>
         <div class="article_wrap">
             <div class="title">
-                <h4>GOOD BUY 경매 리스트</h4>
+                <h4>회원들의 경매</h4>
             </div>
-            
             <div class="content">
+                <div class="subtitle">
+                    <div class="total_count">
+                        총 <span id="auction_count"><%= totalCount %></span> 건
+                        &nbsp;
+                        <select name="category" onchange="filterByCategoryForAution(event);">
+                            <% category.forEach(cat => { %>
+                                <option value="<%= cat.C_NO %>" <%= cat.C_NO == currentCategory ? 'selected' : '' %>><%= cat.C_NAME %></option>
+                            <% }); %>
+                        </select>
+                    </div>
+                    <div class="sort_menu">
+                        정렬:
+                        <a href="/product/list_auction_product_form" class="<%= !sortBy || sortBy === '' ? 'selected' : '' %>">전체</a> |
+                        <a href="/product/list_auction_product_form?category=<%= currentCategory %>&sort=latest" class="<%= sortBy === 'latest' ? 'selected' : '' %>">최신순</a> |
+                        <a href="/product/list_auction_product_form?category=<%= currentCategory %>&sort=price_low" class="<%= sortBy === 'price_low' ? 'selected' : '' %>">저가순</a> |
+                        <a href="/product/list_auction_product_form?category=<%= currentCategory %>&sort=price_high" class="<%= sortBy === 'price_high' ? 'selected' : '' %>">고가순</a>
+                    </div>
+                </div>
+
                 <div class="related-products-container">
                     <% if (products.length === 0) { %>
                         <p>경매중인 상품이 없습니다.</p>
@@ -68,7 +86,7 @@
                         <% }%>
                 </table>
 -->                       
-            <%- include('../include/pagination.ejs', {
+            <%- include('../include/pagination_list_product.ejs', {
                 currentPage: pagination.currentPage,
                 totalPages: pagination.totalPages,
                 pageRange: pagination.pageRange,

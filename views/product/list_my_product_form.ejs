@@ -18,7 +18,7 @@
             <div class="title">
                 <h4>내 상품</h4>
             </div>
-            <div class="content">
+            <div class="contents">
                 <table>
                     <thead>
                         <tr>
@@ -89,7 +89,11 @@
                                 </td>
                                 <td>
                                     <input class="end_date_input" type="datetime-local" name="end_date" onchange="changeAuction(event);">
-                                    <p class="end_date_value"><%= products[i].P_STATE === 4  ? products[i].P_TRADE_DATE?.toLocaleDateString() + products[i].P_TRADE_DATE?.toLocaleTimeString() : "" %></p>
+                                    <p class="end_date_value">
+                                        <%= products[i].P_STATE === 4  ? 
+                                            products[i].P_TRADE_DATE?.toLocaleDateString() + ' ' + 
+                                            products[i].P_TRADE_DATE?.toLocaleTimeString('ko-KR', { hour12: false, hour: '2-digit', minute: '2-digit' }) : "" %>
+                                    </p>
                                 </td>
                                 <td><%= products[i].P_MOD_DATE.toLocaleDateString() %></td>
                                 <td>

@@ -301,6 +301,12 @@ function filterByCategoryForSale(event) {
     window.location.href = url;
 }
 
+function filterByCategoryForAution(event) {
+    const selectedCategory = event.target.value;
+    const url = `/product/list_auction_product_form?category=${selectedCategory || ''}&page=1`;
+    window.location.href = url;
+}
+
 // function startChat() {
 //     console.log('startChat()');
 
