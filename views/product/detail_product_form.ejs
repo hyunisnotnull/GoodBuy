@@ -25,9 +25,9 @@
                     <div class="img_box">
                     <% for (let i = 0; i < product.length; i++) { %>
                         <% if (product[i].P_IMAGE_NO === product[i].PI_NO) { %> 
-                            <img class="img img<%= i %>" src="\<%= product[i].P_OWNER_ID %>\<%= product[i].P_IMAGE %>" onmouseover="showArrowBtn();" onmouseleave="hideArrowBtn();">
+                            <img class="img img<%= i %>" src="\<%= product[i].P_OWNER_ID %>\<%= product[i].P_IMAGE %>" onmouseover="showArrowBtn();" onmouseleave="hideArrowBtn();" onclick="showModalImage(event);">
                         <% } else { %>
-                        <img class="img img<%= i %>" style="display:none" src="\<%= product[i].P_OWNER_ID %>\<%= product[i].P_IMAGE %>"  onmouseover="showArrowBtn();" onmouseleave="hideArrowBtn();">
+                        <img class="img img<%= i %>" style="display:none" src="\<%= product[i].P_OWNER_ID %>\<%= product[i].P_IMAGE %>"  onmouseover="showArrowBtn();" onmouseleave="hideArrowBtn();" onclick="showModalImage(event);">
                         <% } %>
                     <% } %>
                     </div>
@@ -85,7 +85,14 @@
                         
                     </div>
                     <div class="buttonBox">
-                        <input type="button" value="찜하기" onclick="addWish();">
+                        <input type="button" 
+                        <% if (product[0].W_NO) { %> 
+                            value="♥ 찜하기" 
+                        <% } else {%>
+                            value="♡ 찜하기" 
+                        <% } %>
+                        
+                        onclick="addWish();">
                         <input type="button" value="신고하기" onclick="addReport();">
                         <input type="button" value="대화하기" onclick="startChat()">
                         <% if (parseInt(product[0].P_STATE) === 4) { %>    
@@ -115,16 +122,16 @@
             </div>
         </div>
     </article>
-<!--
+
     <div class="img_modal_wrap">
         <div class="img_modal_content">
             <div class="img_btn">
             </div>
-            <img class="img_modal" src="\<%= product[0].P_OWNER_ID %>\<%= product[0].P_IMAGE %>" onclick="hideImage();">
+            <img class="img_modal" src="" onclick="hideImage();">
         </div>
 
     </div>
--->    
+
 
     <%- include('../include/sidebar.ejs') %>
 

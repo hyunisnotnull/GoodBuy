@@ -39,7 +39,7 @@
                             <% products.forEach(product => { %>
                                 <tr>
                                     <td>
-                                        <a href="/product/detail_product_form?p_no=<%= product.P_NO %>">
+                                        <a href="/product/detail_product_form?p_no=<%= product.P_NO %>&u_no=<%= loginedUser.U_NO %>">
                                             <img src="\<%= product.P_OWNER_ID %>\<%= product.P_IMAGE %>" alt="<%= product.P_NAME %>"/></td>
                                         </a>
                                     <td>

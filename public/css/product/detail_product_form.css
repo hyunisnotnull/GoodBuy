@@ -198,3 +198,28 @@ article div.content input[value="취소"] {
     width: 70px;
 }
 
+
+div.img_modal_wrap {
+	display: none;
+	position: fixed;
+	top: 0; left: 0;
+	width: 100%; height: 100%;
+	background-color: rgba(0, 0, 0, .7);
+}
+
+div.img_modal_content {
+	width: 80%;
+	margin: 50px auto;
+	text-align: center;
+	padding: 10px;
+	background-color: #fff;
+	border: 1px solid #ccc;
+	border-radius: 10px;
+	padding: 50px 0;
+}
+
+
+
+img.img_modal {
+   max-width: calc(100% - 100px);
+}
