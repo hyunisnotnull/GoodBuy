@@ -118,6 +118,69 @@ const showImage = (e, no) => {
 
 }
 
+const showModalImage = (e) => {
+    $('.img_modal_wrap').css('display', 'block');
+    targetClass = $(e.target).attr('class').replace(' ', '.');
+    $('.img_modal').attr('src', $('.'+targetClass).attr('src'));
+
+    let data = $('.img_box > .img');
+    let append = '';
+    for(let i= 0; i < data.length; i++){
+
+        console.log($(data[i]).attr('src'));
+        
+    append += `<span onclick="changeImage(event,'${$(data[i]).attr("src").replaceAll("\\","\\\\")}')">`;
+    if( $('.img_modal').attr('src') === $(data[i]).attr('src')) {
+        append += "●</span>";
+    } else {
+        append += "○</span>";
+    }
+
+    }
+    console.log(append)
+    $('div.img_btn').empty();
+    $('div.img_btn').append(append);
+
+    // let msgDto = {
+    //     pi_p_no: p_no
+    // }
+
+    // $.ajax({
+    //     url: '/product/get_product_images',
+    //     method: 'POST',
+    //     data:  msgDto,
+    //     dataType: 'json',
+    //     success: function(data) {
+    //         console.log('getProductImage() COMMUNICATION SUCCESS!!');
+    //         console.log(data)
+    //         for(let i= 0; i < data.length; i++){
+
+    //             append += `<span onclick="changeImage(event,'/${p_owner_id}/${data[i].PI_FILE}')">`;
+    //             if( $('.img_modal').attr('src') === '\\'+ p_owner_id + '\\' + data[i].PI_FILE) {
+    //                 append += "●</span>";
+    //             } else {
+    //                 append += "○</span>";
+    //             }
+
+    //         }
+    //         $('div.img_btn').empty();
+    //         $('div.img_btn').append(append);
+    //     },
+    //     error: function(error) {
+    //         console.log('getProductImage() COMMUNICATION ERROR!!');
+
+    //     },
+    //     complete: function() {
+    //         console.log('getProductImage() COMMUNICATION COMPLETE!!');
+    
+
+    //     }
+
+    // });
+
+}
+
+
 const hideImage = () => {
     $('.img_modal_wrap').css('display', 'none');
 }
@@ -142,6 +205,7 @@ const addWish = () => {
             console.log('addWishlistConfirm() COMMUNICATION SUCCESS!!');
             console.log(data)
             alert(data.message);
+            window.location.reload(true);
         },
         error: function(xhr, status, error) {
             console.log('addWishlistConfirm() COMMUNICATION ERROR!!');
