@@ -4,9 +4,10 @@ body {
 }
 
 article div.article_wrap {
-    max-width: 70%; /* 너비 조정 */
+    max-width: 1200px; /* 너비 조정 */
     margin: 50px auto; /* 중앙 정렬 */
-    padding: 20px; /* 패딩 추가 */
+    padding-top: 30px;
+    padding-bottom: 30px;
     border-radius: 10px; /* 둥근 모서리 */
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
     background: #ffffff; /* 흰색 배경 */
@@ -96,6 +97,13 @@ input[name="auction_price"] {
     display: inline-block;
     padding-left: 20px;
     width: 120px;
+}
+
+article div.content input[name="auction_price"] {
+    display: inline-block;
+    padding-left: 20px;
+    width: 120px;
+    border: 2px solid #ff0000;
 }
 
 article div.left {
@@ -207,17 +215,32 @@ div.img_modal_wrap {
 	background-color: rgba(0, 0, 0, .7);
 }
 
+div.img_modal_wrap div.img_modal_close {
+    width: 800px;
+    margin: 50px auto 5px;
+    text-align: right;
+}
+
+div.img_modal_wrap div.img_modal_close a {
+    font-weight: bold;
+    color: #fff;
+}
+
+div.img_modal_wrap div.img_modal_content img {
+    width: 100%; /* 이미지 너비를 100%로 설정 */
+    height: 100%; /* 이미지 높이를 100%로 설정 */
+    object-fit: cover; /* 이미지의 비율을 맞추면서 잘라내기 */
+}
+
 div.img_modal_content {
-	width: 80%;
-	margin: 50px auto;
+	width: 800px;
+	margin: 0px auto;
 	text-align: center;
-	padding: 10px;
+	padding: 20px;
 	background-color: #fff;
 	border: 1px solid #ccc;
 	border-radius: 10px;
-	padding: 50px 0;
 }
-
 
 
 img.img_modal {
