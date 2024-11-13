@@ -154,7 +154,7 @@ router.get('/list_rate_product_form', (req, res) => {
 
         // searchType에 따라 시세 조회 또는 쇼핑 검색 처리
         if (searchType === 'shopping') {
-            // 쇼핑 검색 처리
+            // 네이버 쇼핑 검색 처리
             productService.searchShopping(req, res);
         } else {
             // 시세 조회 처리
@@ -163,12 +163,5 @@ router.get('/list_rate_product_form', (req, res) => {
     });
 });
 
-
-// NAVER SHOP API START
-router.get('/search_shopping', (req, res) => {
-    console.log('/product/search_shopping');
-    productService.searchShopping(req, res);
-
-});
 
 module.exports = router;

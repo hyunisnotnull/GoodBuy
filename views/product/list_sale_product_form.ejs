@@ -56,42 +56,7 @@
                         <% }) %>
                     </ul>
                 </div>
-<!--
-                <table>
-                    <thead>
-                        <tr>
-                            <th>NO</th>
-                            <th>NAME</th>
-                            <th>PRICE</th>
-                            <th>THUM</th>
-                            <th>
-                                CATEGORY
-                                <select name="category" onchange="filterByCategoryForSale(event);">
-                                    <% category.forEach(cat => { %>
-                                        <option value="<%= cat.C_NO %>" <%= cat.C_NO == currentCategory ? 'selected' : '' %>><%= cat.C_NAME %></option>
-                                    <% }); %>
-                                </select>
-                            </th>
-                            <th>ADDRESS</th>
-                            <th>OWNER</th>
-                            <th>MOD_DATE</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                        <% for (let i = 0; i < products.length; i++) {%>
-                            <tr>
-                                <td><%= products[i].P_NO %></td>
-                                <td><a href="/product/detail_product_form?p_no=<%= products[i].P_NO %>" class="product-link" data-product-id="<%= products[i].P_NO %>"><%= products[i].P_NAME %></a></td>
-                                <td><%= products[i].P_PRICE.toLocaleString().concat('원') %></td>                             
-                                <td><img src="\<%= products[i].P_OWNER_ID %>\<%= products[i].P_IMAGE %>"></td>
-                                <td><%= category[parseInt(products[i].P_CATEGORY)].C_NAME %></td>
-                                <td><%- products[i].P_ADDRESS.replace(/.*\(/,'').replace(')','') %></td>
-                                <td><%= products[i].P_OWNER_NICK %></td>
-                                <td><%= products[i].P_MOD_DATE.toLocaleDateString() %></td>
-                            </tr>
-                        <% }%>
-                </table>
--->
+
                 <%- include('../include/pagination_list_product.ejs', {
                     currentPage: pagination.currentPage,
                     totalPages: pagination.totalPages,

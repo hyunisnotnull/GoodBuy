@@ -103,6 +103,7 @@ article div.content input[name="auction_price"] {
     display: inline-block;
     padding-left: 20px;
     width: 120px;
+    height: 30px;
     border: 2px solid #ff0000;
 }
 
@@ -213,6 +214,7 @@ div.img_modal_wrap {
 	top: 0; left: 0;
 	width: 100%; height: 100%;
 	background-color: rgba(0, 0, 0, .7);
+    z-index: 9999;
 }
 
 div.img_modal_wrap div.img_modal_close {
@@ -227,9 +229,9 @@ div.img_modal_wrap div.img_modal_close a {
 }
 
 div.img_modal_wrap div.img_modal_content img {
-    width: 100%; /* 이미지 너비를 100%로 설정 */
-    height: 100%; /* 이미지 높이를 100%로 설정 */
-    object-fit: cover; /* 이미지의 비율을 맞추면서 잘라내기 */
+    width: 100%; 
+    height: 100%;
+    object-fit: cover;
 }
 
 div.img_modal_content {
@@ -240,6 +242,7 @@ div.img_modal_content {
 	background-color: #fff;
 	border: 1px solid #ccc;
 	border-radius: 10px;
+    position: relative;
 }
 
 
@@ -247,6 +250,31 @@ img.img_modal {
    max-width: calc(100% - 100px);
 }
 
+
+div.img_modal_wrap div.img_modal_content .arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 10px;
+    font-size: 30px;
+    color: #333;
+    cursor: pointer;
+    z-index: 1;
+}
+
+div.img_modal_wrap div.img_modal_content .leftArrow {
+    left: 10px; /* 왼쪽 화살표 위치 */
+}
+
+div.img_modal_wrap div.img_modal_content .rightArrow {
+    right: 10px; /* 오른쪽 화살표 위치 */
+}
+
+div.img_modal_content .leftArrow,
+div.img_modal_content .rightArrow {
+    display: inline-block; /* 마우스 오버 시 표시 */
+}
 
 .arrow_modal_wrap {
     display: flex;

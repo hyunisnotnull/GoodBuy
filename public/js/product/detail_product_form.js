@@ -10,22 +10,22 @@ $(document).ready(function () {
         let d_day = auction_time - new Date().getTime(); 
 
         if (d_day > 0) {
-    setInterval(()=>{
+        setInterval(()=>{
 
-        let trade_date = $('input[name="p_trade_date"]').val().replace(/\s*\(.*\)/,'').replace('. ','-').replace('. ','-').replace('.','');
-        let auction_time = new Date(trade_date).getTime();
-        let d_day = auction_time - new Date().getTime(); 
-        
-        let date = Math.floor(d_day / (1000 * 60 * 60 *24));
-        let hour = Math.ceil((d_day % (1000 * 60 * 60 *24) )/ (1000 * 60 * 60));
-        let minute = Math.ceil(((d_day % (1000 * 60 * 60 *24) )% (1000 * 60 * 60)) / (1000 * 60));
+            let trade_date = $('input[name="p_trade_date"]').val().replace(/\s*\(.*\)/,'').replace('. ','-').replace('. ','-').replace('.','');
+            let auction_time = new Date(trade_date).getTime();
+            let d_day = auction_time - new Date().getTime(); 
+            
+            let date = Math.floor(d_day / (1000 * 60 * 60 *24));
+            let hour = Math.floor((d_day % (1000 * 60 * 60 *24) )/ (1000 * 60 * 60));
+            let minute = Math.floor(((d_day % (1000 * 60 * 60 *24) )% (1000 * 60 * 60)) / (1000 * 60));
 
-        let timeStr = ` (${ date ? date+"일 "+hour+"시간 "+minute+"분 전" : hour ? hour+"시간 "+minute+"분 전" : minute ? minute + "분 전" : ""})`;
-        
-        $('input[name="p_trade_date1"').val(timeStr); 
-        
-        }, 1000);
-    }
+            let timeStr = ` (${ date ? date+"일 "+hour+"시간 "+minute+"분 전" : hour ? hour+"시간 "+minute+"분 전" : minute ? minute + "분 전" : ""})`;
+            
+            $('input[name="p_trade_date1"').val(timeStr); 
+            
+            }, 1000);
+        }
     }
     
 
@@ -334,7 +334,7 @@ const joinAuction = () => {
         data:  msgDto,
         dataType: 'json',
         success: function(data) {
-            console.log('addReportConfirm() COMMUNICATION SUCCESS!!');
+            console.log('joinAuction() COMMUNICATION SUCCESS!!');
             Swal.fire({
                 title: '입찰 완료',
                 text: data.message,
@@ -346,7 +346,7 @@ const joinAuction = () => {
             });
         },
         error: function(xhr, status, error) {
-            console.log('addReportConfirm() COMMUNICATION ERROR!!');
+            console.log('joinAuction() COMMUNICATION ERROR!!');
 
             if (xhr.status === 401) {
                 // 로그인되지 않은 상태에서 요청을 보낼 때
@@ -382,7 +382,7 @@ const joinAuction = () => {
 
         },
         complete: function() {
-            console.log('addReportConfirm() COMMUNICATION COMPLETE!!');
+            console.log('joinAuction() COMMUNICATION COMPLETE!!');
 
         }
 

@@ -57,7 +57,7 @@ select {
     width: 70%; /* 전체 너비의 비율 설정 */
 }
 
-input[type="text"] {
+input[id="keyword"] {
     padding: 10px;
     font-size: 16px;
     border: 1px solid #ccc;
@@ -220,3 +220,6 @@ p {
     font-weight: bold;
 }
 
+a:hover {
+    text-decoration: none;
+}
