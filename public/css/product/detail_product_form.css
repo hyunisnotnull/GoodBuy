@@ -275,3 +275,23 @@ div.img_modal_content .leftArrow,
 div.img_modal_content .rightArrow {
     display: inline-block; /* 마우스 오버 시 표시 */
 }
+
+.arrow_modal_wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.arrow_modal_wrap div {
+    margin: 0 10px;
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    background-color: rgba(10, 10, 10, .3);
+}
+
+.left_modal_arrow,
+.right_modal_arrow {
+    line-height: 50px;
+    font-size: 1.8em;
+}
