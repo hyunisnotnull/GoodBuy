@@ -65,7 +65,7 @@ const hideArrowBtn = () => {
 }
 
 const changeImage = (e,img) =>{
-    $('.img_btn span').text('○');
+    $('.img_modal_btn span').text('○');
     $(e.target).text('●');
     $('img.img_modal').attr('src', img);
 };
@@ -76,45 +76,6 @@ const showImage = (e, no) => {
     $('.img').map((i, n) => {console.log($(n)); $(n).css('display', 'none')});
     classStr = '.img'.concat(no);
     $(classStr).css('display', 'block');
-
-
-
-    // let msgDto = {
-    //     pi_p_no: p_no
-    // }
-
-    // $.ajax({
-    //     url: '/product/get_product_images',
-    //     method: 'POST',
-    //     data:  msgDto,
-    //     dataType: 'json',
-    //     success: function(data) {
-    //         console.log('getProductImage() COMMUNICATION SUCCESS!!');
-    //         console.log(data)
-    //         for(let i= 0; i < data.length; i++){
-
-    //             append += `<span onclick="changeImage(event,'/${p_owner_id}/${data[i].PI_FILE}')">`;
-    //             if( $('.img_modal').attr('src') === '\\'+ p_owner_id + '\\' + data[i].PI_FILE) {
-    //                 append += "●</span>";
-    //             } else {
-    //                 append += "○</span>";
-    //             }
-
-    //         }
-    //         $('div.img_btn').empty();
-    //         $('div.img_btn').append(append);
-    //     },
-    //     error: function(error) {
-    //         console.log('getProductImage() COMMUNICATION ERROR!!');
-
-    //     },
-    //     complete: function() {
-    //         console.log('getProductImage() COMMUNICATION COMPLETE!!');
-    
-
-    //     }
-
-    // });
 
 }
 
@@ -138,47 +99,30 @@ const showModalImage = (e) => {
 
     }
     console.log(append)
-    $('div.img_btn').empty();
-    $('div.img_btn').append(append);
-
-    // let msgDto = {
-    //     pi_p_no: p_no
-    // }
-
-    // $.ajax({
-    //     url: '/product/get_product_images',
-    //     method: 'POST',
-    //     data:  msgDto,
-    //     dataType: 'json',
-    //     success: function(data) {
-    //         console.log('getProductImage() COMMUNICATION SUCCESS!!');
-    //         console.log(data)
-    //         for(let i= 0; i < data.length; i++){
-
-    //             append += `<span onclick="changeImage(event,'/${p_owner_id}/${data[i].PI_FILE}')">`;
-    //             if( $('.img_modal').attr('src') === '\\'+ p_owner_id + '\\' + data[i].PI_FILE) {
-    //                 append += "●</span>";
-    //             } else {
-    //                 append += "○</span>";
-    //             }
-
-    //         }
-    //         $('div.img_btn').empty();
-    //         $('div.img_btn').append(append);
-    //     },
-    //     error: function(error) {
-    //         console.log('getProductImage() COMMUNICATION ERROR!!');
-
-    //     },
-    //     complete: function() {
-    //         console.log('getProductImage() COMMUNICATION COMPLETE!!');
-    
-
-    //     }
-
-    // });
-
+    $('div.img_modal_btn').empty();
+    $('div.img_modal_btn').append(append);
 }
+
+
+const showNextModalImage = (e) => {
+    
+    let maxNo = $('.img_box > .img').length -1;
+    let text = '○'.repeat(maxNo+1);
+
+    let curNo = $('.img_modal_btn span').text().indexOf('●');
+     if ($(e.target).text() === '《'){
+        curNo--;
+        if(curNo < 0) curNo = 0;
+        
+    } else {
+        curNo++;
+        if (curNo > maxNo) curNo = maxNo;
+    };
+
+    $('.img_modal_btn span').text(text)
+    $('.img_modal_btn span:nth-child(' + (curNo + 1) +(')')).trigger('click');
+}
+
 
 
 const hideImage = () => {
@@ -190,6 +134,18 @@ const addWish = () => {
 
     let p_no = $('input[name="p_no"]').val();
     let u_no = $('input[name="loginedUser"]').val();
+
+    let u_id = $('input[name="loginedUserID"]').val();
+    let p_owner_id = $('input[name="u_id"]').val()
+
+    if (u_id === p_owner_id) {
+        Swal.fire({
+            title: '본인 상품은 찜할 수 없습니다.',
+            icon: 'warning',
+            confirmButtonText: '확인',
+        });
+        return;
+    }
 
     let msgDto = {
         w_user_no: u_no,
@@ -207,8 +163,9 @@ const addWish = () => {
                 title: data.message,
                 icon: 'success',
                 confirmButtonText: '확인',
+            }).then(function(){
+                window.location.reload();
             });
-            window.location.reload();
         },
         error: function(xhr, status, error) {
             console.log('addWishlistConfirm() COMMUNICATION ERROR!!');

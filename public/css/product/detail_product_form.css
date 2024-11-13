@@ -223,3 +223,24 @@ div.img_modal_content {
 img.img_modal {
    max-width: calc(100% - 100px);
 }
+
+
+.arrow_modal_wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.arrow_modal_wrap div {
+    margin: 0 10px;
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    background-color: rgba(10, 10, 10, .3);
+}
+
+.left_modal_arrow,
+.right_modal_arrow {
+    line-height: 50px;
+    font-size: 1.8em;
+}
