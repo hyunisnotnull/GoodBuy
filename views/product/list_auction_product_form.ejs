@@ -34,7 +34,8 @@
                         <a href="/product/list_auction_product_form" class="<%= !sortBy || sortBy === '' ? 'selected' : '' %>">전체</a> |
                         <a href="/product/list_auction_product_form?category=<%= currentCategory %>&sort=latest" class="<%= sortBy === 'latest' ? 'selected' : '' %>">최신순</a> |
                         <a href="/product/list_auction_product_form?category=<%= currentCategory %>&sort=price_low" class="<%= sortBy === 'price_low' ? 'selected' : '' %>">저가순</a> |
-                        <a href="/product/list_auction_product_form?category=<%= currentCategory %>&sort=price_high" class="<%= sortBy === 'price_high' ? 'selected' : '' %>">고가순</a>
+                        <a href="/product/list_auction_product_form?category=<%= currentCategory %>&sort=price_high" class="<%= sortBy === 'price_high' ? 'selected' : '' %>">고가순</a> |
+                        <a href="/product/list_auction_product_form?category=<%= currentCategory %>&sort=imminent" class="<%= sortBy === 'imminent' ? 'selected' : '' %>">마감임박</a>
                     </div>
                 </div>
 
@@ -48,6 +49,7 @@
                                     <a href="/product/detail_product_form?p_no=<%= product.P_NO %>&u_no=<%= loginedUser?.U_NO %>" class="product-link" data-product-id="<%= product.P_NO %>">
                                         <img src="/<%= product.P_OWNER_ID %>/<%= product.P_IMAGE %>" alt="<%= product.P_NAME %>">
                                         <div class="item-info">
+                                            <p class="item-time-left" data-end-time="<%= product.P_TRADE_DATE %>"><%= product.timeLeft %></p>
                                             <p class="item-title"><%= product.P_NAME %></p>
                                             <p class="item-price"><%= product.P_PRICE.toLocaleString() %> 원</p>
                                         </div>
@@ -57,35 +59,7 @@
                         </ul>
                     <% } %>
                 </div>
-<!--
-                <table>
-                    <thead>
-                        <tr>
-                            <th>NO</th>
-                            <th>NAME</th>
-                            <th>PRICE</th>
-                            <th>THUM</th>
-                            <th>CATEGORY</th>
-                            <th>ADDRESS</th>
-                            <th>OWNER</th>
-                            <th>MOD_DATE</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                        <% for (let i = 0; i < products.length; i++) {%>
-                            <tr>
-                                <td><%= products[i].P_NO %></td>
-                                <td><a href="/product/detail_product_form?p_no=<%= products[i].P_NO %>" class="product-link" data-product-id="<%= products[i].P_NO %>"><%= products[i].P_NAME %></a></td>
-                                <td><%= products[i].P_PRICE.toLocaleString().concat('원') %></td>                             
-                                <td><img src="\<%= products[i].P_OWNER_ID %>\<%= products[i].P_IMAGE %>"></td>
-                                <td><%= category[parseInt(products[i].P_CATEGORY)].C_NAME %></td>
-                                <td><%- products[i].P_ADDRESS.replace(/.*\(/,'').replace(')','') %></td>
-                                <td><%= products[i].P_OWNER_NICK %></td>
-                                <td><%= products[i].P_MOD_DATE.toLocaleDateString() %></td>
-                            </tr>
-                        <% }%>
-                </table>
--->                       
+                 
             <%- include('../include/pagination_list_product.ejs', {
                 currentPage: pagination.currentPage,
                 totalPages: pagination.totalPages,

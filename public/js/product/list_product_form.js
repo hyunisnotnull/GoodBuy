@@ -1,3 +1,47 @@
+$(document).ready(function () {
+    console.log('ready!');
+
+    // 모든 상품의 경매 종료 시간 계산
+    const updateTimeLeft = () => {
+        $('.item-time-left').each(function() {
+            const $this = $(this);
+            const endTime = new Date($this.data('end-time')).getTime(); // 서버에서 전달된 경매 종료 시간
+            const currentTime = new Date().getTime();
+            const remainingTime = endTime - currentTime;
+
+            if (remainingTime <= 0) {
+                $this.text('경매 종료');
+            } else {
+                const remainingMinutes = Math.floor(remainingTime / 1000 / 60);
+                const remainingDays = Math.floor(remainingMinutes / 1440); 
+                const remainingHours = Math.floor((remainingMinutes % 1440) / 60); 
+                const remainingMinutesOnly = remainingMinutes % 60;
+
+                let timeLeft = '';
+
+                if (remainingDays > 0 && remainingHours > 0) {
+                    timeLeft = `${remainingDays}일 ${remainingHours}시간 ${remainingMinutesOnly}분 전`;
+                } else if (remainingDays > 0) {
+                    timeLeft = `${remainingDays}일 ${remainingMinutesOnly}분 전`;
+                } else if (remainingHours > 0) {
+                    timeLeft = `${remainingHours}시간 ${remainingMinutesOnly}분 전`;
+                } else {
+                    timeLeft = `${remainingMinutesOnly}분 전`;
+                }
+
+                $this.text(timeLeft);
+            }
+        });
+    };
+
+    // 1초마다 경매 종료 시간 갱신
+    setInterval(updateTimeLeft, 1000); // 1초마다 갱신
+
+    // 초기 호출
+    updateTimeLeft();
+});
+
+
 
 let auction_left = 0;
 let auction_top = 0;
@@ -307,10 +351,14 @@ function filterByCategoryForAution(event) {
     window.location.href = url;
 }
 
-// function startChat() {
-//     console.log('startChat()');
+function startChat(index) {
+    // 폼을 정확히 선택하기 위해 index를 파라미터로 받습니다.
+    const form = document.querySelectorAll('form[name="test"]')[index];  // 특정 인덱스의 form 선택
 
-//     let form = document.test;
-//     form.submit();
-
-// }
+    // 폼이 존재할 경우 제출
+    if (form) {
+        form.submit();  // 폼 제출
+    } else {
+        console.error("폼 요소가 없습니다.");
+    }
+}

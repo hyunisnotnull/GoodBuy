@@ -1,4 +1,13 @@
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
-    alert('NEW USER SIGNUP FAIL!!');
-    location.href = '/user/sign_up_form';
+    window.onload = function() {  // 페이지 로드 후 실행
+    Swal.fire({
+        title: '회원가입 실패!',
+        text: '중복되는 ID 또는 닉네임입니다.',
+        icon: 'error',
+        confirmButtonText: '확인'
+    }).then(() => {
+        window.location.href = '/user/sign_up_form'; 
+    });
+    };
 </script>

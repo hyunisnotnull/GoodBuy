@@ -43,7 +43,7 @@
                                     <% }); %>
                                 </select>
                             </th>
-                            <th>입찰가</th>
+                            <th>낙찰</th>
                             <th>경매 종료일</th>
                             <th>수정일</th>
                             <th></th>
@@ -85,7 +85,9 @@
                                     <% } %>
                                 </td>
                                 <td>
-                                    <%= products[i].P_STATE === 4  ? products[i].P_PRICE.toLocaleString().concat('원')  : "" %>
+                                    <% if (products[i].AU_BUYER_NICK && products[i].AU_BUYER_NICK.length > 0) { %>
+                                        <input type="button" value="대화하기" class="chat-button" onclick="startChat(`<%= i %>`)">
+                                    <% } %>
                                 </td>
                                 <td>
                                     <input class="end_date_input" type="datetime-local" name="end_date" onchange="changeAuction(event);">
@@ -106,6 +108,19 @@
                             </tr>
                         <% }%>
                 </table>
+
+                <% for (let i = 0; i < products.length; i++) { %>
+                    <form name="test" action="/chat/chat" method="post">
+                        <input type="hidden" name="p_no" value="<%= products[i].P_NO %>">
+                        <input type="hidden" name="u_id" value="<%= products[i].AU_BUYER_ID %>">
+                        <input type="hidden" name="u_nick" value="<%= products[i].AU_BUYER_NICK %>">
+                        <input type="hidden" name="u_thum" value="<%= products[i].U_PROFILE_THUM %>">
+                        <input type="hidden" name="my_id" value="<%= loginedUser ? loginedUser.U_ID : '' %>">
+                        <input type="hidden" name="my_nick" value="<%= loginedUser ? loginedUser.U_NICK : '' %>">
+                        <input type="hidden" name="my_thum" value="<%= loginedUser ? loginedUser.U_THUM : ''%>">
+                    </form>
+                <% } %>
+
                 <br><br>
                 <%- include('../include/pagination_my_product.ejs', {
                     currentPage: pagination.currentPage,

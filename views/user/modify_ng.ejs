@@ -1,4 +1,13 @@
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
-    alert('USER MODIFY FAIL!!');
-    location.href = '/';
+    window.onload = function() {  // 페이지 로드 후 실행
+    Swal.fire({
+        title: '정보수정 실패!',
+        text: '중복되는 닉네임입니다.',
+        icon: 'error',
+        confirmButtonText: '확인'
+    }).then(() => {
+        window.location.href = '/user/modify_form'; 
+    });
+    };
 </script>
