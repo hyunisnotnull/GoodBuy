@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const productService = require('../lib/service/productService');
 const uploads = require('../lib/upload/uploads');
-const { roleCheck } = require('../lib/passport/roleCheck');
+const roleCheck = require('../lib/passport/roleCheck');
 
 router.get('/add_product_form', (req, res) => {
     console.log('/product/add_product_form');
@@ -104,7 +104,6 @@ router.post('/add_report_confirm', (req, res) => {
     }
 
     productService.addReportConfirm(req, res);
-
 
 });
 

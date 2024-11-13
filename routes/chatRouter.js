@@ -3,10 +3,10 @@ const router = express.Router();
 const chatService = require('../lib/service/chatService');
 const uploads = require('../lib/upload/uploads');
 const { getIO } = require('../lib/socket/socket');
-const { roleCheckForChat } = require('../lib/passport/roleCheck');
+const roleCheck = require('../lib/passport/roleCheck');
 
 // 채팅방 생성
-router.post('/chat', roleCheckForChat(1), (req, res) => {
+router.post('/chat', roleCheck(1), (req, res) => {
     console.log('/chat/chat/');
     chatService.createRoom(req, res);
 });
@@ -18,14 +18,14 @@ router.get('/chatList', (req, res) => {
 });
 
 // 목록에서 채팅방 입장
-router.get('/chat/:roomId', roleCheckForChat(1), (req, res) => {
+router.get('/chat/:roomId', roleCheck(1), (req, res) => {
     const { roomId } = req.params;
     console.log(`/chat/chat/:roomId/ - 요청된 roomId: ${roomId}`);
     chatService.enterChatRoom(req, res);
 });
 
 // 채팅방 삭제 경로 등록
-router.delete('/delete/:roomId', roleCheckForChat(1), (req, res) => {
+router.delete('/delete/:roomId', roleCheck(1), (req, res) => {
     console.log('/chat/delete/:roomId/');
     chatService.deleteChatRoom(req, res);
 });

@@ -3,14 +3,9 @@ body {
     background-color: #f5f7fa; /* 부드러운 배경색 */
 }
 
-article {
-    height: 66vh;
-}
-
 article div.article_wrap {
     max-width: 400px; /* 너비 조정 */
     margin: 50px auto; /* 중앙 정렬 */
-    margin-top: 120px;
     padding: 20px; /* 패딩 추가 */
     border-radius: 10px; /* 둥근 모서리 */
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* 그림자 효과 */

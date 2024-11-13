@@ -26,7 +26,7 @@
                     <div class="medal_wrap">
                     <span><%= loginedUser.U_NICK %></span>
                         <svg width="30.000000pt" height="30.000000pt" viewBox="0 0 48.000000 48.000000" fill=
-                        <% if(loginedUser.U_CLASS === 0) { %>
+                        <% if(loginedUser.U_CLASS === 0 || loginedUser.U_ACTIVE === 2) { %>
                            var(--UNRANK)
                         <% } else if(loginedUser.U_CLASS === 1) { %> 
                             var(--IRON)
