@@ -1,5 +1,8 @@
 $(document).ready(function () {
     console.log('ready!');
+
+    initEvents();
+
     if ($('input[name="p_trade_date"]').val()) {
 
         let trade_date = $('input[name="p_trade_date"]').val().replace(/\s*\(.*\)/,'').replace('. ','-').replace('. ','-').replace('.','');
@@ -27,6 +30,24 @@ $(document).ready(function () {
     
 
 });
+
+function initEvents() {
+    console.log('initEvents()');
+
+    $(document).on('click', 'div.img_modal_wrap a', function(){
+        console.log('img_modal_wrap CLICKED!!');
+
+        $('div.img_modal_wrap').css('display', 'block');
+
+    });
+
+    $(document).on('click', 'div.img_modal_wrap div.img_modal_close a', function(){
+        console.log('img_modal_wrap CLICKED!!');
+
+        $('div.img_modal_wrap').css('display', 'none');
+
+    });
+}
 
 const showNextImage = (e) => {
     let len = $('.img_btn').text().length;
@@ -126,8 +147,6 @@ const showModalImage = (e) => {
     let data = $('.img_box > .img');
     let append = '';
     for(let i= 0; i < data.length; i++){
-
-        console.log($(data[i]).attr('src'));
         
     append += `<span onclick="changeImage(event,'${$(data[i]).attr("src").replaceAll("\\","\\\\")}')">`;
     if( $('.img_modal').attr('src') === $(data[i]).attr('src')) {
@@ -137,7 +156,6 @@ const showModalImage = (e) => {
     }
 
     }
-    console.log(append)
     $('div.img_btn').empty();
     $('div.img_btn').append(append);
 
