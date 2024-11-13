@@ -187,6 +187,26 @@ const showModalImage = () => {
     });
 }
 
+const showNextModalImage = (e) => {
+    
+    let maxNo = $('.img_btn > span').length -1;
+    let text = '○'.repeat(maxNo+1);
+
+    let curNo = $('.img_btn span').text().indexOf('●');
+
+    if ($(e.target).text() === '《'){
+        curNo--;
+        if(curNo < 0) curNo = 0;
+        
+    } else {
+        curNo++;
+        if (curNo > maxNo) curNo = maxNo;
+    };
+
+    $('.img_btn span').text(text)
+    $('.img_btn span:nth-child(' + (curNo + 1) +(')')).trigger('click');
+}
+
 
 const changeImage = () => {
     console.log('changeImage()');
