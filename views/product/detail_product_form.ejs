@@ -87,9 +87,9 @@
                     <div class="buttonBox">
                         <input type="button" 
                         <% if (product[0].W_NO) { %> 
-                            value="♥ 찜하기" 
-                        <% } else {%>
-                            value="♡ 찜하기" 
+                            value="&#10084; 찜하기" 
+                        <% } else { %>
+                            value="&#9825; 찜하기" 
                         <% } %>
                         
                         onclick="addWish();">
@@ -104,9 +104,6 @@
                         <%- product[0].P_DESC %>
                     </div>
                 </form>
-                    
-
-                    
                 
                 <form name="test" action="/chat/chat" method="post">
                     <input type="hidden" name="p_no" value="<%= product[0].P_NO %>">
@@ -124,6 +121,9 @@
     </article>
 
     <div class="img_modal_wrap">
+        <div class="img_modal_close">
+            <a href="#none">CLOSE</a>
+        </div>
         <div class="img_modal_content">
             <div class="img_modal_btn">
             </div>
