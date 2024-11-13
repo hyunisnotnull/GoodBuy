@@ -20,7 +20,7 @@ function joinRoom(isAdminChat, roomId, senderId, senderNick, otherId, otherNick,
     }
 
     // 새로운 포트로 소켓 연결 초기화
-    socket = io(`http://localhost:${port}`);
+    socket = io(`http://14.42.124.92:${port}`);
 
     // 연결 성공 확인 로그
     socket.on('connect', () => {
@@ -77,7 +77,7 @@ imageInput.addEventListener('change', function () {
 
         // 서버로 파일 업로드
         const port = isAdminChat ? 3002 : 3001;
-        const uploadUrl = `http://localhost:${port}${isAdminChat ? '/chat/chatA/uploadImage' : '/chat/uploadImage'}/${roomId}`;
+        const uploadUrl = `http://14.42.124.92:${port}${isAdminChat ? '/chat/chatA/uploadImage' : '/chat/uploadImage'}/${roomId}`;
 
         fetch(uploadUrl, {
             method: 'POST',
@@ -136,7 +136,7 @@ function displayMessage(data) {
             } else {
                 // 사용자일 경우 동적으로 설정된 프로필 사진
                 profileImage.src = otherthum !== '' 
-                    ? `http://localhost:3001/${otherId}/${otherthum}`
+                    ? `http://14.42.124.92:3001/${otherId}/${otherthum}`
                     : '/img/default_profile_thum.png';
             }
 
