@@ -115,17 +115,36 @@ div.img_modal_wrap {
 	top: 0; left: 0;
 	width: 100%; height: 100%;
 	background-color: rgba(0, 0, 0, .7);
+    z-index: 9999;
+}
+
+div.img_modal_wrap div.img_modal_close {
+    width: 600px;
+    margin: 50px auto 5px;
+    text-align: right;
+}
+
+div.img_modal_wrap div.img_modal_close a {
+    font-weight: bold;
+    color: #fff;
+}
+
+div.img_modal_wrap div.img_modal_content img {
+    width: 100%; 
+    height: 580px;
+    object-fit: cover;
 }
 
 div.img_modal_content {
-	width: 80%;
-	margin: 50px auto;
+	width: 600px;
+    height: 600px;
+	margin: 0px auto;
 	text-align: center;
-	padding: 10px;
+	padding: 20px;
 	background-color: #fff;
 	border: 1px solid #ccc;
 	border-radius: 10px;
-	padding: 50px 0;
+	position: relative;
 }
 
 

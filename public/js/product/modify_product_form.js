@@ -1,7 +1,7 @@
 // CK EDITOR START
 document.addEventListener("DOMContentLoaded", function() {
 
-    
+    initEvents();
 
     const { ClassicEditor, Essentials, Bold, Italic, Font, Paragraph } = CKEDITOR;
     
@@ -29,6 +29,24 @@ document.addEventListener("DOMContentLoaded", function() {
             console.error(error);
         });
 });
+
+function initEvents() {
+    console.log('initEvents()');
+
+    $(document).on('click', 'div.img_modal_wrap a', function(){
+        console.log('img_modal_wrap CLICKED!!');
+
+        $('div.img_modal_wrap').css('display', 'block');
+
+    });
+
+    $(document).on('click', 'div.img_modal_wrap div.img_modal_close a', function(){
+        console.log('img_modal_wrap CLICKED!!');
+
+        $('div.img_modal_wrap').css('display', 'none');
+
+    });
+}
 
 const modifyProductConfirm = () => {
     console.log('modifyProductConfirm()');
