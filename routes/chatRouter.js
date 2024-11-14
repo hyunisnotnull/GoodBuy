@@ -14,6 +14,9 @@ router.post('/chat', roleCheck(1), (req, res) => {
 // 채팅방 목록
 router.get('/chatList', (req, res) => {
     console.log('/chat/chatList/');
+    if (!req.isAuthenticated()) {
+        return res.redirect('/user/sign_in_form');
+    }
     chatService.chatList(req, res);
 });
 

@@ -204,7 +204,7 @@ const addWish = () => {
                     icon: 'warning',
                     confirmButtonText: '확인',
                 }).then(() => {
-                    window.location.href = xhr.responseJSON.redirectTo;  // 로그인 페이지로 리디렉션
+                    window.location.href = '/user/sign_in_form';  // 로그인 페이지로 리디렉션
                 });
             } else {
                 Swal.fire({
@@ -263,7 +263,7 @@ const addReport = () => {
                     icon: 'warning',
                     confirmButtonText: '확인',
                 }).then(() => {
-                    window.location.href = xhr.responseJSON.redirectTo;  
+                    window.location.href = '/user/sign_in_form';  
                 });
 
             } else if (xhr.status === 403) {
@@ -321,6 +321,15 @@ const joinAuction = () => {
     let u_id = $('input[name="loginedUserID"]').val();
     let u_nick = $('input[name="loginedUserNICK"]').val();
     let auction_price = $('input[name="auction_price"]').val();
+    let p_owner_id = $('input[name="u_id"]').val()
+    if (u_id === p_owner_id) {
+        Swal.fire({
+            title: '본인 상품은 입찰할 수 없습니다.',
+            icon: 'warning',
+            confirmButtonText: '확인',
+        });
+        return;
+    }
     let msgDto = {
         au_product_no: p_no,
         au_buyer_id: u_id,
@@ -357,7 +366,7 @@ const joinAuction = () => {
                     confirmButtonText: '확인',
                 }).then(() => {
 
-                    window.location.href = xhr.responseJSON.redirectTo;
+                    window.location.href = '/user/sign_in_form';
                 });
 
             } else if (xhr.status === 403) {

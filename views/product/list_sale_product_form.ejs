@@ -6,6 +6,9 @@
     <%- include('../include/title.ejs') %>
     <link href="/css/product/list_product_form.css" rel="stylesheet" type="text/css">
     <script src="/js/product/list_product_form.js"></script>
+    <script>
+        const keyword = `<%= keyword || '' %>`;  
+    </script>
 </head>
 <body>
 
@@ -26,6 +29,7 @@
                         총 <span id="product_count"><%= totalCount %></span> 건
                     <% } %>
                     &nbsp;
+                    <div id="keyword-container" style="display:none;"><%= keyword || '' %></div>
                     <select name="category" onchange="filterByCategoryForSale(event);">
                         <% category.forEach(cat => { %>
                             <option value="<%= cat.C_NO %>" <%= cat.C_NO == currentCategory ? 'selected' : '' %>><%= cat.C_NAME %></option>

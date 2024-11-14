@@ -148,6 +148,7 @@ const addProductForm = () => {
                 }
             })
             .catch(error => {
+                console.log('error ::', error);
                 Swal.fire({
                     title: '등록 오류',
                     text: error.message,
