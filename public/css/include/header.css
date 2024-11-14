@@ -49,12 +49,12 @@ header {
 
 :root {
 --UNRANK: #000 ;
---IRON: #A86830 ;
---BRONZE: #8392d6 ;
---SILVER: #E0DDDD ;
---GOLD: #FFD700 ;
---PLATINUM: #BECED1 ;
---DIAMOND: #B9F2FF ;
+--IRON: rgb(139,139,131) ;
+--BRONZE: rgb(205,127,50)  ;
+--SILVER: rgb(192,192,192)  ;
+--GOLD: rgb(255,215,0)  ;
+--PLATINUM: rgb(229,228,226)  ;
+--DIAMOND: rgb(185,242,255)  ;
 }
 
 div.medal_wrap {

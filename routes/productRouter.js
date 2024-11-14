@@ -4,7 +4,7 @@ const productService = require('../lib/service/productService');
 const uploads = require('../lib/upload/uploads');
 const roleCheck = require('../lib/passport/roleCheck');
 
-router.get('/add_product_form', (req, res) => {
+router.get('/add_product_form', roleCheck(1), (req, res) => {
     console.log('/product/add_product_form');
     productService.addProductForm(req, res);
 
@@ -12,13 +12,12 @@ router.get('/add_product_form', (req, res) => {
 
 router.post('/add_product_confirm', roleCheck(1), uploads.UPLOAD_MULTI_PROFILE_MIDDLEWARE(), (req, res) => {
     console.log('/product/add_product_confirm');
-
     productService.addProductConfirm(req, res);
 
 });
 
 
-router.get('/modify_product_form', (req, res) => {
+router.get('/modify_product_form',roleCheck(1), (req, res) => {
     console.log('/product/modify_product_form');
     productService.modifyProductForm(req, res);
 
@@ -50,6 +49,9 @@ router.post('/change_category_product_confirm', roleCheck(1), (req, res) => {
 
 router.get('/list_my_product_form', async (req, res) => {
     console.log('/product/list_my_product_form');
+    if (!req.isAuthenticated()) {
+        return res.redirect('/user/sign_in_form');
+    }
     productService.listMyProductForm(req, res);
 
 });
@@ -68,61 +70,24 @@ router.get('/list_auction_product_form', async (req, res) => {
 
 router.get('/detail_product_form', (req, res) => {
     console.log('/product/detail_product_form');
-
-        productService.detailProductForm(req, res);
-
+    productService.detailProductForm(req, res);
 
 });
 
-router.post('/add_wishlist_confirm', (req, res) => {
+router.post('/add_wishlist_confirm', roleCheck(1), (req, res) => {
     console.log('/product/add_wishlist_confirm');
-
-    if (!req.isAuthenticated()) {
-        return res.status(401).json({
-            message: '로그인 후 찜하기가 가능합니다.',
-            redirectTo: '/user/sign_in_form'  
-        });
-    }
     productService.addWishlistConfirm(req, res);
 
 });
 
-router.post('/add_report_confirm', (req, res) => {
+router.post('/add_report_confirm', roleCheck(1), (req, res) => {
     console.log('/product/add_report_confirm');
-
-    if (!req.isAuthenticated()) {
-        return res.status(401).json({
-            message: '로그인 후 신고하기가 가능합니다.',
-            redirectTo: '/user/sign_in_form'  
-        });
-    }
-
-    if (!req.user || req.user.U_ACTIVE !== 1) {
-        return res.status(403).json({
-            message: '정지된 계정은 이 작업을 진행할 수 없습니다. 관리자에게 문의하세요.'
-        });
-    }
-
     productService.addReportConfirm(req, res);
 
 });
 
-router.post('/join_auction_confirm', (req, res) => {
+router.post('/join_auction_confirm', roleCheck(1), (req, res) => {
     console.log('/product/join_auction_confirm');
-
-    if (!req.isAuthenticated()) {
-        return res.status(401).json({
-            message: '로그인 후 입찰이 가능합니다.',
-            redirectTo: '/user/sign_in_form'  
-        });
-    }
-
-    if (!req.user || req.user.U_ACTIVE !== 1) {
-        return res.status(403).json({
-            message: '정지된 계정은 이 작업을 진행할 수 없습니다. 관리자에게 문의하세요.'
-        });
-    }
-
     productService.joinAuctionConfirm(req, res);
 
 });

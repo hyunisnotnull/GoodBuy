@@ -296,3 +296,7 @@ div.img_modal_content .rightArrow {
     line-height: 50px;
     font-size: 1.8em;
 }
+
+hr {
+    width: 95%;
+}

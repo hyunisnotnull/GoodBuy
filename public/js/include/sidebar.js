@@ -99,8 +99,10 @@ window.addEventListener('DOMContentLoaded', function () {
     function goToPrevPage() {
         if (currentIndex > 0) {
             currentIndex--;  // 이전 상품으로 이동
-            displayRecentProducts();  // 상품 업데이트
+        } else {
+            currentIndex = recentProducts.length - 1;
         }
+        displayRecentProducts();  // 상품 업데이트
     }
 
     // 다음 페이지로 이동

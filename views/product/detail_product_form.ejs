@@ -56,7 +56,7 @@
                     ● 판&nbsp;&nbsp;매&nbsp;&nbsp;자 : <span name="p_owner_nick"><%= product[0].P_OWNER_NICK %></span>
                     
                         <svg width="30.000000pt" height="30.000000pt" viewBox="0 0 48.000000 48.000000" fill=
-                        <% if(product[0].U_CLASS === 0) { %>
+                        <% if(product[0].U_CLASS === 0 || product[0].U_ACTIVE === 2 ) { %>
                             var(--UNRANK)
                         <% } else if(product[0].U_CLASS === 1) { %> 
                             var(--IRON)

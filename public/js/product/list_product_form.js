@@ -341,9 +341,13 @@ function filterByState(event) {
 
 function filterByCategoryForSale(event) {
     const selectedCategory = event.target.value;
-    const url = `/product/list_sale_product_form?category=${selectedCategory || ''}&page=1`;
-    window.location.href = url;
+    const keyword = document.getElementById('keyword-container').textContent; 
+    const encodedKeyword = encodeURIComponent(keyword);
+    const url = `/product/list_sale_product_form?category=${selectedCategory || ''}&keyword=${encodedKeyword || ''}&page=1`;
+
+    window.location.href = url;  // 페이지 리다이렉션
 }
+
 
 function filterByCategoryForAution(event) {
     const selectedCategory = event.target.value;
