@@ -32,7 +32,7 @@ const maxAge = 1000 * 60 * 30;
 const sessionObj = {
     secret: 'green!@#$%^',
     resave: false, 
-    saveUninitialized: true, 
+    saveUninitialized: false, 
     store: new Memorystore({checkPeriod: maxAge}),
     cookie: {
         maxAge: maxAge,
@@ -85,4 +85,4 @@ app.use((err, req, res, next) => {
 // 404 페이지 처리
 app.use(errorHandler.handle404);
 
-server.listen(3001);
+server.listen(3001,'0.0.0.0');
