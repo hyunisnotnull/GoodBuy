@@ -17,7 +17,7 @@
 -----------------------------------
 - 프로젝트 구현 내용
 
-![구현내용](https://github.com/user-attachments/assets/116ad5e3-a473-4805-b51a-b4ea29328c1e)
+![image](https://github.com/user-attachments/assets/d09ffbc3-7d66-4b2d-a876-b6da6f913c9b)
 
 -----------------------------------
 - 시퀀스 다이어그램
