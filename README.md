@@ -36,12 +36,12 @@
 -----------------------------------
 - 주요 트리거
 
-![image](https://github.com/user-attachments/assets/bc5bde7b-ca51-4fbe-9cdc-ad77ce4b3b96)
+![image](https://github.com/user-attachments/assets/3e412f63-0b0b-4be4-8f56-18b264f173af)
 
 -----------------------------------
 - DB INDEX
 
-![image](https://github.com/user-attachments/assets/bc8b11d3-f592-40f6-b0f9-126078073ae9)
+![image](https://github.com/user-attachments/assets/e33867d6-abb7-4911-9b16-f54be39fd71e)
 
 -----------------------------------
 More Detail →
