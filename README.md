@@ -42,7 +42,3 @@
 - DB INDEX
 
 ![image](https://github.com/user-attachments/assets/e33867d6-abb7-4911-9b16-f54be39fd71e)
-
------------------------------------
-More Detail →
-[2조_3FD_GOODBUY_완료보고서.pptx](https://github.com/user-attachments/files/17793042/2._3FD_GOODBUY_.pptx)
